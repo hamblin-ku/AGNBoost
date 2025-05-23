@@ -22,7 +22,7 @@ The `Catalog` class is your entry point for working with astronomical data. It h
 - Train/validation/test data splitting
 - Signal-to-noise filtering
 
-::: agnboost.catalog.Catalog
+::: agnboost.agnboost.dataset.Catalog
     options:
       show_root_heading: false
       show_source: false
@@ -43,7 +43,7 @@ The `AGNBoost` class provides the machine learning functionality, including mode
 - Multi-target support
 - Comprehensive logging and validation
 
-::: agnboost.agnboost.AGNBoost
+::: agnboost.agnboost.model.AGNBoost
     options:
       show_root_heading: false
       show_source: false
