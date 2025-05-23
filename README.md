@@ -17,28 +17,11 @@
 
 ---
 
-AGNBoost is a specialized Python package designed for astronomers working with photometric and spectroscopic data. Built on the foundation of [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), AGNBoost provides a streamlined workflow for classification and regression tasks in astronomy, with particular focus on Active Galactic Nuclei (AGN) identification and photometric redshift estimation. The package offers distributional modeling capabilities that go beyond simple point estimates, providing robust uncertainty quantification essential for astronomical analysis.
+summarize here
 
 ## ✨ Features
 
-### 🔭 **Astronomy-Focused Data Management**
-- **Smart Catalog System**: Load and manage data from FITS files, CSV, or pandas DataFrames
-- **Flexible Band Configuration**: JSON-based photometric band setup with metadata support
-- **Automatic Feature Engineering**: Built-in color calculations and magnitude transformations
-- **Data Validation**: Ensures data quality and compatibility across datasets
-
-### 🚀 **Advanced Machine Learning**
-- **XGBoostLSS Integration**: Full distributional modeling with uncertainty quantification
-- **Hyperparameter Optimization**: Intelligent tuning with custom parameter grids
-- **Multi-Target Support**: Train models for multiple astronomical targets simultaneously
-- **Robust Cross-Validation**: Stratified splitting for both classification and regression
-
-### ⚡ **Research-Ready Tools**
-- **Pre-trained Models**: Ready-to-use models for AGN classification and redshift estimation
-- **Signal-to-Noise Filtering**: Built-in S/N cuts for photometric data quality control
-- **Model Persistence**: Comprehensive saving/loading with full metadata tracking
-- **Extensible Architecture**: Designed for customization and integration with existing workflows
-
+### 🔭 **Fill**
 ## 🚀 Installation
 
 ### Prerequisites
