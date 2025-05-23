@@ -1,15 +1,9 @@
 <div align="center">
-  <table>
-    <tr>
-      <td align="center" style="padding-right: 20px;">
-        <h1>AGNBoost</h1>
-        <p><strong>A machine learning toolkit for astronomical data analysis using XGBoost</strong></p>
-      </td>
-      <td align="center">
-        <img src="figures/agnboost_logo.png" alt="AGNBoost Logo" width="150" height="150"/>
-      </td>
-    </tr>
-  </table>
+  <h1>AGNBoost &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="agnboost_logo_circular.png" alt="AGNBoost Logo" width="200" height="200"/></h1>
+  
+  **A machine learning toolkit for astronomical data analysis using XGBoost**
+  
+  <br>
   
   [![Documentation](https://img.shields.io/badge/docs-github--pages-blue)](https://kurthamblin.github.io/agnboost/)
   [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
