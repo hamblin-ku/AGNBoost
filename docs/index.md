@@ -107,48 +107,6 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
 ---
 
-## Quick Example
-
-Here's a taste of what AGNBoost can do:
-
-```python
-from agnboost import Catalog, AGNBoost
-
-# Load your astronomical data
-catalog = Catalog(path="jwst_observations.fits")
-
-# Create features and split data
-catalog.create_feature_dataframe()
-catalog.split_data(test_size=0.2, val_size=0.2, random_state=42)
-
-# Initialize and train AGNBoost
-agnboost = AGNBoost(model_names=['redshift', 'fagn'])
-agnboost.load_models()  # Load pre-trained models
-
-# Make predictions with uncertainties
-predictions = agnboost.predict(catalog)
-```
-
----
-
-## Why AGNBoost?
-
-### For Observers
-- Process JWST, HST, and ground-based survey data with ease
-- Apply state-of-the-art ML techniques without deep technical knowledge
-- Get research-ready results with proper uncertainty quantification
-
-### For Theorists
-- Test predictions against observational data with robust statistical methods
-- Incorporate physical priors through custom loss functions
-- Scale analyses to large simulated datasets
-
-### For Survey Scientists
-- Handle heterogeneous multi-wavelength datasets efficiently
-- Implement consistent analysis pipelines across different instruments
-- Achieve reproducible results with comprehensive metadata tracking
-
----
 
 ## What's Next?
 
@@ -201,16 +159,4 @@ AGNBoost is developed by astronomers, for astronomers. We welcome contributions,
 ---
 
 *AGNBoost is open-source software released under the MIT License. If you use AGNBoost in your research, please see our [Citation Guide](citation.md).*
-```
 
-This index.md file provides:
-
-1. **Clear value proposition** targeted at astronomers
-2. **Comprehensive feature overview** organized by capability
-3. **Detailed installation instructions** with conda recommendation
-4. **XGBoostLSS foundation explanation** with astronomy-specific benefits
-5. **Quick example** to show immediate value
-6. **Clear next steps** with attractive navigation cards
-7. **Professional formatting** with appropriate use of admonitions, icons, and structure
-
-The file balances being comprehensive enough to understand the project's scope while being concise enough to read quickly. It emphasizes the astronomical focus throughout and positions AGNBoost as a serious research tool.
