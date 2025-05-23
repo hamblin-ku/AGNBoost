@@ -1,7 +1,14 @@
 <div align="center">
-  <h1>AGNBoost: A machine learning toolkit for astronomical data analysis using XGBoost &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="figures/agnboost_logo.png" alt="AGNBoost Logo" width="200" height="200"/></h1>
-  
-  <br>
+  <table>
+    <tr>
+      <td align="left">
+        <h1>AGNBoost: A machine learning toolkit for astronomical data analysis using XGBoost</h1>
+      </td>
+      <td align="center" width="220">
+        <img src="figures/agnboost_logo.png" alt="AGNBoost Logo" width="200" height="200"/>
+      </td>
+    </tr>
+  </table>
   
   [![Documentation](https://img.shields.io/badge/docs-github--pages-blue)](https://kurthamblin.github.io/agnboost/)
   [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -35,7 +42,7 @@ AGNBoost is a specialized Python package designed for astronomers working with p
 ## 🚀 Installation
 
 ### Prerequisites
-- Python 3.8 or later
+- Python 3.10 or later
 - Git
 
 ### Quick Install
