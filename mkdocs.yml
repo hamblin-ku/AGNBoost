@@ -1,7 +1,7 @@
 site_name: AGNBoost
 site_description: A machine learning toolkit for astronomical data analysis using XGBoost, designed for AGN and galaxy classification and regression tasks.
 site_author: kurt Hamblin
-site_url: https://hamblin-ku.github.io/agnboost/
+site_url: https://hamblin-ku.github.io/AGNboost/
 
 # Repository
 repo_name: hamblin-ku/AGNBoost
