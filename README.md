@@ -1,6 +1,3 @@
-Here's a concise and professional README.md for your AGNBoost repository:
-
-```markdown
 <div align="center">
   <img src="figures/agnboost_logo.png" alt="AGNBoost Logo" width="400"/>
   
