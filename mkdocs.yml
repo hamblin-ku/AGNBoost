@@ -1,12 +1,12 @@
 site_name: AGNBoost
-site_description: A machine learning toolkit for astronomical data analysis using XGBoost, designed for AGN and galaxy classification and regression tasks.
-site_author: kurt Hamblin
-site_url: https://hamblin-ku.github.io/AGNboost/
+site_description: A machine learning toolkit for astronomical data analysis using XGBoost
+site_author: Kurt Hamblin
+site_url: https://kurthamblin.github.io/agnboost/
 
 # Repository
-repo_name: hamblin-ku/AGNBoost
-repo_url: https://github.com/hamblin-ku/AGNBoost
-
+repo_name: kurthamblin/agnboost
+repo_url: https://github.com/kurthamblin/agnboost
+edit_uri: edit/main/docs/
 
 # Configuration
 theme:
@@ -29,50 +29,18 @@ theme:
   
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
-    - navigation.expand
-    - navigation.path
     - navigation.top
     - search.highlight
     - search.share
-    - toc.follow
     - content.code.copy
-    - content.code.annotate
-    - content.tabs.link
-    - announce.dismiss
-  
-  icon:
-    repo: fontawesome/brands/github
-    edit: material/pencil
-    view: material/eye
 
 # Plugins
 plugins:
-  - search:
-      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-  - mkdocstrings:
-      handlers:
-        python:
-          options:
-            docstring_style: google
-            show_source: true
-            show_root_heading: true
-            show_root_toc_entry: false
-            heading_level: 2
-            members_order: source
-            show_signature_annotations: true
-            separate_signature: true
-  - git-revision-date-localized:
-      enable_creation_date: true
-      type: timeago
-  - git-committers:
-      repository: yourusername/agnboost
-      branch: main
+  - search
 
 # Extensions
 markdown_extensions:
-  - abbr
   - admonition
   - attr_list
   - def_list
@@ -80,68 +48,14 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.magiclink:
-      normalize_issue_symbols: true
-      repo_url_shorthand: true
-      user: yourusername
-      repo: agnboost
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.snippets:
-      auto_append:
-        - includes/mkdocs.md
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
-      combine_header_slug: true
-      slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-
-# Customization
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/yourusername/agnboost
-    - icon: fontawesome/brands/python
-      link: https://pypi.org/project/agnboost/
-  analytics:
-    provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
-  version:
-    provider: mike
-
-# Extra CSS
-extra_css:
-  - stylesheets/extra.css
-
-# Extra JavaScript
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # Page tree
 nav:
@@ -153,29 +67,9 @@ nav:
     - Basic Usage: tutorials/basic-usage.md
     - Band Configuration: tutorials/band-configuration.md
     - Training from Scratch: tutorials/training-from-scratch.md
-    - Advanced Features: tutorials/advanced-features.md
   - API Reference:
     - Catalog: api/catalog.md
     - AGNBoost: api/agnboost.md
     - Utilities: api/utils.md
-  - Examples:
-    - JWST Data Analysis: examples/jwst-analysis.md
-    - Custom Feature Engineering: examples/custom-features.md
-    - Multi-target Modeling: examples/multi-target.md
-  - User Guide:
-    - Data Formats: user-guide/data-formats.md
-    - Model Configuration: user-guide/model-config.md
-    - Performance Optimization: user-guide/optimization.md
-    - Troubleshooting: user-guide/troubleshooting.md
-  - Development:
-    - Contributing: contributing.md
-    - Code Style: development/code-style.md
-    - Testing: development/testing.md
   - About:
-    - Changelog: changelog.md
     - License: license.md
-    - Citation: citation.md
-
-# Watch
-watch:
-  - agnboost/
