@@ -52,14 +52,6 @@ cd agnboost
 pip install -e .
 ```
 
-### Verify Installation
-
-```python
-import agnboost
-from agnboost import Catalog, AGNBoost
-
-print("AGNBoost installed successfully!")
-```
 
 ## 📖 Documentation
 
