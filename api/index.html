@@ -1,0 +1,3864 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A machine learning toolkit for astronomical data analysis using XGBoost">
+      
+      
+        <meta name="author" content="Kurt Hamblin">
+      
+      
+        <link rel="canonical" href="https://kurthamblin.github.io/agnboost/api/">
+      
+      
+        <link rel="prev" href="../getting-started/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>API Reference - AGNBoost</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AGNBoost" class="md-header__button md-logo" aria-label="AGNBoost" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AGNBoost
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kurthamblin/agnboost" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kurthamblin/agnboost
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation.md" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tutorials/basic-usage.md" class="md-tabs__link">
+          
+  
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../license.md" class="md-tabs__link">
+          
+  
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AGNBoost" class="md-nav__button md-logo" aria-label="AGNBoost" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AGNBoost
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kurthamblin/agnboost" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kurthamblin/agnboost
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/basic-usage.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/band-configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Band Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/training-from-scratch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Training from Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalog-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Catalog Class
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Catalog Class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_color_dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_color_dataframe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create_color_dataframe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_color_dataframe--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_feature_dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_feature_dataframe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create_feature_dataframe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_feature_dataframe--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_feature_dataframe--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.transform--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.transform--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_targets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_targets--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_targets--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_features" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_features--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_feature_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_feature_names
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_feature_names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_feature_names--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.print_data_summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_data_summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_valid_bands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_valid_bands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_valid_bands_list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_valid_bands_list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands_list--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_wavelengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_band_wavelengths
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_band_wavelengths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_wavelengths--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_shorthands" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_band_shorthands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_band_shorthands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_shorthands--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.sn_cut" class="md-nav__link">
+    <span class="md-ellipsis">
+      sn_cut
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sn_cut">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.sn_cut--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.sn_cut--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_data--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_columns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_columns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_columns--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.filter_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter_data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="filter_data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.filter_data--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.filter_data--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_subset" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_subset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_subset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_subset--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_subset--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.save_to_csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_to_csv
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="save_to_csv">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.save_to_csv--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.save_to_csv--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.drop_nan" class="md-nav__link">
+    <span class="md-ellipsis">
+      drop_nan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="drop_nan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.drop_nan--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.drop_nan--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.split_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      split_data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="split_data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.split_data--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.split_data--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_split_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_split_df
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_split_df">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_split_df--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_split_df--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agnboost-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      AGNBoost Class
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AGNBoost Class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.tune_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      tune_model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tune_model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.tune_model--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.tune_model--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.train_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      train_model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="train_model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.train_model--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.train_model--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.load_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="load_model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.load_model--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.load_model--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict" class="md-nav__link">
+    <span class="md-ellipsis">
+      predict
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="predict">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.model_uncertainty" class="md-nav__link">
+    <span class="md-ellipsis">
+      model_uncertainty
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="model_uncertainty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.model_uncertainty--arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.model_uncertainty--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict_dist_trunc" class="md-nav__link">
+    <span class="md-ellipsis">
+      predict_dist_trunc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="predict_dist_trunc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict_dist_trunc--arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict_dist_trunc--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.list_available_models" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_available_models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="list_available_models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.list_available_models--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.list_available_models--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utility Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.log_message" class="md-nav__link">
+    <span class="md-ellipsis">
+      log_message
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="log_message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.log_message--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_param_grid
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="validate_param_grid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_grid--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_grid--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_param_dict
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="validate_param_dict">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_dict--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_dict--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalog-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Catalog Class
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Catalog Class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_color_dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_color_dataframe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create_color_dataframe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_color_dataframe--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_feature_dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_feature_dataframe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create_feature_dataframe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_feature_dataframe--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.create_feature_dataframe--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.transform--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.transform--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_targets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_targets--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_targets--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_features" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_features--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_feature_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_feature_names
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_feature_names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_feature_names--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.print_data_summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      print_data_summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_valid_bands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_valid_bands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_valid_bands_list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_valid_bands_list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_valid_bands_list--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_wavelengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_band_wavelengths
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_band_wavelengths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_wavelengths--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_shorthands" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_band_shorthands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_band_shorthands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_band_shorthands--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.sn_cut" class="md-nav__link">
+    <span class="md-ellipsis">
+      sn_cut
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sn_cut">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.sn_cut--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.sn_cut--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_data--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_columns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_columns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_columns--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.filter_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter_data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="filter_data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.filter_data--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.filter_data--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_subset" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_subset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_subset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_subset--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_subset--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.save_to_csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_to_csv
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="save_to_csv">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.save_to_csv--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.save_to_csv--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.drop_nan" class="md-nav__link">
+    <span class="md-ellipsis">
+      drop_nan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="drop_nan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.drop_nan--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.drop_nan--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.split_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      split_data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="split_data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.split_data--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.split_data--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_split_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_split_df
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_split_df">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_split_df--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_split_df--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agnboost-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      AGNBoost Class
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AGNBoost Class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.tune_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      tune_model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tune_model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.tune_model--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.tune_model--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.train_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      train_model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="train_model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.train_model--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.train_model--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.load_model" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="load_model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.load_model--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.load_model--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict" class="md-nav__link">
+    <span class="md-ellipsis">
+      predict
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="predict">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.model_uncertainty" class="md-nav__link">
+    <span class="md-ellipsis">
+      model_uncertainty
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="model_uncertainty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.model_uncertainty--arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.model_uncertainty--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict_dist_trunc" class="md-nav__link">
+    <span class="md-ellipsis">
+      predict_dist_trunc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="predict_dist_trunc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict_dist_trunc--arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.predict_dist_trunc--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.list_available_models" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_available_models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="list_available_models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.list_available_models--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.model.AGNBoost.list_available_models--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utility Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.log_message" class="md-nav__link">
+    <span class="md-ellipsis">
+      log_message
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="log_message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.log_message--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_param_grid
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="validate_param_grid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_grid--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_grid--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_param_dict
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="validate_param_dict">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_dict--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.utils.validate_param_dict--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>This page provides complete documentation for all AGNBoost classes and functions.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>AGNBoost consists of two main classes:</p>
+<ul>
+<li><strong>Catalog</strong>: For data loading, management, and feature engineering</li>
+<li><strong>AGNBoost</strong>: For machine learning model training, tuning, and prediction</li>
+</ul>
+<hr />
+<h2 id="catalog-class">Catalog Class<a class="headerlink" href="#catalog-class" title="Permanent link">&para;</a></h2>
+<p>The <code>Catalog</code> class is your entry point for working with astronomical data. It handles loading data from various formats, validates photometric bands, creates features, and manages data splits.</p>
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Load FITS files, CSV files, or pandas DataFrames</li>
+<li>Automatic photometric band validation</li>
+<li>Feature engineering (colors, transformations)</li>
+<li>Train/validation/test data splitting</li>
+<li>Signal-to-noise filtering</li>
+</ul>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+    <div class="doc doc-contents first">
+
+
+        <p>A class for loading, managing, and manipulating astronomical data.</p>
+<p>The Catalog class provides tools for loading astronomical data from various formats,
+performing feature engineering, data validation, and preparing data for machine learning
+workflows. It supports FITS files, CSV files, and pandas DataFrames.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="agnboost.dataset.Catalog.data">data</span></code></td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The main astronomical dataset.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="agnboost.dataset.Catalog.features_df">features_df</span></code></td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Engineered features for machine learning.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="agnboost.dataset.Catalog.valid_columns">valid_columns</span></code></td>
+            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Metadata for validated photometric band columns.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="agnboost.dataset.Catalog.train_indices">train_indices</span></code></td>
+            <td>
+                  <code><span title="pandas.Index">Index</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indices for training data split.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="agnboost.dataset.Catalog.val_indices">val_indices</span></code></td>
+            <td>
+                  <code><span title="pandas.Index">Index</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indices for validation data split.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="agnboost.dataset.Catalog.test_indices">test_indices</span></code></td>
+            <td>
+                  <code><span title="pandas.Index">Index</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indices for test data split.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <p>Basic usage with a FITS file:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agnboost</span><span class="w"> </span><span class="kn">import</span> <span class="n">Catalog</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Load data</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">catalog</span> <span class="o">=</span> <span class="n">Catalog</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;jwst_data.fits&quot;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Create features</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">catalog</span><span class="o">.</span><span class="n">create_feature_dataframe</span><span class="p">()</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># Split data</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">catalog</span><span class="o">.</span><span class="n">split_data</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">val_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Loading data from a pandas DataFrame:</p>
+<p>```python
+import pandas as pd
+df = pd.read_csv("data.csv")
+catalog = Catalog(data=df)
+'''</p>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.create_color_dataframe" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_color_dataframe</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#agnboost.dataset.Catalog.create_color_dataframe" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">create_color_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bands</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Calculate photometric colors from band fluxes.</p>
+<h5 id="agnboost.dataset.Catalog.create_color_dataframe--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.create_color_dataframe--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    DataFrame containing color columns.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.create_feature_dataframe" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_feature_dataframe</span>
+
+
+<a href="#agnboost.dataset.Catalog.create_feature_dataframe" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">create_feature_dataframe</span><span class="p">(</span><span class="n">feature_funcs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Create a dataframe of features for eventual use with AGNBoost class.</p>
+<h5 id="agnboost.dataset.Catalog.create_feature_dataframe--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.create_feature_dataframe--parameters" title="Permanent link">&para;</a></h5>
+<p>feature_funcs : list or None
+    List of functions to apply to the validated columns. If None,
+    default features (log10 of bands, colors, and square of colors) are created.</p>
+<h5 id="agnboost.dataset.Catalog.create_feature_dataframe--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.create_feature_dataframe--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    The created feature dataframe (also stored as self.features_df).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.transform" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">transform</span>
+
+
+<a href="#agnboost.dataset.Catalog.transform" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">transform</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span> <span class="n">transform_func</span><span class="p">,</span> <span class="n">new_column_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Apply a transformation function to a column and save the result.</p>
+<h5 id="agnboost.dataset.Catalog.transform--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.transform--parameters" title="Permanent link">&para;</a></h5>
+<p>column_name : str
+    Name of the column to transform.
+transform_func : callable
+    Function to apply to the column.
+new_column_name : str or None, default=None
+    Name for the transformed column. If None and not inplace, will use
+    f"{column_name}_transformed".
+inplace : bool, default=False
+    If True, overwrite the original column. If False, create a new column.</p>
+<h5 id="agnboost.dataset.Catalog.transform--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.transform--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.Series
+    The transformed column.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_targets" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_targets</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_targets" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_targets</span><span class="p">(</span><span class="n">target_names</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Extract target columns from the data.</p>
+<h5 id="agnboost.dataset.Catalog.get_targets--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.get_targets--parameters" title="Permanent link">&para;</a></h5>
+<p>target_names : str or list
+    Name(s) of target column(s) to extract.
+drop_na : bool, default=False
+    If True, drop rows with NA values in any of the target columns.</p>
+<h5 id="agnboost.dataset.Catalog.get_targets--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_targets--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame or pandas.Series
+    Target column(s). Returns a Series if a single target name is provided,
+    or a DataFrame if multiple targets are requested.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_features" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_features</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_features" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_features</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get the feature dataframe, creating it if it doesn't exist.</p>
+<h5 id="agnboost.dataset.Catalog.get_features--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_features--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    The feature dataframe.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_feature_names" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_feature_names</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_feature_names" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_feature_names</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get the feature names dataframe, creating it if it doesn't exist.</p>
+<h5 id="agnboost.dataset.Catalog.get_feature_names--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_feature_names--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    The feature dataframe.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.print_data_summary" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">print_data_summary</span>
+
+
+<a href="#agnboost.dataset.Catalog.print_data_summary" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">print_data_summary</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Print a formatted summary of the loaded data.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_valid_bands" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_valid_bands</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_valid_bands" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_valid_bands</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get information about valid band columns in the data.</p>
+<h5 id="agnboost.dataset.Catalog.get_valid_bands--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_valid_bands--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary of valid band columns with their metadata.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_valid_bands_list" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_valid_bands_list</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_valid_bands_list" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_valid_bands_list</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get information about valid band columns in the data.</p>
+<h5 id="agnboost.dataset.Catalog.get_valid_bands_list--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_valid_bands_list--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary of valid band columns with their metadata.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_band_wavelengths" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_band_wavelengths</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_band_wavelengths" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_band_wavelengths</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get a dictionary mapping band columns to their wavelengths.</p>
+<h5 id="agnboost.dataset.Catalog.get_band_wavelengths--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_band_wavelengths--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary mapping column names to wavelengths in microns.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_band_shorthands" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_band_shorthands</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_band_shorthands" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_band_shorthands</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get a dictionary mapping band columns to their shorthand names.</p>
+<h5 id="agnboost.dataset.Catalog.get_band_shorthands--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_band_shorthands--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary mapping column names to shorthand identifiers.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.sn_cut" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">sn_cut</span>
+
+
+<a href="#agnboost.dataset.Catalog.sn_cut" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">sn_cut</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;_err&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Perform a signal-to-noise ratio cut on the specified columns.</p>
+<h5 id="agnboost.dataset.Catalog.sn_cut--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.sn_cut--parameters" title="Permanent link">&para;</a></h5>
+<p>columns : dict or None
+    Dictionary mapping value columns to their error columns.
+    Example: {'flux': 'flux_err', 'redshift': 'redshift_err'}
+    If None, automatically detect band columns and use {band: band+suffix} pairs.
+threshold : float, default=3.0
+    Minimum S/N ratio to keep a row.
+inplace : bool, default=False
+    If True, modifies the data in place; otherwise, returns a copy.
+suffix : str, default='_err'
+    Suffix to append to band names to find error columns, if columns=None.</p>
+<h5 id="agnboost.dataset.Catalog.sn_cut--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.sn_cut--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame or None
+    Filtered dataframe if inplace=False, otherwise None.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_data" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_data</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_data" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_data</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Return the loaded dataframe.</p>
+<h5 id="agnboost.dataset.Catalog.get_data--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_data--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    The loaded data.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_columns" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_columns</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_columns" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_columns</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Return the column names of the loaded dataframe.</p>
+<h5 id="agnboost.dataset.Catalog.get_columns--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_columns--returns" title="Permanent link">&para;</a></h5>
+<p>list
+    List of column names.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.filter_data" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">filter_data</span>
+
+
+<a href="#agnboost.dataset.Catalog.filter_data" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">filter_data</span><span class="p">(</span><span class="n">filter_conditions</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Filter the data based on provided conditions.</p>
+<h5 id="agnboost.dataset.Catalog.filter_data--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.filter_data--parameters" title="Permanent link">&para;</a></h5>
+<p>filter_conditions : dict
+    Dictionary of column:value pairs to filter on.</p>
+<h5 id="agnboost.dataset.Catalog.filter_data--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.filter_data--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    Filtered dataframe.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_subset" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_subset</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_subset" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_subset</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get a subset of the data by columns and/or rows.</p>
+<h5 id="agnboost.dataset.Catalog.get_subset--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.get_subset--parameters" title="Permanent link">&para;</a></h5>
+<p>columns : list or None
+    List of column names to include. If None, includes all columns.
+rows : slice, list, or None
+    Rows to include. Can be a slice (e.g., slice(0, 100)), a list of indices,
+    or None to include all rows.</p>
+<h5 id="agnboost.dataset.Catalog.get_subset--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_subset--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    Subset of the data.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.save_to_csv" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">save_to_csv</span>
+
+
+<a href="#agnboost.dataset.Catalog.save_to_csv" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">save_to_csv</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Save the current data to a CSV file.</p>
+<h5 id="agnboost.dataset.Catalog.save_to_csv--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.save_to_csv--parameters" title="Permanent link">&para;</a></h5>
+<p>output_path : str
+    Path to save the CSV file.
+index : bool, default=False
+    Whether to include the index in the saved file.</p>
+<h5 id="agnboost.dataset.Catalog.save_to_csv--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.save_to_csv--returns" title="Permanent link">&para;</a></h5>
+<p>bool
+    True if successful, False otherwise.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.drop_nan" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">drop_nan</span>
+
+
+<a href="#agnboost.dataset.Catalog.drop_nan" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">drop_nan</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Drop rows with NaN values in specified columns or validated columns.</p>
+<h5 id="agnboost.dataset.Catalog.drop_nan--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.drop_nan--parameters" title="Permanent link">&para;</a></h5>
+<p>columns : list or None, default=None
+    List of column names to check for NaN. If None, uses all validated columns.
+inplace : bool, default=False
+    If True, performs operation in-place and returns None.
+    If False, returns a copy of the data with rows dropped.
+how : {'any', 'all'}, default='any'
+    'any' : Drop if any of the specified columns has NaN
+    'all' : Drop only if all of the specified columns have NaN</p>
+<h5 id="agnboost.dataset.Catalog.drop_nan--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.drop_nan--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame or None
+    The DataFrame with NaN rows dropped, or None if inplace=True.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.split_data" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">split_data</span>
+
+
+<a href="#agnboost.dataset.Catalog.split_data" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">split_data</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">val_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stratify_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Split the data into train, validation, and test sets.</p>
+<h5 id="agnboost.dataset.Catalog.split_data--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.split_data--parameters" title="Permanent link">&para;</a></h5>
+<p>test_size : float, default=0.2
+    Proportion of the data to use for testing (0.0 to 1.0).
+val_size : float, default=0.2
+    Proportion of the data to use for validation (0.0 to 1.0).
+random_state : int or None, default=None
+    Random seed for reproducibility.
+stratify_col : str or None, default=None
+    Column name to use for stratified splitting. If provided, 
+    ensures proportional representation of this column's values
+    in all splits. For continuous columns, binning will be applied.
+n_bins : int, default=10
+    Number of bins to use when stratifying on a continuous column.
+    Only used when stratify_col is a continuous variable.</p>
+<h5 id="agnboost.dataset.Catalog.split_data--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.split_data--returns" title="Permanent link">&para;</a></h5>
+<p>tuple
+    (train_indices, val_indices, test_indices) - Indices for each split</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_split_df" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_split_df</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_split_df" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_split_df</span><span class="p">(</span><span class="n">split_type</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">include_features</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_DMatrix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">missing</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get a dataframe for the specified data split.</p>
+<h5 id="agnboost.dataset.Catalog.get_split_df--parameters">Parameters:<a class="headerlink" href="#agnboost.dataset.Catalog.get_split_df--parameters" title="Permanent link">&para;</a></h5>
+<p>split_type : str, default='train'
+    Which data split to use. Options: 'train', 'val'/'validation', or 'test'.
+include_features : bool, default=True
+    If True, include the feature columns in the result.
+include_target : str, list, or None, default=None
+    Target column(s) to include. If None, no target columns are included.
+return_DMatrix: bool, default = False
+    Whether to return a XGBoost DMatrix instead of a pandas Dataframe.
+missing : int, float, or None, default=np.nan
+    Value to represent missing values in XGBoost.</p>
+<h5 id="agnboost.dataset.Catalog.get_split_df--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_split_df--returns" title="Permanent link">&para;</a></h5>
+<p>pandas.DataFrame
+    DataFrame for the specified split with requested columns.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><hr />
+<h2 id="agnboost-class">AGNBoost Class<a class="headerlink" href="#agnboost-class" title="Permanent link">&para;</a></h2>
+<p>The <code>AGNBoost</code> class provides the machine learning functionality, including model training, hyperparameter tuning, and prediction with uncertainty quantification.</p>
+<h3 id="key-features_1">Key Features<a class="headerlink" href="#key-features_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>XGBoostLSS integration for distributional modeling</li>
+<li>Hyperparameter optimization</li>
+<li>Model persistence and loading</li>
+<li>Multi-target support</li>
+<li>Comprehensive logging and validation</li>
+</ul>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.model.AGNBoost.tune_model" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">tune_model</span>
+
+
+<a href="#agnboost.model.AGNBoost.tune_model" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">tune_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">dtune</span><span class="p">,</span> <span class="n">split_type</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">max_minutes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">nfold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Tune hyperparameters for the specified model.</p>
+<h5 id="agnboost.model.AGNBoost.tune_model--parameters">Parameters:<a class="headerlink" href="#agnboost.model.AGNBoost.tune_model--parameters" title="Permanent link">&para;</a></h5>
+<p>model_name : str
+    Name of the model to tune. Must be in self.model_names.
+param_grid : dict
+    Dictionary of hyperparameter ranges to search.
+    Example: {'max_depth': [3, 5, 7], 'learning_rate': [0.01, 0.1, 0.3]}
+dtune : xgboost.DMatrix or pandas.DataFrame or Catalog
+    Data to use for tuning. If DataFrame or Catalog, will be converted to DMatrix.
+max_minutes : int, default=10
+    Maximum duration for tuning in minutes.
+nfold : int, default=2
+    Number of cross-validation folds.
+early_stopping_rounds : int, default=100
+    Number of rounds without improvement before early stopping.</p>
+<h5 id="agnboost.model.AGNBoost.tune_model--returns">Returns:<a class="headerlink" href="#agnboost.model.AGNBoost.tune_model--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary containing best parameters and tuning metrics.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.model.AGNBoost.train_model" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">train_model</span>
+
+
+<a href="#agnboost.model.AGNBoost.train_model" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">train_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">dtrain</span><span class="p">,</span> <span class="n">dval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">split_type</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">num_boost_round</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose_eval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">custom_objective</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">custom_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Train an XGBoost model with the given parameters.</p>
+<h5 id="agnboost.model.AGNBoost.train_model--parameters">Parameters:<a class="headerlink" href="#agnboost.model.AGNBoost.train_model--parameters" title="Permanent link">&para;</a></h5>
+<p>model_name : str
+    Name of the model to train. Must be in self.model_names.
+dtrain : xgboost.DMatrix or Catalog
+    Training data. If a Catalog, will create a DMatrix using the specified split.
+dval : xgboost.DMatrix, bool, or None, default=None
+    Validation data. If a DMatrix, use directly.
+    If True and dtrain is a Catalog, create a validation DMatrix from the Catalog.
+    If False or None, no validation data is used.
+params : dict or None, default=None
+    Parameters for XGBoost. If None, uses tuned_params from model_info if available,
+    otherwise uses default parameters.
+split_type : str, default='train'
+    Which data split to use if dtrain is a Catalog. Options: 'train', 'val', 'test'.
+num_boost_round : int, default=1000
+    Number of boosting rounds.
+early_stopping_rounds : int or None, default=50
+    Number of rounds without improvement before early stopping.
+    If None, no early stopping is used.
+verbose_eval : int or bool, default=100
+    Controls XGBoost's logging frequency. If True, prints every round.
+    If int, prints every verbose_eval rounds. If False, no logging.
+custom_objective : callable or None, default=None
+    Custom objective function for XGBoost.
+custom_metric : callable or None, default=None
+    Custom evaluation metric for XGBoost.</p>
+<h5 id="agnboost.model.AGNBoost.train_model--returns">Returns:<a class="headerlink" href="#agnboost.model.AGNBoost.train_model--returns" title="Permanent link">&para;</a></h5>
+<p>tuple
+    (trained_model, training_results)</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.model.AGNBoost.load_model" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">load_model</span>
+
+
+<a href="#agnboost.model.AGNBoost.load_model" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_model</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Load pre-trained models from disk.</p>
+<h5 id="agnboost.model.AGNBoost.load_model--parameters">Parameters:<a class="headerlink" href="#agnboost.model.AGNBoost.load_model--parameters" title="Permanent link">&para;</a></h5>
+<p>model_names : list, str, or None, default=None
+    Name(s) of models to load. If None, loads all models in self.model_names.
+retrain : bool, default=False
+    If True, forces retraining even if models exist.</p>
+<h5 id="agnboost.model.AGNBoost.load_model--returns">Returns:<a class="headerlink" href="#agnboost.model.AGNBoost.load_model--returns" title="Permanent link">&para;</a></h5>
+<p>bool
+    True if all requested model was loaded successfully, False otherwise.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.model.AGNBoost.predict" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">predict</span>
+
+
+<a href="#agnboost.model.AGNBoost.predict" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">predict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">split_use</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Make predictions using trained models.</p>
+<h5 id="agnboost.model.AGNBoost.predict--parameters">Parameters:<a class="headerlink" href="#agnboost.model.AGNBoost.predict--parameters" title="Permanent link">&para;</a></h5>
+<p>data : DataFrame, Catalog, or dict
+    Data to make predictions on. Can be a pandas DataFrame, a Catalog object,
+    or a dict mapping model names to their specific data.
+model_name : str or None
+    If provided, use only this model. Otherwise, use all available models.</p>
+<h5 id="agnboost.model.AGNBoost.predict--returns">Returns:<a class="headerlink" href="#agnboost.model.AGNBoost.predict--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary of predictions for each model.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.model.AGNBoost.model_uncertainty" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">model_uncertainty</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#agnboost.model.AGNBoost.model_uncertainty" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">model_uncertainty</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DMatrix</span><span class="p">,</span> <span class="n">dist_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">best_iter</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">M</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Function that predicts from the trained model.</p>
+<h5 id="agnboost.model.AGNBoost.model_uncertainty--arguments">Arguments<a class="headerlink" href="#agnboost.model.AGNBoost.model_uncertainty--arguments" title="Permanent link">&para;</a></h5>
+<p>model : xgblsslib.model
+    Trained model.
+data : xgb.DMatrix
+    Data to predict frmodel: xgblsslib.modelom.
+M   : int
+    Number of desired models in virtual ensemble.</p>
+<h5 id="agnboost.model.AGNBoost.model_uncertainty--returns">Returns<a class="headerlink" href="#agnboost.model.AGNBoost.model_uncertainty--returns" title="Permanent link">&para;</a></h5>
+<p>pred : pd.DataFrame
+    Predictions.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.model.AGNBoost.predict_dist_trunc" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">predict_dist_trunc</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#agnboost.model.AGNBoost.predict_dist_trunc" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">predict_dist_trunc</span><span class="p">(</span><span class="n">dist</span><span class="p">:</span> <span class="n">DistributionClass</span><span class="p">,</span> <span class="n">booster</span><span class="p">:</span> <span class="n">Booster</span><span class="p">,</span> <span class="n">start_values</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DMatrix</span><span class="p">,</span> <span class="n">iteration_range</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Function that predicts from therag trained model.</p>
+<h5 id="agnboost.model.AGNBoost.predict_dist_trunc--arguments">Arguments<a class="headerlink" href="#agnboost.model.AGNBoost.predict_dist_trunc--arguments" title="Permanent link">&para;</a></h5>
+<p>booster : xgb.Boosterdist
+    Trained model.
+start_values : np.ndarray
+    Starting values for each distributional parameter.
+data : xgb.DMatrix
+    Data to predict from.
+iteration_range: Tuple[int,int]
+    Which layer of trees to use for prediction in xgb.booster.predict</p>
+<h5 id="agnboost.model.AGNBoost.predict_dist_trunc--returns">Returns<a class="headerlink" href="#agnboost.model.AGNBoost.predict_dist_trunc--returns" title="Permanent link">&para;</a></h5>
+<p>pred : pd.DataFrame
+    Predictions.xgboost model get numeber of boostin rounds</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.model.AGNBoost.list_available_models" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_available_models</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#agnboost.model.AGNBoost.list_available_models" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">list_available_models</span><span class="p">(</span><span class="n">models_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>List all available pre-trained models in the models directory.</p>
+<h5 id="agnboost.model.AGNBoost.list_available_models--parameters">Parameters:<a class="headerlink" href="#agnboost.model.AGNBoost.list_available_models--parameters" title="Permanent link">&para;</a></h5>
+<p>models_dir : str or None
+    Directory to look for models. If None, uses the default models directory.</p>
+<h5 id="agnboost.model.AGNBoost.list_available_models--returns">Returns:<a class="headerlink" href="#agnboost.model.AGNBoost.list_available_models--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary with model names as keys and metadata as values.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><hr />
+<h2 id="utility-functions">Utility Functions<a class="headerlink" href="#utility-functions" title="Permanent link">&para;</a></h2>
+<p>Helper functions for data processing, feature engineering, and model management.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.utils.log_message" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">log_message</span>
+
+
+<a href="#agnboost.utils.log_message" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">log_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Log a message with the specified level.</p>
+<h5 id="agnboost.utils.log_message--parameters">Parameters:<a class="headerlink" href="#agnboost.utils.log_message--parameters" title="Permanent link">&para;</a></h5>
+<p>message : str
+    Message to log.
+level : str
+    Log level (INFO, WARNING, ERROR).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.utils.validate_param_grid" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">validate_param_grid</span>
+
+
+<a href="#agnboost.utils.validate_param_grid" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">validate_param_grid</span><span class="p">(</span><span class="n">param_grid</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Validate that the parameter grid is correctly formatted.</p>
+<p>Expected format:
+{
+    "param_name": ["type", type_specific_value],
+    ...
+}</p>
+<p>Where "type" is one of:
+- "none": type_specific_value should be a list of specific values
+- "int": type_specific_value should be a dict with "low", "high", "log" keys
+- "float": type_specific_value should be a dict with "low", "high", "log" keys
+- "categorical": type_specific_value should be a list of possible values</p>
+<h5 id="agnboost.utils.validate_param_grid--parameters">Parameters:<a class="headerlink" href="#agnboost.utils.validate_param_grid--parameters" title="Permanent link">&para;</a></h5>
+<p>param_grid : dict
+    Dictionary of parameter grid specifications</p>
+<h5 id="agnboost.utils.validate_param_grid--returns">Returns:<a class="headerlink" href="#agnboost.utils.validate_param_grid--returns" title="Permanent link">&para;</a></h5>
+<p>tuple
+    (is_valid, error_message) - (True, None) if valid, (False, error_msg) if invalid</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.utils.validate_param_dict" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">validate_param_dict</span>
+
+
+<a href="#agnboost.utils.validate_param_dict" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">validate_param_dict</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Validate that the passed params are a dictionary of single values</p>
+<p>Expected format:
+{
+    "param_name": value,
+    ...
+}</p>
+<h5 id="agnboost.utils.validate_param_dict--parameters">Parameters:<a class="headerlink" href="#agnboost.utils.validate_param_dict--parameters" title="Permanent link">&para;</a></h5>
+<p>params : dict
+    Dictionary of parameter grid specifications</p>
+<h5 id="agnboost.utils.validate_param_dict--returns">Returns:<a class="headerlink" href="#agnboost.utils.validate_param_dict--returns" title="Permanent link">&para;</a></h5>
+<p>tuple
+    (is_valid, error_message) - (True, None) if valid, (False, error_msg) if invalid</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "search.share", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
