@@ -10,7 +10,7 @@
     </tr>
   </table>
   
-  [![Documentation](https://img.shields.io/badge/docs-github--pages-blue)](https://kurthamblin.github.io/agnboost/)
+  [![Documentation](https://img.shields.io/badge/docs-github--pages-blue)](https://kurthamblin.github.io/AGNBoost/)
   [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 </div>
