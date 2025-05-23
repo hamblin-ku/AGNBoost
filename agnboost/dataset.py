@@ -24,6 +24,47 @@ import logging
 # (otherwise consider all the phot columns)
 
 class Catalog:
+    """
+    A class for loading, managing, and manipulating astronomical data.
+    
+    The Catalog class provides tools for loading astronomical data from various formats,
+    performing feature engineering, data validation, and preparing data for machine learning
+    workflows. It supports FITS files, CSV files, and pandas DataFrames.
+    
+    Attributes:
+        data (pandas.DataFrame): The main astronomical dataset.
+        features_df (pandas.DataFrame): Engineered features for machine learning.
+        valid_columns (dict): Metadata for validated photometric band columns.
+        train_indices (pandas.Index): Indices for training data split.
+        val_indices (pandas.Index): Indices for validation data split.
+        test_indices (pandas.Index): Indices for test data split.
+    
+    Examples:
+        Basic usage with a FITS file:
+        
+        ```python
+        from agnboost import Catalog
+        
+        # Load data
+        catalog = Catalog(path="jwst_data.fits")
+        
+        # Create features
+        catalog.create_feature_dataframe()
+        
+        # Split data
+        catalog.split_data(test_size=0.2, val_size=0.2)
+        ```
+        
+        Loading data from a pandas DataFrame:
+        
+        ```python
+        import pandas as pd
+        df = pd.read_csv("data.csv")
+        catalog = Catalog(data=df)
+        '''
+    """
+
+
     # Class-level logger
     logger = logging.getLogger('AGNBoost.Catalog')
 
@@ -31,18 +72,29 @@ class Catalog:
         """
         Initialize a Catalog object to load and manipulate data.
         
-        Parameters:
-        -----------
-        path : str or None
-            Path to the data file to load. Not used if data is provided.
-        data : pandas.DataFrame, astropy.table.Table, or None
-            Pre-loaded data to use. If provided, path is ignored.
-        delimiter : str, default=','
-            Delimiter to use for CSV files (only used if path is provided).
-        bands_file : str, default="allowed_bands.json"
-            Path to the JSON file containing allowed band definitions.
-        logger : logging.Logger, default=None
-            Custom logger to use. If None, uses the class logger.
+        Args:
+            path (str, optional): Path to the data file to load. Not used if data is provided.
+            data (pandas.DataFrame or astropy.table.Table, optional): Pre-loaded data to use. 
+                If provided, path is ignored.
+            delimiter (str): Delimiter to use for CSV files. Only used if path is provided.
+                Defaults to ','.
+            bands_file (str): Path to the JSON file containing allowed band definitions.
+                Defaults to "allowed_bands.json".
+                
+        Raises:
+            ValueError: If neither path nor data is provided.
+            FileNotFoundError: If the specified file path does not exist.
+            
+        Examples:
+            Load from file:
+            ```python
+            catalog = Catalog(path="data.fits")
+            ```
+            
+            Load from DataFrame:
+            ```python
+            catalog = Catalog(data=my_dataframe)
+            ```
         """
 
         # Set up instance logger (use provided logger or class logger)

@@ -12,14 +12,12 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   palette:
-    # Palette toggle for light mode
     - scheme: default
       primary: deep purple
       accent: purple
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    # Palette toggle for dark mode
     - scheme: slate
       primary: deep purple
       accent: purple
@@ -38,6 +36,20 @@ theme:
 # Plugins
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: false
+            show_root_heading: true
+            show_root_toc_entry: false
+            heading_level: 2
+            members_order: source
+            show_signature_annotations: true
+            separate_signature: true
+            show_bases: true
+            show_inheritance_diagram: false
 
 # Extensions
 markdown_extensions:
@@ -57,7 +69,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 
-# Page tree
+# Updated navigation - single API page
 nav:
   - Home: index.md
   - Getting Started:
@@ -67,9 +79,10 @@ nav:
     - Basic Usage: tutorials/basic-usage.md
     - Band Configuration: tutorials/band-configuration.md
     - Training from Scratch: tutorials/training-from-scratch.md
-  - API Reference:
-    - Catalog: api/catalog.md
-    - AGNBoost: api/agnboost.md
-    - Utilities: api/utils.md
+  - API Reference: api.md
   - About:
     - License: license.md
+
+# Watch
+watch:
+  - agnboost/
