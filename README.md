@@ -6,7 +6,7 @@
         <p><strong>A machine learning toolkit for astronomical data analysis using XGBoost</strong></p>
       </td>
       <td align="center">
-        <img src="agnboost_logo_circular.png" alt="AGNBoost Logo" width="150" height="150"/>
+        <img src="figuers/agnboost_logo.png" alt="AGNBoost Logo" width="150" height="150"/>
       </td>
     </tr>
   </table>
