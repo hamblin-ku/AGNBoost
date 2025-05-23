@@ -1,0 +1,19 @@
+{
+  "_metadata": {
+    "description": "This file contains the allowed photometric bands for JWST",
+    "format": "Keys are full column names, values contain shorthand name and wavelength in microns",
+    "usage": "Use this file to validate column names in photometric analysis",
+    "last_updated": "2025-05-13"
+  },
+  "jwst.nircam.F115W": {"shorthand": "F115W", "wavelength": 1.154},
+  "jwst.nircam.F150W": {"shorthand": "F150W", "wavelength": 1.501},
+  "jwst.nircam.F200W": {"shorthand": "F200W", "wavelength": 1.988},
+  "jwst.nircam.F277W": {"shorthand": "F277W", "wavelength": 2.776},
+  "jwst.nircam.F356W": {"shorthand": "F356W", "wavelength": 3.565},
+  "jwst.nircam.F410M": {"shorthand": "F410M", "wavelength": 4.083},
+  "jwst.nircam.F444W": {"shorthand": "F444W", "wavelength": 4.402},
+  "jwst.miri.F770W": {"shorthand": "F770W", "wavelength": 7.7},
+  "jwst.miri.F1000W": {"shorthand": "F1000W", "wavelength": 10.0},
+  "jwst.miri.F1500W": {"shorthand": "F1500W", "wavelength": 15.0},
+  "jwst.miri.F2100W": {"shorthand": "F2100W", "wavelength": 21.0}
+}
