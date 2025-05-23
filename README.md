@@ -1,7 +1,5 @@
 <div align="center">
-  <h1>AGNBoost &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="figures/agnboost_logo.png" alt="AGNBoost Logo" width="200" height="200"/></h1>
-  
-  **A machine learning toolkit for astronomical data analysis using XGBoost**
+  <h1>AGNBoost: A machine learning toolkit for astronomical data analysis using XGBoost &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="agnboost_logo_circular.png" alt="AGNBoost Logo" width="200" height="200"/></h1>
   
   <br>
   
