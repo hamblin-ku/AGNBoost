@@ -1,5 +1,3 @@
-Here's a clean, compatible `getting-started.md` file:
-
 **docs/getting-started.md:**
 ```markdown
 # Quick Start

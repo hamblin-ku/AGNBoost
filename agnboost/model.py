@@ -16,6 +16,7 @@ import numpy as np
 import os
 import optuna
 import pandas as pd
+import gzip
 import pickle
 from agnboost.utils import * #log_message, preprocess_data
 import time
@@ -45,8 +46,8 @@ class AGNBoost:
         
         Parameters:
         -----------
-        data_columns : list or None
-            Column names to use for model input. If None, uses columns from bands_file.
+        feature_names : list or None
+            Feature (column) names to use for model input.
         model_names : list or None
             Names of models to load/train. If None, uses default models.
         logger : logging.Logger, default=None
@@ -63,7 +64,7 @@ class AGNBoost:
         self.feature_names = feature_names
 
 
-            # Validate target_variables if provided
+        # Validate target_variables if provided
         if target_variables is not None:
             # Check that target_variables is a dictionary
             if not isinstance(target_variables, dict):
@@ -673,8 +674,13 @@ class AGNBoost:
             try:
                 self.logger.info(f"Loading model: {file_name} from {model_path}")
                 
-                with open(model_path, 'rb') as f:
-                    model_data = pickle.load(f)
+                # If it is a gzip file:
+                if file_name.endswith('.gz'):
+                    with gzip.open(model_path, 'rb') as f:
+                        model_data = pickle.load(f)
+                else: 
+                    with open(model_path, 'rb') as f:
+                        model_data = pickle.load(f)
                 
                 # Validate model data structure
                 if not isinstance(model_data, dict) or 'model' not in model_data:

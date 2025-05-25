@@ -1406,3 +1406,58 @@ class Catalog:
 
         return result
 
+    def get_train_val_test_sizes(self):
+        """
+        Get the sizes and percentages of the train, validation, and test sets.
+        
+        Returns:
+        --------
+        dict
+            Dictionary with set sizes and percentages.
+            Format: {
+                'total': int,
+                'train': {'size': int, 'percentage': float},
+                'validation': {'size': int, 'percentage': float}, 
+                'test': {'size': int, 'percentage': float}
+            }
+        """
+        if self.data is None:
+            self.logger.error("No data loaded.")
+            return None
+        
+        # Check if splits exist, create them if they don't
+        if not hasattr(self, 'train_indices') or self.train_indices is None:
+            self.logger.warning("Data has not been split. Running split_data with default parameters.")
+            self.split_data()
+        
+        # Get sizes
+        total = len(self.data)
+        train_size = len(self.train_indices)
+        val_size = len(self.val_indices)
+        test_size = len(self.test_indices)
+        
+        # Calculate percentages
+        train_pct = (train_size / total * 100) if total > 0 else 0
+        val_pct = (val_size / total * 100) if total > 0 else 0
+        test_pct = (test_size / total * 100) if total > 0 else 0
+        
+        # Create result dictionary
+        result = {
+            'total': total,
+            'train': {
+                'size': train_size,
+                'percentage': train_pct
+            },
+            'validation': {
+                'size': val_size,
+                'percentage': val_pct
+            },
+            'test': {
+                'size': test_size,
+                'percentage': test_pct
+            }
+        }
+        
+        self.logger.info(f"Data split sizes: Train={train_size}, Val={val_size}, Test={test_size}, Total={total}")
+        
+        return result

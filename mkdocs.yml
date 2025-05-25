@@ -72,9 +72,7 @@ markdown_extensions:
 # Updated navigation - single API page
 nav:
   - Home: index.md
-  - Getting Started:
-    - Installation: installation.md
-    - Quick Start: getting-started.md
+  - Getting Started: getting-started.md
   - Tutorials:
     - Basic Usage: tutorials/basic-usage.md
     - Band Configuration: tutorials/band-configuration.md

@@ -29,7 +29,7 @@ AGNBoost is a machine learnign framework focused on efficiently identfying popul
     <li> Simple model creation and re-training </li> 
     <li> Straightforward incorporation of additional photometric bands and target variables </li> 
   </ul>
-  <li> Missing photometric data imputation with [SGAIN](https://github.com/dtneves/ICCS_2021) </li> 
+  <li> Missing photometric data imputation with SGAIN </li> 
 </ul>
 
 ## 🚀 Installation

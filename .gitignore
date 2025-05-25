@@ -1,6 +1,7 @@
 # Data
-/data/
+/data/large/
 /models_all/
+/notebooks/offline/
 
 # Mac OS-specific storage files
 .DS_Store
