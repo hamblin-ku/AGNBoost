@@ -110,7 +110,7 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch:{ .lg .middle } **Getting Started**
+-   :material-rocket-launch:{ .lg .middle } __Getting Started__
 
     ---
 
@@ -118,23 +118,23 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
     [:octicons-arrow-right-24: Quick Start](getting-started.md)
 
--   :material-school:{ .lg .middle } **Tutorials**
+-   :material-school:{ .lg .middle } __Tutorials__
 
     ---
 
     Step-by-step guides covering everything from basic usage to advanced training pipelines.
 
-    [:octicons-arrow-right-24: View Tutorials](examples/basic-usage.ipynb)
+    [:octicons-arrow-right-24: View Tutorials](tutorials/basic-usage.md)
 
--   :material-code-braces:{ .lg .middle } **API Reference**
+-   :material-code-braces:{ .lg .middle } __API Reference__
 
     ---
 
     Complete documentation of all classes, methods, and functions in AGNBoost.
 
-    [:octicons-arrow-right-24: API Docs](api/catalog.md)
+    [:octicons-arrow-right-24: API Docs](api.md)
 
--   :material-telescope:{ .lg .middle } **Examples**
+-   :material-telescope:{ .lg .middle } __Examples__
 
     ---
 
