@@ -17,11 +17,21 @@
 
 ---
 
-summarize here
+AGNBoost is a machine learnign framework focused on efficiently identfying populations of candidates Active Galactic Nuclei (AGN) from photometric data. AGNBoost is built on XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), an extension of the well known XGBoost algorithm to distributional modeling. The framework comes with pre-trained models for AGN identification and photometric redshift estimation from JWST NIRCam+MIRI photometric data, trained on catalogs of mock galaxies from [CIGALE](https://cigale.lam.fr/).
+
 
 ## ✨ Features
+<ul>
+  <li> Complete distirbutional modeling with XGBoostlss </li> 
+  <li> Robust estimates of both model uncertainty and uncertainty and uncertainty due to photometric error</li> 
+  <li> Flexible framework that allows: </li> 
+  <ul>
+    <li> Simple model creation and re-training </li> 
+    <li> Straightforward incorporation of additional photometric bands and target variables </li> 
+  </ul>
+  <li> Missing photometric data imputation with [SGAIN](https://github.com/dtneves/ICCS_2021) </li> 
+</ul>
 
-### 🔭 **Fill**
 ## 🚀 Installation
 
 ### Prerequisites
@@ -39,7 +49,7 @@ cd agnboost
 pip install -e .
 ```
 
-### Using Virtual Environment (Recommended)
+### Using Virtual Conda Environment (Recommended)
 
 ```bash
 # Create and activate a conda environment
@@ -60,11 +70,8 @@ Complete documentation is available on GitHub Pages:
 **🌐 [https://kurthamblin.github.io/agnboost/](https://kurthamblin.github.io/agnboost/)**
 
 The documentation includes:
-- **Quick Start Guide**: Get up and running in minutes
-- **Comprehensive Tutorials**: Step-by-step guides for common workflows
+- **Examples**: Example jupyter notebooks illustrating how to use AGNBoost modules
 - **API Reference**: Complete documentation of all classes and methods
-- **Examples**: Real-world use cases with JWST and other survey data
-
 
 ## 🤝 Contributing
 
@@ -77,7 +84,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - Built on [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/) for distributional modeling
-- Designed for compatibility with JWST, HST, and ground-based survey data
+- Uses [SGAIN](https://github.com/dtneves/ICCS_2021) for photometric imputation
+- [CIGALE](https://cigale.lam.fr/) used for mock galaxy catalog creation
 - Developed by astronomers, for astronomers
 
 ---
