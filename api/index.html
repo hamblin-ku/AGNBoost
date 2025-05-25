@@ -246,18 +246,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../installation.md" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
   
+  
+    
   
   Getting Started
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -395,25 +394,9 @@
   
   
   
-    
-    
-    
-    
-      
-      
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -422,65 +405,7 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Getting Started
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../installation.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Installation
-    
-  </span>
-  
-
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Quick Start
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1231,6 +1156,30 @@
         
           <li class="md-nav__item">
   <a href="#agnboost.dataset.Catalog.get_split_df--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_train_val_test_sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_train_val_test_sizes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_train_val_test_sizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_train_val_test_sizes--returns" class="md-nav__link">
     <span class="md-ellipsis">
       Returns:
     </span>
@@ -2286,6 +2235,30 @@
         
           <li class="md-nav__item">
   <a href="#agnboost.dataset.Catalog.get_split_df--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_train_val_test_sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_train_val_test_sizes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_train_val_test_sizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agnboost.dataset.Catalog.get_train_val_test_sizes--returns" class="md-nav__link">
     <span class="md-ellipsis">
       Returns:
     </span>
@@ -3370,6 +3343,35 @@ missing : int, float, or None, default=np.nan
 <h5 id="agnboost.dataset.Catalog.get_split_df--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_split_df--returns" title="Permanent link">&para;</a></h5>
 <p>pandas.DataFrame
     DataFrame for the specified split with requested columns.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="agnboost.dataset.Catalog.get_train_val_test_sizes" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_train_val_test_sizes</span>
+
+
+<a href="#agnboost.dataset.Catalog.get_train_val_test_sizes" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_train_val_test_sizes</span><span class="p">()</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Get the sizes and percentages of the train, validation, and test sets.</p>
+<h5 id="agnboost.dataset.Catalog.get_train_val_test_sizes--returns">Returns:<a class="headerlink" href="#agnboost.dataset.Catalog.get_train_val_test_sizes--returns" title="Permanent link">&para;</a></h5>
+<p>dict
+    Dictionary with set sizes and percentages.
+    Format: {
+        'total': int,
+        'train': {'size': int, 'percentage': float},
+        'validation': {'size': int, 'percentage': float}, 
+        'test': {'size': int, 'percentage': float}
+    }</p>
 
 
     </div>

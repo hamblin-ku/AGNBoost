@@ -248,18 +248,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="installation.md" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="getting-started/" class="md-tabs__link">
+        
   
+  
+    
   
   Getting Started
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -566,25 +565,9 @@
   
   
   
-    
-    
-    
-    
-      
-      
+    <li class="md-nav__item">
+      <a href="getting-started/" class="md-nav__link">
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -593,65 +576,7 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Getting Started
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="installation.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Installation
-    
-  </span>
-  
-
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="getting-started/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Quick Start
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1048,7 +973,7 @@
 <p><strong>A powerful machine learning toolkit for astronomical data analysis using advanced XGBoost techniques.</strong></p>
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>AGNBoost is a specialized Python package designed for astronomers working with photometric and spectroscopic data. Built on the foundation of <a href="https://statmixedml.github.io/XGBoostLSS/">XGBoostLSS</a>, AGNBoost provides a streamlined workflow for classification and regression tasks in astronomy, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation.</p>
+<p>AGNBoost is a specialized Python package designed for astronomers working with photometric data. Built on the foundation of <a href="https://statmixedml.github.io/XGBoostLSS/">XGBoostLSS</a>, AGNBoost provides a streamlined workflow for disitrubtional regression with photometric data, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation.</p>
 <p>Whether you're analyzing JWST observations, conducting large-scale surveys, or developing custom models for your research, AGNBoost offers the tools and flexibility you need to extract meaningful insights from your astronomical data.</p>
 <div class="admonition tip">
 <p class="admonition-title">Quick Start</p>
@@ -1067,7 +992,6 @@
 <ul>
 <li><strong>Hyperparameter Optimization</strong>: Intelligent tuning with custom parameter grids and early stopping</li>
 <li><strong>Cross-Validation</strong>: Robust model validation with stratified splitting for both classification and regression</li>
-<li><strong>Multi-Target Support</strong>: Train models for multiple astronomical targets simultaneously</li>
 <li><strong>Model Persistence</strong>: Comprehensive saving and loading with full metadata tracking</li>
 </ul>
 <h3 id="xgboostlss-integration">⚡ <strong>XGBoostLSS Integration</strong><a class="headerlink" href="#xgboostlss-integration" title="Permanent link">&para;</a></h3>
@@ -1075,18 +999,18 @@
 <li><strong>Distributional Modeling</strong>: Go beyond point estimates with full probability distributions</li>
 <li><strong>Custom Objectives</strong>: Specialized loss functions for astronomical applications</li>
 <li><strong>Efficient Training</strong>: Optimized for large astronomical datasets with GPU acceleration support</li>
-<li><strong>Uncertainty Quantification</strong>: Robust uncertainty estimates for scientific analysis</li>
+<li><strong>Uncertainty Quantification</strong>: Robust uncertainty estimates for Astronomical analysis</li>
 </ul>
 <h3 id="research-ready-tools">🛠 <strong>Research-Ready Tools</strong><a class="headerlink" href="#research-ready-tools" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Flexible Data Splitting</strong>: Intelligent train/validation/test splits with optional stratification</li>
+<li><strong>Flexible Data Splitting</strong>:  Train/validation/test splits with optional stratification</li>
 <li><strong>Signal-to-Noise Filtering</strong>: Built-in S/N cuts for photometric data quality control</li>
 <li><strong>Transform Pipeline</strong>: Easy-to-use data transformation and augmentation tools</li>
 <li><strong>Extensible Architecture</strong>: Designed for customization and integration with existing workflows</li>
 </ul>
 <hr />
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>We recommend using a virtual environment to manage dependencies. AGNBoost works best with Python 3.8 or later.</p>
+<p>We recommend using a virtual environment to manage dependencies. AGNBoost works best with Python 3.10/3.11 or later.</p>
 <h3 id="using-conda-recommended">Using Conda (Recommended)<a class="headerlink" href="#using-conda-recommended" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Create a new conda environment</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>agnboost<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
@@ -1121,19 +1045,18 @@
 </div>
 <hr />
 <h2 id="built-on-xgboostlss">Built on XGBoostLSS<a class="headerlink" href="#built-on-xgboostlss" title="Permanent link">&para;</a></h2>
-<p>AGNBoost leverages the power of <a href="https://statmixedml.github.io/XGBoostLSS/">XGBoostLSS</a>, a cutting-edge extension of XGBoost that enables <strong>distributional modeling</strong>. Instead of predicting single point estimates, XGBoostLSS can model entire probability distributions, providing:</p>
+<p>AGNBoost leverages the power of <a href="https://statmixedml.github.io/XGBoostLSS/">XGBoostLSS</a>, a cutting-edge extension of XGBoost that enables <strong>distributional modeling</strong>. Instead of predicting single point estimates, XGBoostLSS models the entire conditioan distributions, providing:</p>
 <ul>
 <li><strong>Full Distributional Predictions</strong>: Estimate not just the mean, but the entire shape of the target distribution</li>
 <li><strong>Robust Uncertainty Quantification</strong>: Get principled uncertainty estimates for your astronomical measurements  </li>
-<li><strong>Flexible Loss Functions</strong>: Choose from a wide variety of probability distributions tailored to your data</li>
+<li><strong>Flexible Distributions</strong>: Choose from a wide variety of probability distributions tailored to your data</li>
 <li><strong>Advanced Regularization</strong>: Built-in techniques to prevent overfitting and improve generalization</li>
 </ul>
 <p>This makes AGNBoost particularly powerful for astronomical applications where uncertainty quantification is crucial, such as:</p>
 <ul>
 <li>Photometric redshift estimation with confidence intervals</li>
-<li>AGN probability classification with uncertainty bounds</li>
+<li>AGN identification with uncertainty bounds</li>
 <li>Stellar mass estimation with full posterior distributions</li>
-<li>Flux measurements with proper error propagation</li>
 </ul>
 <hr />
 <h2 id="whats-next">What's Next?<a class="headerlink" href="#whats-next" title="Permanent link">&para;</a></h2>
