@@ -74,16 +74,13 @@ markdown_extensions:
   - pymdownx.emoji:
     emoji_index: !!python/name:material.extensions.emoji.twemoji
     emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - attr_list
-  - md_in_html
-  - pymdownx.superfences
-
+    
 # Updated navigation - single API page
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Tutorials:
-    - Basic Usage: examples/basic-usage.ipynb
+    - Basic Usage: /docs/examples/basic-usage.ipynb
     - Band Configuration: tutorials/band-configuration.md
     - Training from Scratch: tutorials/training-from-scratch.md
   - API Reference: api.md
