@@ -124,7 +124,7 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
     Step-by-step guides covering everything from basic usage to advanced training pipelines.
 
-    [:octicons-arrow-right-24: View Tutorials](tutorials/basic-usage.md)
+    [:octicons-arrow-right-24: View Tutorials](examples/basic-usage.ipynb)
 
 -   :material-code-braces:{ .lg .middle } **API Reference**
 
