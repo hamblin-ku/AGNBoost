@@ -76,7 +76,7 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Tutorials:
-    - Basic Usage: tutorials/basic-usage.ipynb
+    - Basic Usage: docs/tutorials/basic-usage.ipynb
     - Band Configuration: tutorials/band-configuration.md
     - Training from Scratch: tutorials/training-from-scratch.md
   - API Reference: api.md
