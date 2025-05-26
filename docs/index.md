@@ -6,9 +6,7 @@
 
 ## Overview
 
-AGNBoost is a specialized Python package designed for astronomers working with photometric data. Built on the foundation of [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), AGNBoost provides a streamlined workflow for disitrubtional regression with photometric data, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation.
-
-Whether you're analyzing JWST observations, conducting large-scale surveys, or developing custom models for your research, AGNBoost offers the tools and flexibility you need to extract meaningful insights from your astronomical data.
+AGNBoost is a specialized Python framework designed for astronomers working with photometric data. Built on the foundation of [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), AGNBoost provides a streamlined workflow for disitrubtional regression with photometric data, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation.
 
 !!! tip "Quick Start"
     New to AGNBoost? Check out our [Quick Start Guide](getting-started.md) to get up and running in minutes!
@@ -23,7 +21,7 @@ Whether you're analyzing JWST observations, conducting large-scale surveys, or d
 - **Automatic Feature Engineering**: Built-in color calculations, magnitude transformations, and signal-to-noise filtering
 - **Data Validation**: Ensures data quality and compatibility across different datasets
 
-### 🚀 **Advanced Machine Learning Pipeline**
+### 🚀 **Convenient Pipeline**
 - **Hyperparameter Optimization**: Intelligent tuning with custom parameter grids and early stopping
 - **Cross-Validation**: Robust model validation with stratified splitting for both classification and regression
 - **Model Persistence**: Comprehensive saving and loading with full metadata tracking

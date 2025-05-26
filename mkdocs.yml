@@ -53,8 +53,8 @@ plugins:
             show_bases: true
             show_inheritance_diagram: false
   - mkdocs-jupyter:
-    execute: false
-    allow_errors: false
+      execute: false
+      allow_errors: false
 
 # Extensions
 markdown_extensions:
