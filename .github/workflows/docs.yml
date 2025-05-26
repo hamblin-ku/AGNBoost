@@ -29,6 +29,7 @@ jobs:
           # Install documentation dependencies
           pip install mkdocs-material
           pip install mkdocstrings[python]
+          pip install mkdocs-jupyter
           
           # Install core scientific dependencies for imports
           pip install numpy pandas scikit-learn matplotlib scipy tqdm

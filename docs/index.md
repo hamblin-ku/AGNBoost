@@ -124,7 +124,7 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
     Step-by-step guides covering everything from basic usage to advanced training pipelines.
 
-    [View Tutorials →](tutorials/basic-usage.md)
+    [View Tutorials →](tutorials/)
 
 -   **API Reference**
 
