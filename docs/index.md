@@ -132,14 +132,6 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
     [API Docs →](api.md)
 
--   **Examples**
-
-    ---
-
-    Real-world examples using JWST data, custom features, and advanced modeling techniques.
-
-    [See Examples →](examples/jwst-analysis.md)
-
 </div>
 
 ---
@@ -148,7 +140,7 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
 AGNBoost is developed by astronomers, for astronomers. We welcome contributions, feedback, and collaboration from the community.
 
-- **GitHub Repository**: [github.com/yourusername/agnboost](https://github.com/yourusername/agnboost)
+- **GitHub Repository**: [https://github.com/hamblin-ku/AGNBoost](https://github.com/yourusername/agnboost)
 - **Issues and Discussions**: Use GitHub Issues for bug reports and feature requests
 - **Contributing**: See our [Contributing Guide](contributing.md) to get involved
 

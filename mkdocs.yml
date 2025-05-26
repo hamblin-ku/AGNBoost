@@ -1,11 +1,10 @@
 site_name: AGNBoost
 site_description: A machine learning toolkit for astronomical data analysis using XGBoost
 site_author: Kurt Hamblin
-site_url: https://kurthamblin.github.io/agnboost/
+site_url: https://hamblin-ku.github.io/AGNBoost/
 
 # Repository
-repo_name: kurthamblin/agnboost
-repo_url: https://github.com/kurthamblin/agnboost
+repo_url: https://github.com/hamblin-ku/AGNBoost
 edit_uri: edit/main/docs/
 
 # Configuration
