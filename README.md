@@ -17,7 +17,7 @@
 
 ---
 
-AGNBoost is a machine learnign framework focused on efficiently identfying populations of candidates Active Galactic Nuclei (AGN) from photometric data. AGNBoost is built on [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), an extension of the well known XGBoost algorithm to distributional modeling. The framework comes with pre-trained models for AGN identification and photometric redshift estimation from JWST NIRCam+MIRI photometric data, trained on catalogs of mock galaxies from [CIGALE](https://cigale.lam.fr/).
+AGNBoost is a machine learning framework focused on efficiently identfying populations of candidates Active Galactic Nuclei (AGN) from photometric data. AGNBoost is built on [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), an extension of the well known XGBoost algorithm to distributional modeling. The framework comes with pre-trained models for AGN identification and photometric redshift estimation from JWST NIRCam+MIRI photometric data, trained on catalogs of mock galaxies from [CIGALE](https://cigale.lam.fr/).
 
 
 ## ✨ Features
@@ -93,5 +93,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
   <strong>If you use AGNBoost in your research, please see our <a href="https://kurthamblin.github.io/agnboost/citation/">citation guide</a>.</strong>
 </div>
-```
+
 

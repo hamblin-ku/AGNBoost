@@ -3,8 +3,6 @@ from pathlib import Path
 import logging
 from tqdm import tqdm
 
-from agnboost.config import FIGURES_DIR, PROCESSED_DATA_DIR
-
 
 # agnboost.py
 from agnboost.dataset import Catalog
@@ -14,6 +12,7 @@ import functools
 from math import comb
 import numpy as np
 import os
+import glob
 import optuna
 import pandas as pd
 import gzip
@@ -560,7 +559,7 @@ class AGNBoost:
             return None, None
 
     
-    def _save_model(self, model_name):
+    def _save_model(self, model_name, file_name = None):
         """
         Save a trained model and its metadata to disk.
         
@@ -582,10 +581,27 @@ class AGNBoost:
         if self.models[model_name] is None:
             self.logger.error(f"Cannot save model '{model_name}': model has not been trained")
             return False
+
+        # Verify that file_name is a string if it is passed
+        if file_name is not None and not isinstance(file_name, str):
+            self.logger.error(f"Invalid value for overwrite: {overwrite}. Must be bool.")
         
-        # Ensure models directory exists
-        os.makedirs(self.models_dir, exist_ok=True)
-        model_path = os.path.join(self.models_dir, datetime.now().strftime("%Y_%m_%d-%p%I_%M_%S") + f"_{model_name}_model.pkl")
+
+        # Ensure that the sub directory for this model exists. If it does not, create it.
+        model_sub_dir = os.environ.get('AGNBOOST_MODELS_DIR', f"models/{model_name}/")
+        os.makedirs(model_sub_dir, exist_ok=True)
+
+        # Create the model path using the current timestamp and model name.
+        if filename is None:
+            model_path = os.path.join(self.models_dir, datetime.now().strftime("%Y_%m_%d-%p%I_%M_%S") + f"_{model_name}_model.pkl")
+
+        # Use passed filename
+        else:
+            #If the passed string already has the pkl file extension
+            if filename.endswith(".pkl"):
+                model_path = os.path.join(self.models_dir, file_name)
+            else:   
+                model_path = os.path.join(self.models_dir, f"{file_name}.pkl")
         
         # Gather model metadata
         model_metadata = {
@@ -635,28 +651,55 @@ class AGNBoost:
             self.logger.error(f"Error saving model {model_name}: {str(e)}")
             return False
 
+    @staticmethod
+    def get_available_files(path):
+        # Ensure that the sub directory for this model exists. If it does not, return None
+        if os.path.exists( path ) is False:
+            return None
 
-    def load_model(self, file_name,  overwrite = False):
+        # Get a list of all of the files in the model directory
+        files = glob.glob(os.path.join(path, "*"))
+        return files
+
+
+    def get_available_models(self, target_name = None):
+        if target_name is not None:
+            model_sub_dir = os.environ.get('AGNBOOST_MODELS_DIR', f"models/{target_name}")
+            print(model_sub_dir)
+            if not os.path.exists(model_sub_dir):
+                raise FileNotFoundError(f'model sub directory for model {target_name} does not exist. Available options are {self.get_available_models()}')
+
+        # If not target is passed, return a list of the available model sub directories.
+        else:
+            model_sub_dir = os.environ.get('AGNBOOST_MODELS_DIR', 'models/')
+
+        return [os.path.basename(x) for x in self.get_available_files(model_sub_dir)]
+
+    def load_model(self, model_name, file_name = None, overwrite = False):
         """
         Load pre-trained models from disk.
         
-        Parameters:
-        -----------
-        model_names : list, str, or None, default=None
-            Name(s) of models to load. If None, loads all models in self.model_names.
-        retrain : bool, default=False
-            If True, forces retraining even if models exist.
+        Args:
 
-                
+            file_name (str, optional): 
+                Name(s) of models to load. If None, loads all models in self.model_names.
+            overwrite (boo, optional): Whether to overwite already laoded model in AGNBoost instance.
+                Defaults to False.
+
+        Raises:    
+           FileNotFoundError: If the sub-directory for this model type does not exist.
+
         Returns:
-        --------
-        bool
-            True if all requested model was loaded successfully, False otherwise.
+            bool: True if requested model was loaded successfully, False otherwise.
         """
 
         # Verify model name is valid
-
         if not isinstance(overwrite, bool):
+            self.logger.error(f"Invalid value for overwrite: {overwrite}. Must be bool.")
+            return False
+
+        # Verify that file_name is a string if it is passed
+        if file_name is not None and not isinstance(file_name, str):
             self.logger.error(f"Invalid value for overwrite: {overwrite}. Must be bool.")
             return False
     
@@ -664,12 +707,27 @@ class AGNBoost:
         self.logger.info(f"Attempting to load model: {file_name}")
         
         
-        # Ensure models directory exists
-        os.makedirs(self.models_dir, exist_ok=True)
-        model_path = os.path.join(self.models_dir, file_name)
-        
-        #model_path = os.path.join(self.models_dir, f"{model_type}_model.pkl")
-        
+        # Ensure that the sub directory for this model exists. If it does not, throw an error because the model cannot be loaded.
+        model_sub_dir = os.environ.get('AGNBOOST_MODELS_DIR', f"models/{model_name}/")
+        if os.path.exists( model_sub_dir ) is False:
+            self.logger.error(f"Model sub directory for {model_name} does not exist. Model has not been trained.")
+            raise FileNotFoundError(f"Model sub directory for {model_name} does not exist. Model has not been trained.")
+
+        # If a file_name has been passed, used that
+        if file_name is not None:
+            model_path = os.path.join(model_sub_dir , file_name)
+        else:
+            # Get a list of all of the files in the model directory
+            files = glob.glob(os.path.join(model_sub_dir, "*"))
+            if len(files) > 0:
+                # Use the most recently modifed one.
+                file_name = os.path.basename(max(files, key=os.path.getmtime))
+                model_path = os.path.join(model_sub_dir , file_name)
+                self.logger.warning(f"No file_name passed. Using the most recently modified one instead: {file_name}.")
+            else:
+                raise FileNotFoundError(f"No saved models for target varibale {model_name} exist in directory {model_sub_dir}.")
+                
+       
         if os.path.exists(model_path):
             try:
                 self.logger.info(f"Loading model: {file_name} from {model_path}")
@@ -678,9 +736,22 @@ class AGNBoost:
                 if file_name.endswith('.gz'):
                     with gzip.open(model_path, 'rb') as f:
                         model_data = pickle.load(f)
-                else: 
-                    with open(model_path, 'rb') as f:
-                        model_data = pickle.load(f)
+                else:
+                    # If it ends with ".pkl"
+                    if file_name.endswith(".pkl"):
+                        with open(model_path, 'rb') as f:
+                            model_data = pickle.load(f)
+
+                    # Otherwise, try appending ".pkl" and opening it with pickle
+                    else:
+                        try:
+                            model_path = os.path.join(model_path , ".pkl")
+                            with open(model_path, 'rb') as f:
+                                model_data = pickle.load(f)
+                        except pickle.UnpicklingError:
+                            raise pickle.UnpicklingError(f"Error unpickling the file '{file_name}'. The file might be corrupted or not a valid pickle file.")
+                        except Exception as e:
+                            raise Exception(f"An unexpected error occurred while loading the file '{file_name}': {e}. Ensure that desired model is actually a pickle.")
                 
                 # Validate model data structure
                 if not isinstance(model_data, dict) or 'model' not in model_data:

@@ -3,7 +3,6 @@ from pathlib import Path
 from loguru import logger
 from tqdm import tqdm
 import json
-from agnboost.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
 
 
 # catalog.py
@@ -39,6 +38,20 @@ class Catalog:
         val_indices (pandas.Index): Indices for validation data split.
         test_indices (pandas.Index): Indices for test data split.
     
+    Args:
+        path (str, optional): Path to the data file to load. Supports FITS and CSV formats.
+            Not used if `data` is provided. Defaults to None.
+        data (pandas.DataFrame or astropy.table.Table, optional): Pre-loaded data to use.
+            If provided, `path` is ignored. Defaults to None.
+        delimiter (str): Delimiter to use for CSV files. Only used if loading from `path`.
+            Common options include ',', '\t', ';', '|'. Defaults to ','.
+        bands_file (str): Path to the JSON file containing allowed band definitions.
+            This file maps full band names to metadata including shorthand names and
+            wavelengths. Defaults to "allowed_bands.json".
+        logger (logging.Logger, optional): Custom logger to use for this catalog.
+            If None, uses the class-level logger. Defaults to None.
+
+
     Examples:
         Basic usage with a FITS file:
         
@@ -61,7 +74,7 @@ class Catalog:
         import pandas as pd
         df = pd.read_csv("data.csv")
         catalog = Catalog(data=df)
-        '''
+        ```
     """
 
 
@@ -249,12 +262,10 @@ class Catalog:
         
         feature_dfs = []
         
+        validated_bands_dict = self.get_valid_bands()
+        validated_bands_list = list(validated_bands_dict.keys()) 
         # If no custom feature functions are passed
         if feature_funcs is None:
-            validated_bands_dict = self.get_valid_bands()
-            validated_bands_list = list(validated_bands_dict.keys()) 
-            #shorthands = [validated_bands_dict[ band ]['shorthand'] for band in validated_bands_list]
-
             # 1. Create log10 of validated band columns
             log_bands_df = self.data[validated_bands_list].apply( np.log10 )
             feature_dfs.append(log_bands_df)
@@ -272,39 +283,42 @@ class Catalog:
         # Need to save the functions used for features for photometric error calculations
         else:
             # Custom functions
-            if not isinstance(feature_funcs, (list, tuple)):
-                log_message("feature_funcs must be a list or tuple of functions.", "ERROR")
+            if not isinstance(feature_funcs, list):
+                self.logger.error("feature_funcs must be a list of functions. Skipping")
+                raise TypeError(f"Feature_funcs must be a list of functions, got {type(feature_funcs).__name__}. Skipping")
                 return None
             
+            callable_count = 0
             # Validate and apply each function
             for i, func in enumerate(feature_funcs):
                 if not callable(func):
-                    
-                    continuelog_message(f"Item {i} in feature_funcs is not callable. Skipping.", "WARNING")
-                
+                    self.logger.warning(f"Item {i} in feature_funcs is not callable. Skipping.")
+                else: 
+                    callable_count += 1
+
                 try:
                     # Apply function to the relevant data subset
-                    result = func(self.data, self.valid_columns)
+                    result = self.data[validated_bands_list].apply( func )
+                    #result = func(self.data, self.valid_columns)
                     
                     # Check if result is a DataFrame
                     if isinstance(result, pd.DataFrame):
                         if result.index.equals(self.data.index):
                             feature_dfs.append(result)
-                            log_message(f"Applied custom feature function {func.__name__}: "
-                                       f"added {result.shape[1]} features.")
+                            log_message(f"Applied custom feature function {func.__name__}: added {result.shape[1]} features.")
                         else:
-                            log_message(f"Function {func.__name__} returned DataFrame with "
-                                       f"mismatched index. Skipping.", "WARNING")
+                            self.logger.error(f"Function {func.__name__} returned DataFrame with mismatched index. Check the function and try again.")
+                            raise Exception(f"Function {func.__name__} returned DataFrame with mismatched index. Check the function and try again.")
+
                     else:
-                        log_message(f"Function {func.__name__} did not return a DataFrame. "
-                                   f"Got {type(result)} instead. Skipping.", "WARNING")
+                        self.logger.error(f"Function {func.__name__} id not return a DataFrame. Got {type(feature_funcs).__name__} instead")
+                        raise TypeError(f"Function {func.__name__} id not return a DataFrame. Got {type(feature_funcs).__name__} instead")
+
                 except Exception as e:
-                    log_message(f"Error applying function {func.__name__}: {str(e)}", "WARNING")
-        
-        # Combine all feature dataframes
-        if not feature_dfs:
-            log_message("No features were created.", "WARNING")
-            return None
+                   self.logger.error(f"Error applying function {func.__name__}: {str(e)}")
+
+                if callable_count == 0:
+                    raise TypeError("No callable feature functions passed.")
         
         try:
             self.features_df = pd.concat(feature_dfs, axis=1, join = 'outer')
