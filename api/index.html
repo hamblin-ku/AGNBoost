@@ -483,7 +483,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorials/band-configuration.md" class="md-nav__link">
+      <a href="../tutorials/CustomFeatures+Targets.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Custom Features and Transformed Targets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/custom_bands.ipynb" class="md-nav__link">
         
   
   
@@ -1380,39 +1403,6 @@
   <a href="#agnboost.model.AGNBoost.predict_dist_trunc--returns" class="md-nav__link">
     <span class="md-ellipsis">
       Returns
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#agnboost.model.AGNBoost.list_available_models" class="md-nav__link">
-    <span class="md-ellipsis">
-      list_available_models
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="list_available_models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#agnboost.model.AGNBoost.list_available_models--parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#agnboost.model.AGNBoost.list_available_models--returns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Returns:
     </span>
   </a>
   
@@ -2445,39 +2435,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#agnboost.model.AGNBoost.list_available_models" class="md-nav__link">
-    <span class="md-ellipsis">
-      list_available_models
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="list_available_models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#agnboost.model.AGNBoost.list_available_models--parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#agnboost.model.AGNBoost.list_available_models--returns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Returns:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2812,7 +2769,7 @@ wavelengths. Defaults to "allowed_bands.json".</p>
               </div>
             </td>
             <td>
-                  <code>&#39;allowed_bands.json&#39;</code>
+                <em>required</em>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -2909,7 +2866,7 @@ If None, uses the class-level logger. Defaults to None.</p>
 
 
 <a href="#agnboost.dataset.Catalog.create_feature_dataframe" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">create_feature_dataframe</span><span class="p">(</span><span class="n">feature_funcs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">create_feature_dataframe</span><span class="p">(</span><span class="n">custom_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -3739,36 +3696,6 @@ iteration_range: Tuple[int,int]
 <h5 id="agnboost.model.AGNBoost.predict_dist_trunc--returns">Returns<a class="headerlink" href="#agnboost.model.AGNBoost.predict_dist_trunc--returns" title="Permanent link">&para;</a></h5>
 <p>pred : pd.DataFrame
     Predictions.xgboost model get numeber of boostin rounds</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="agnboost.model.AGNBoost.list_available_models" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">list_available_models</span>
-
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
-  </span>
-
-<a href="#agnboost.model.AGNBoost.list_available_models" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">list_available_models</span><span class="p">(</span><span class="n">models_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span></code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>List all available pre-trained models in the models directory.</p>
-<h5 id="agnboost.model.AGNBoost.list_available_models--parameters">Parameters:<a class="headerlink" href="#agnboost.model.AGNBoost.list_available_models--parameters" title="Permanent link">&para;</a></h5>
-<p>models_dir : str or None
-    Directory to look for models. If None, uses the default models directory.</p>
-<h5 id="agnboost.model.AGNBoost.list_available_models--returns">Returns:<a class="headerlink" href="#agnboost.model.AGNBoost.list_available_models--returns" title="Permanent link">&para;</a></h5>
-<p>dict
-    Dictionary with model names as keys and metadata as values.</p>
 
 
     </div>
