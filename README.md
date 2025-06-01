@@ -36,17 +36,11 @@ AGNBoost is a machine learning framework focused on efficiently identfying popul
 
 ### Prerequisites
 - Python 3.10 or later
-- Git
 
 ### Quick Install
-
+To directly install the latest development version with pip, please use:
 ```bash
-# Clone the repository
-git clone https://github.com/kurthamblin/agnboost.git
-cd agnboost
-
-# Install in development mode (recommended)
-pip install -e .
+pip install git+https://github.com/hamblin-ku/AGNBoost.git
 ```
 
 ### Using Virtual Conda Environment (Recommended)
@@ -56,12 +50,8 @@ pip install -e .
 conda create -n agnboost python=3.11
 conda activate agnboost
 
-# Clone and install
-git clone https://github.com/kurthamblin/agnboost.git
-cd agnboost
-pip install -e .
+pip install git+https://github.com/hamblin-ku/AGNBoost.git
 ```
-
 
 ## 📖 Documentation
 
@@ -70,12 +60,19 @@ Complete documentation is available on GitHub Pages:
 **🌐 [https://kurthamblin.github.io/agnboost/](https://kurthamblin.github.io/agnboost/)**
 
 The documentation includes:
-- **Examples**: Example jupyter notebooks illustrating how to use AGNBoost modules
+- **Tutorials**: Example jupyter notebooks illustrating how to use AGNBoost. The covered topics include:
+<ul>
+<li>A basic usage tutorial</li>
+<li>Creating custom features and transforming target variables</li>
+<li>Using AGNBoost with custom photometric bands</li>
+<li>Training and Tuning AGNBoost models from scratch</li>
+</ul>
+
 - **API Reference**: Complete documentation of all classes and methods
 
 ## 🤝 Contributing
 
-We welcome contributions from the astronomy community! Please see our [Contributing Guide](https://kurthamblin.github.io/agnboost/contributing/) for details on how to get involved.
+We welcome contributions! Please see our [Contributing Guide](https://kurthamblin.github.io/agnboost/contributing/) for details on how to get involved.
 
 ## 📄 License
 
@@ -86,7 +83,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Built on [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/) for distributional modeling
 - Uses [SGAIN](https://github.com/dtneves/ICCS_2021) for photometric imputation
 - [CIGALE](https://cigale.lam.fr/) used for mock galaxy catalog creation
-- Developed by astronomers, for astronomers
 
 ---
 
