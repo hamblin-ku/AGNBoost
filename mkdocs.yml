@@ -81,7 +81,7 @@ nav:
     - Basic Usage: tutorials/basic-usage.ipynb
     - Custom Features and Transformed Targets: tutorials/CustomFeatures+Targets.ipynb
     - Band Configuration: tutorials/custom_bands.ipynb
-    - Training from Scratch: tutorials/training-from-scratch.md
+    - Training from Scratch: tutorials/tuning+training.ipynb
   - API Reference: api.md
   - About:
     - License: license.md
