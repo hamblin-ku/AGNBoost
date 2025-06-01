@@ -60,7 +60,8 @@ Complete documentation is available on GitHub Pages:
 **🌐 [https://kurthamblin.github.io/agnboost/](https://kurthamblin.github.io/agnboost/)**
 
 The documentation includes:
-- **Tutorials**: Example jupyter notebooks illustrating how to use AGNBoost. The covered topics include:
+
+- **[Tutorials](https://hamblin-ku.github.io/AGNBoost/tutorials/basic-usage/)**: Example jupyter notebooks illustrating how to use AGNBoost. The covered topics include:
 <ul>
 <li>A basic usage tutorial</li>
 <li>Creating custom features and transforming target variables</li>
@@ -68,33 +69,7 @@ The documentation includes:
 <li>Training and Tuning AGNBoost models from scratch</li>
 </ul>
 
-
-## What's Next?
-
-<div class="grid cards" markdown>
-
--   **Tutorials**
-
-    ---
-
-    Step-by-step guides covering everything from basic usage to advanced training pipelines.
-
-    [View Tutorials →](https://hamblin-ku.github.io/AGNBoost/tutorials/basic-usage/)
-
--   **API Reference**
-
-    ---
-
-    Complete documentation of all classes, methods, and functions in AGNBoost.
-
-    [API Docs →](https://hamblin-ku.github.io/AGNBoost/api/)
-
-</div>
-
----
-
-
-- **API Reference**: Complete documentation of all classes and methods
+- **[API Reference](https://hamblin-ku.github.io/AGNBoost/api/)**: Complete documentation of all classes and methods
 
 ## `Contributing`
 
