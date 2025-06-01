@@ -16,12 +16,6 @@ from sklearn.model_selection import train_test_split
 import logging
 
 
-# need to add a imputation method
-# there also needs to be a imputation tune
-# should take: inplace, cols_missing
-# where cols_missing is an optional list of photometry column names that have missing data
-# (otherwise consider all the phot columns)
-
 class Catalog:
     """
     A class for loading, managing, and manipulating astronomical data.
@@ -33,24 +27,13 @@ class Catalog:
     Attributes:
         data (pandas.DataFrame): The main astronomical dataset.
         features_df (pandas.DataFrame): Engineered features for machine learning.
-        valid_columns (dict): Metadata for validated photometric band columns.
+        allowed_bands (dict): Dictionary storing the information (column name in data, shorthand name, and wavelength) for the used photometric bands
+        valid_columns (dict): Dictionary storing the the photometric bands from allowed_bands that are found in the stored data.
         train_indices (pandas.Index): Indices for training data split.
         val_indices (pandas.Index): Indices for validation data split.
+        trainval_indices (pandas.Index): Indices for combined training + validation data split.
         test_indices (pandas.Index): Indices for test data split.
-    
-    Args:
-        path (str, optional): Path to the data file to load. Supports FITS and CSV formats.
-            Not used if `data` is provided. Defaults to None.
-        data (pandas.DataFrame or astropy.table.Table, optional): Pre-loaded data to use.
-            If provided, `path` is ignored. Defaults to None.
-        delimiter (str): Delimiter to use for CSV files. Only used if loading from `path`.
-            Common options include ',', '\t', ';', '|'. Defaults to ','.
-        bands_file (str): Path to the JSON file containing allowed band definitions.
-            This file maps full band names to metadata including shorthand names and
-            wavelengths. Defaults to "allowed_bands.json".
-        logger (logging.Logger, optional): Custom logger to use for this catalog.
-            If None, uses the class-level logger. Defaults to None.
-
+        custom_feature_func (callable): User created function to create custom features.
 
     Examples:
         Basic usage with a FITS file:
@@ -82,18 +65,22 @@ class Catalog:
     logger = logging.getLogger('AGNBoost.Catalog')
 
     def __init__(self, path=None, data=None, delimiter=',', band_dict = None, summarize = True, logger=None):
-        #def __init__(self, path=None, data=None, delimiter=',', bands_file="allowed_bands.json", summarize = True, logger=None):
         """
         Initialize a Catalog object to load and manipulate data.
         
-        Args:
-            path (str, optional): Path to the data file to load. Not used if data is provided.
-            data (pandas.DataFrame or astropy.table.Table, optional): Pre-loaded data to use. 
-                If provided, path is ignored.
-            delimiter (str): Delimiter to use for CSV files. Only used if path is provided.
-                Defaults to ','.
-            bands_file (str): Path to the JSON file containing allowed band definitions.
-                Defaults to "allowed_bands.json".
+    Args:
+        path (str, optional): Path to the data file to load. Supports FITS and CSV formats.
+            Not used if `data` is provided. Defaults to None.
+        data (pandas.DataFrame or astropy.table.Table, optional): Pre-loaded data to use.
+            If provided, `path` is ignored. Defaults to None.
+        delimiter (str): Delimiter to use for CSV files. Only used if loading from `path`.
+            Common options include ',', '\t', ';', '|'. Defaults to ','.
+        bands_dict (dict): dict including the information about custom photometric bands.
+            If not provided, the "allowed_bands.json" is loaded and used to decide what photometric bands to use.
+        summarize (bool): Whether to print a data summary or not
+            If True, the print_data_summary() method is called.
+        logger (logging.Logger, optional): Custom logger to use for this catalog.
+            If None, uses the class-level logger. Defaults to None.
                 
         Raises:
             ValueError: If neither path nor data is provided.
@@ -117,7 +104,6 @@ class Catalog:
         self.path = path
         self.delimiter = delimiter
         self.data = None
-        self.band_dict = None
 
         # Use the passed band dict. Need to add code to validate formate of the passed dict
         if band_dict is not None:
@@ -167,19 +153,68 @@ class Catalog:
     @staticmethod         
     def create_color_dataframe(data, bands):
         """
-        Calculate photometric colors from band fluxes.
+        Calculate photometric colors from band flux measurements.
         
-            
+        Creates all possible non-reciprocal photometric colors from the provided band data.
+        Colors are calculated as log10(flux_i / flux_j) where band_i has a longer wavelength
+        than band_j. This follows standard astronomical convention where colors like (J-H) 
+        represent log10(flux_J / flux_H).
+        
+        The bands are automatically sorted by wavelength in descending order (longest to 
+        shortest wavelength) to ensure consistent color naming and calculation. For example,
+        with bands at 2.2μm, 1.6μm, and 1.2μm, this will create colors like:
+        - 2.2μm/1.6μm (longer/shorter)
+        - 2.2μm/1.2μm 
+        - 1.6μm/1.2μm
+        
+        Args:
+            data (pandas.DataFrame): DataFrame containing flux measurements for each object.
+                Must have columns corresponding to the band names in the `bands` dictionary.
+            bands (dict): Dictionary mapping band column names to their metadata. Each band
+                entry must contain 'wavelength' and 'shorthand' keys. Example:
+                ```
+                {
+                    'jwst.nircam.F200W': {'wavelength': 1.988, 'shorthand': 'F200W'},
+                    'jwst.nircam.F150W': {'wavelength': 1.501, 'shorthand': 'F150W'}
+                }
+                ```
+                
         Returns:
-        --------
-        pandas.DataFrame
-            DataFrame containing color columns.
-        """
-        '''print(data)
-        if data is None:
-            data = self.data
+            pandas.DataFrame or None: DataFrame containing computed color columns with the same
+                index as the input data. Column names follow the format "shorthand_i/shorthand_j"
+                where shorthand_i corresponds to the longer wavelength band. Returns None if
+                fewer than 2 bands are provided.
+                
+        Raises:
+            KeyError: If a band name in the `bands` dictionary is not found as a column in `data`.
+            ValueError: If flux values are zero or negative (causing log10 calculation errors).
+            
+        Examples:
+            Basic color calculation:
+            
+            Using with a Catalog instance:
+            
+            ```python
+            import pandas as pd
+            import numpy as np
+            from agnboost import Catalog
 
-        bands = self.valid_columns'''
+            catalog = Catalog(path="jwst_data.fits")
+            valid_bands = catalog.get_valid_bands()
+            colors = Catalog.create_color_dataframe(catalog.get_data(), valid_bands)
+            ```
+            
+        Notes:
+            - Colors are calculated as log10(longer_wavelength_flux / shorter_wavelength_flux)
+            - Zero or negative flux values will produce NaN or infinite values in the colors
+            - The method creates n*(n-1)/2 colors for n input bands
+            - Band sorting by wavelength ensures consistent color naming across different datasets
+            - Color names use shorthand identifiers for readability (e.g., 'F200W/F150W' vs full names)
+            
+        See Also:
+            create_feature_dataframe: Higher-level method that includes color creation
+            transform: For applying custom transformations to individual columns
+        """
 
         # Sort bands by wavelength for consistent color creation
         sorted_bands = sorted(bands.items(), key=lambda x: x[1]['wavelength'], reverse = True)
@@ -205,16 +240,95 @@ class Catalog:
                     color_ij_name = f"{shorthand_i}/{shorthand_j}"
                     colors_df[color_ij_name] = np.log10( data[band_i] / data[band_j] )
                     Catalog.logger.info(f"Created color: {color_ij_name}")
-                    #log_message(f"Created color: {color_ij_name}")
 
                 except Exception as e:
-                    #log_message(f"Error creating color {shorthand_i}/{shorthand_j}: {str(e)}", "WARNING")
                     Catalog.logger.error(f"Error creating color {shorthand_i}/{shorthand_j}: {str(e)}", "WARNING")
 
         return colors_df
 
     @staticmethod
     def remove_negative_fluxes(data, bands):
+        """
+        Remove negative and zero flux values by replacing them with NaN.
+        
+        Negative or zero flux measurements are often unphysical in astronomical data and
+        can cause issues with logarithmic calculations (magnitudes, colors). This method
+        identifies such values in photometric band columns and replaces them with NaN
+        to prevent downstream calculation errors while preserving the data structure.
+        
+        This is particularly important for:
+        - Magnitude calculations: mag = -2.5 * log10(flux)
+        - Color calculations: color = log10(flux1 / flux2) 
+        - Feature transforamtions that use logarithmic transformations
+        
+        Args:
+            data (pandas.DataFrame): DataFrame containing astronomical measurements.
+                Must include columns corresponding to the band names specified in `bands`.
+            bands (dict): Dictionary mapping band column names to their metadata. Only
+                the keys (band column names) are used for processing. Example:
+                ```
+                {
+                    'jwst.nircam.F200W': {'wavelength': 1.988, 'shorthand': 'F200W'},
+                    'jwst.nircam.F150W': {'wavelength': 1.501, 'shorthand': 'F150W'}
+                }
+                ```
+                
+        Returns:
+            pandas.DataFrame or None: Copy of the input DataFrame with negative and zero
+                flux values replaced by NaN in the specified band columns. Other columns
+                remain unchanged. Returns None if an error occurs during processing.
+                
+        Raises:
+            ValueError: If a band column name is not found in the DataFrame columns.
+            Exception: For any other processing errors (logged and returns None).
+            
+        Examples:
+            Clean flux measurements before magnitude calculation:
+            
+            Use with a Catalog instance:
+            
+            ```python
+            import pandas as pd
+            import numpy as np
+            from agnboost import Catalog
+
+            catalog = Catalog(path="survey_data.fits")
+            valid_bands = catalog.get_valid_bands()
+            clean_data = Catalog.remove_negative_fluxes(catalog.get_data(), valid_bands)
+            
+            # Now safe to calculate magnitudes and colors
+            magnitudes = -2.5 * np.log10(clean_data[band_columns])
+            ```
+            
+            Integration with feature engineering:
+            
+            ```python
+            # Clean data before creating features
+            catalog = Catalog(path="photometry.fits")
+            bands = catalog.get_valid_bands()
+            
+            # Remove problematic values
+            clean_data = Catalog.remove_negative_fluxes(catalog.data, bands)
+            catalog.data = clean_data
+            
+            # Now create features safely
+            catalog.create_feature_dataframe()
+            ```
+            
+        Notes:
+            - Automatically called by the dop_nan() Catalog class method
+            - Only modifies columns specified in the `bands` dictionary
+            - Non-band columns (IDs, coordinates, etc.) are left unchanged
+            - Creates a copy of the input data, preserving the original
+            - Zero flux values are also replaced as they cause issues with log calculations
+            - NaN values can be handled by downstream methods like `drop_nan()`
+            - The method logs warnings for each column where negative values are found
+            
+        See Also:
+            drop_nan: Remove rows with NaN values after cleaning
+            create_feature_dataframe: Higher-level method that may use cleaned data
+            sn_cut: Alternative approach using signal-to-noise thresholds
+        """
         bands = list(bands.keys())
 
         valid_data = data.copy()
@@ -236,39 +350,195 @@ class Catalog:
         return valid_data
 
     def get_features_from_phots(self, phot_df):
+        """
+        Generate the feature data frame for a single row (i.e., a single source) of data.
+
+        Uses either the default feature creation, or if a custom feature function has previously
+        been used to create features, it will call that.
+        
+        By default, the created features will include:
+        1. **Log photometry**: log10(flux) for each band 
+        2. **Colors**: log10(flux_i / flux_j) for all band pairs 
+        3. **Squared colors**: (color)² terms
+        
+        Args:
+            phot_df (pandas.DataFrame): DataFrame containing photometric flux measurements.
+                Must have columns corresponding to the valid photometric bands found during
+                catalog initialization. Typically this would be a subset of the main catalog
+                data containing only the validated band columns.
+                
+        Returns:
+            pandas.DataFrame: DataFrame containing engineered features with the same index
+                as the input photometric data. Feature columns include:
+    
+                
+        Raises:
+            ValueError: If photometric DataFrame contains non-positive values that prevent
+                log calculations.
+            AttributeError: If custom_feature_func is not callable when provided.
+            KeyError: If required band columns are missing from the photometric DataFrame.
+            
+        Examples:
+            Default feature engineering with JWST bands:
+            
+            ```python
+            import pandas as pd
+            import numpy as np
+            from agnboost import Catalog
+            
+            # Load catalog with JWST data
+            catalog = Catalog(path="jwst_photometry.fits")
+            
+            # Get photometric data for valid bands only
+            valid_bands = catalog.get_valid_bands()
+            phot_data = catalog.get_data()[list(valid_bands.keys())]
+            
+            # Generate features
+            features = catalog.get_features_from_phots(phot_data)
+            print(f"Created {features.shape[1]} features from {phot_data.shape[1]} bands")
+            
+            # Example output columns:
+            # ['jwst.nircam.F115W', 'jwst.nircam.F150W', 'jwst.nircam.F200W',  # log phot
+            #  'F200W/F150W', 'F200W/F115W', 'F150W/F115W',                    # colors  
+            #  'F200W/F150W^2', 'F200W/F115W^2', 'F150W/F115W^2']             # squared colors
+            ```
+            
+        Notes:
+            - **Data cleaning**: Ensure input data doesn't contain negative or zero flux values
+              before calling this method, as log calculations will fail
+            - **Custom functions**: If using custom_feature_func, ensure it has only a (data)
+              non-default parameter and returns a DataFrame with the same index
+            - **NaN handling**: Any NaN values in input photometry will propagate through
+              the feature calculations
+              
+        See Also:
+            create_feature_dataframe: Higher-level method that handles the complete pipeline
+            create_color_dataframe: Standalone color calculation method
+            remove_negative_fluxes: Data cleaning for problematic flux values
+        """
+
         # Use default feature configuration
         if self.custom_feature_func is None:
 
-            phot_i_df = phot_df.apply(lambda x: np.log10(x) )#.reset_index(drop = True)
+            phot_i_df = phot_df.apply(lambda x: np.log10(x) )
 
-            color_i_df = self.create_color_dataframe(data = phot_df, bands = self.valid_columns)#.reset_index(drop = True)
+            color_i_df = self.create_color_dataframe(data = phot_df, bands = self.valid_columns)
 
-            color_i_df_2 = color_i_df.apply(lambda x: x**2).rename( columns = {color: color +'^2' for color in color_i_df.columns} )#.reset_index(drop = True)
+            color_i_df_2 = color_i_df.apply(lambda x: x**2).rename( columns = {color: color +'^2' for color in color_i_df.columns} )
 
             feature_i_df = pd.concat([phot_i_df, color_i_df, color_i_df_2], axis=1, join='outer')
 
         # If a custom function was used to create the features, we use that.
         else:
-            feature_i_df = custom_func(self.data)
+            feature_i_df = self.custom_func(self.data)
 
         return feature_i_df
 
 
     def create_feature_dataframe(self, custom_func=None, silent = False):
         """
-        Create a dataframe of features for eventual use with AGNBoost class.
+        Create feature dataframe to use with AGNBoost.
+
+        Uses either the default feature creation, or if a custom feature function is provided,
+        that function will be used for feature creation.
         
-        Parameters:
-        -----------
-        feature_funcs : list or None
-            List of functions to apply to the validated columns. If None,
-            default features (log10 of bands, colors, and square of colors) are created.
-            
+        By default, the created features will include:
+        1. **Log photometry**: log10(flux) for each band 
+        2. **Colors**: log10(flux_i / flux_j) for all band pairs 
+        3. **Squared colors**: (color)² terms
+        
+        The resulting feature dataframe is stored as `self.features_df` and can be used
+        directly with AGNBoost models for training and prediction. If a custom feature function
+        is provided, it will saved into self.custom_func
+        
+        Args:
+            custom_func (callable, optional): Custom function to generate features from the data.
+                Must accept the catalog's data as input and return a pandas DataFrame with the
+                same index as the original data. If None, uses the default feature pipeline.
+                Defaults to None.
+            silent (bool): If True, suppresses logging output about feature creation.
+                Useful for batch processing or when called repeatedly. Defaults to False.
+                
         Returns:
-        --------
-        pandas.DataFrame
-            The created feature dataframe (also stored as self.features_df).
+            pandas.DataFrame or None: DataFrame containing engineered features with the same
+                index as the catalog data. Also stored as `self.features_df`. Returns None
+                if feature creation fails or if no valid data/columns are available.
+                
+        Raises:
+            TypeError: If `custom_func` is provided but is not callable, or if custom function
+                doesn't return a pandas DataFrame.
+            ValueError: If custom function returns DataFrame with different length than catalog data.
+            Exception: If custom function returns DataFrame with mismatched index.
+            
+        Examples:
+            Default feature engineering:
+            
+            ```python
+            from agnboost import Catalog
+            
+            # Load astronomical data
+            catalog = Catalog(path="jwst_observations.fits")
+            
+            # Create default features
+            features = catalog.create_feature_dataframe()
+            print(f"Created {features.shape[1]} features for {features.shape[0]} objects")
+            
+            # Features are automatically stored
+            assert catalog.features_df is not None
+            print("Feature columns:", list(catalog.features_df.columns))
+            ```
+            
+            Using with custom feature function:
+            
+            ```python
+            def polynomial_features(data):
+                \"\"\"Create polynomial features from photometric data.\"\"\"
+                import pandas as pd
+                import numpy as np
+                
+                # Get valid bands (this would be passed from catalog context)
+                feature_df = pd.DataFrame(index=data.index)
+                
+                # Example: create polynomial features for first few bands
+                band_cols = [col for col in data.columns if 'jwst' in col][:3]
+                
+                for band in band_cols:
+                    if band in data.columns:
+                        # Linear, quadratic, and cubic terms
+                        feature_df[f"{band}_log"] = np.log10(data[band])
+                        feature_df[f"{band}_log2"] = np.log10(data[band])**2
+                        feature_df[f"{band}_log3"] = np.log10(data[band])**3
+                        
+                return feature_df
+            
+            # Use custom function
+            catalog = Catalog(path="survey_data.fits")
+            custom_features = catalog.create_feature_dataframe(custom_func=polynomial_features)
+            ```
+            
+        Notes:
+            - **Data validation**: Requires valid photometric bands identified during catalog initialization
+            - **Index preservation**: All feature operations maintain the original data index
+            - **Memory usage**: Default pipeline roughly triples the feature count (bands + colors + squared colors)
+            - **NaN handling**: Method reports NaN counts but doesn't remove them (use `drop_nan()` if needed)
+            - **Custom functions**: Must return DataFrame with identical index to original data
+            - **Storage**: Result is automatically stored as `self.features_df` for later use
+            - **Error recovery**: Returns None on failure while logging specific error details
+            
+        Default Feature Set:
+            For n photometric bands, creates approximately:  
+            - **n log-photometry features**: One per validated band
+            - **n(n-1)/2 color features**: All unique band pair combinations  
+            - **n(n-1)/2 squared color features**: Squared versions of colors
+            - **Total**: n + n(n-1) ≈ n² features for large n
+            
+        See Also:
+            get_features: Retrieve stored features (creates them if needed)
+            remove_negative_fluxes: Clean data before feature creation
+            split_data: Create train/validation/test splits of features
+            get_features_from_phots: Lower-level feature creation from photometry subset
         """
+
         if self.data is None or not self.valid_columns:
             #log_message("Cannot create features: No data or valid columns available.", "ERROR")
             self.logger.error("Cannot create features: No data or valid columns available.")
@@ -320,50 +590,83 @@ class Catalog:
             # Handle other exceptions
             except Exception as e:
                    self.logger.error(f"Error applying custom function {custom_func.__name__}: {str(e)}")
+                   return None
 
+        # Store the feature dataframe into the instance
+        self.features_df = feature_df
+
+        # If not told to be silent, be loud (same)
+        if not silent:
+            log_message(f"Created feature dataframe with {self.features_df.shape[1]} columns "
+                       f"and {self.features_df.shape[0]} rows.")
+
+            log_message(f"Created features are: {list(self.features_df.columns)}")
+
+        # Handle NaN values
+        nan_count = self.features_df.isna().sum().sum()
+
+        if nan_count > 0:
+            log_message(f"Warning: Feature dataframe contains {nan_count} NaN values.", "WARNING")
+            self.logger.warning(f"Warning: Feature dataframe contains {nan_count} NaN values.", "WARNING")
         
-        try:
-            self.features_df = feature_df
-
-            if not silent:
-                log_message(f"Created feature dataframe with {self.features_df.shape[1]} columns "
-                           f"and {self.features_df.shape[0]} rows.")
-
-                log_message(f"Created features are: {list(self.features_df.columns)}")
-            # Handle NaN values
-            nan_count = self.features_df.isna().sum().sum()
-
-            if nan_count > 0:
-                log_message(f"Warning: Feature dataframe contains {nan_count} NaN values.", "WARNING")
-                self.logger.warning(f"Warning: Feature dataframe contains {nan_count} NaN values.", "WARNING")
+        return feature_df
             
-            return self.features_df
-            
-        except Exception as e:
-            log_message(f"Error creating final feature dataframe: {str(e)}", "ERROR")
-            return None
 
     def transform(self, column_name, transform_func, new_column_name=None, inplace=False):
         """
         Apply a transformation function to a column and save the result.
         
-        Parameters:
-        -----------
-        column_name : str
-            Name of the column to transform.
-        transform_func : callable
-            Function to apply to the column.
-        new_column_name : str or None, default=None
-            Name for the transformed column. If None and not inplace, will use
-            f"{column_name}_transformed".
-        inplace : bool, default=False
-            If True, overwrite the original column. If False, create a new column.
-            
+        This method provides a flexible way to transform data in a specified column
+        using any callable function. The transformation can either replace the 
+        original column (inplace=True) or create a new column with the transformed data.
+        
+        Args:
+            column_name (str): Name of the column to transform. Must exist in the 
+                loaded dataset. The column can contain any data type that the
+                transformation function can handle.
+            transform_func (callable): Function to apply to the column. Should accept 
+                a pandas.Series as input and return a pandas.Series, array-like object, 
+                or scalar values. Examples:
+                ```
+                lambda x: x * 2              # Mathematical scaling
+                np.log                       # Logarithmic transformation
+                ```
+            new_column_name (str or None, default=None): Name for the transformed 
+                column. If None and not inplace, will automatically generate a name
+                using f"{column_name}_transformed" or f"{column_name}_{function_name}" 
+                if the function has a recognizable __name__ attribute.
+            inplace (bool, default=False): If True, overwrite the original column 
+                with transformed data. If False, create a new column with the 
+                transformed data, preserving the original column.
+                
         Returns:
-        --------
-        pandas.Series
-            The transformed column.
+            pandas.Series or None: The transformed column as a pandas.Series if 
+                successful, with proper indexing matching the original DataFrame.
+                Returns None if transformation fails due to errors, invalid inputs,
+                or missing data.
+                
+        Raises:
+            ValueError: If the specified column_name is not found in the DataFrame.
+            TypeError: If transform_func is not callable.
+            Exception: For any transformation execution errors (logged and returns None).
+            
+        Examples:
+            
+            Photometry logarithmic transformation:
+            
+            ```python
+            # Apply log10 transformation directly to the column
+            import numpy as np
+            catalog.transform('phot_col', np.log10)
+            ```
+
+        Notes:
+            - The method automatically handles conversion of transformation results to pandas.Series
+            - Validates all input parameters before attempting transformation
+            - Maintains original DataFrame index in the transformed data
+            - Function names are automatically detected for column naming when possible
         """
+
         # Verify data exists
         if self.data is None:
             self.logger.error("No data loaded to transform.")
@@ -403,7 +706,13 @@ class Catalog:
             
             # Apply the transformation
             self.logger.info(f"Applying transformation to column '{column_name}'")
-            transformed_data = transform_func(column_data).rename(new_column_name)
+            transformed_data = transform_func(column_data)
+
+            if new_column_name is not None:
+                transformed_data.rename(new_column_name, inplace = True)
+            else:
+                output_column = f"{column_name}_transformed"
+                transformed_data.rename(output_column, inplace = True)
             
             # Validate transformed data
             if transformed_data is None:
@@ -449,18 +758,14 @@ class Catalog:
         """
         Extract target columns from the data.
         
-        Parameters:
-        -----------
-        target_names : str or list
-            Name(s) of target column(s) to extract.
-        drop_na : bool, default=False
-            If True, drop rows with NA values in any of the target columns.
+        Args:
+            target_names  (str or list): Name(s) of target column(s) to extract.
+            drop_na  (bool, default=False): If True, drop rows with NA values in any of the target columns.
             
         Returns:
-        --------
-        pandas.DataFrame or pandas.Series
-            Target column(s). Returns a Series if a single target name is provided,
-            or a DataFrame if multiple targets are requested.
+            pandas.DataFrame or pandas.Series:
+                Target column(s). Returns a Series if a single target name is provided,
+                or a DataFrame if multiple targets are requested.
         """
         if self.data is None:
             self.logger.error("No data loaded to extract targets.")
@@ -493,9 +798,7 @@ class Catalog:
         Get the feature dataframe, creating it if it doesn't exist.
         
         Returns:
-        --------
-        pandas.DataFrame
-            The feature dataframe.
+            pandas.DataFrame: The feature dataframe.
         """
         if not hasattr(self, 'features_df') or self.features_df is None:
             log_message("Features not yet created. Creating with default parameters.")
@@ -508,9 +811,7 @@ class Catalog:
         Get the feature names dataframe, creating it if it doesn't exist.
         
         Returns:
-        --------
-        pandas.DataFrame
-            The feature dataframe.
+            pandas.DataFrame: The names of the feature dataframe columns.
         """
         if not hasattr(self, 'features_df') or self.features_df is None:
             log_message("Features not yet created. Creating with default parameters.")
@@ -520,78 +821,75 @@ class Catalog:
 
 
     def get_data(self):
+        """
+        Get the saved data from the Catalog instance.
+
+        Returns:
+            pandas.DataFrame or None: The data saved in the Catalog instance. None if no data has been saved.
+        """
         return self.data
 
     def get_length(self):
-        return len(self.data)
+        """
+        Get the length saved data from the Catalog instance.
+
+        Returns:
+            int or None: The length of the saved data, or else None
+        """
+        if self.data is not None:
+            return self.data.shape[0]
+        return None
 
     def _load_allowed_bands(self):
-            # If a custom band dictionary was not passed, we load from the default JSON configuration file.
-            if self.allowed_bands is None:
-                bands_file = 'agnboost/allowed_bands.json'
-                print(f"Current working directory: {os.getcwd()}")
-                print(f"Looking for bands file at: {os.path.join(os.getcwd(), bands_file)}")
-
-                try:
-                    if not os.path.exists(bands_file):
-                        log_message(f"Error: Bands file '{bands_file}' does not exist.", "ERROR")
-                        return
-                    
-                    with open(bands_file, 'r') as f:
-                        bands_data = json.load(f)
-                    
-                    # Remove metadata entry if present
-                    if "_metadata" in bands_data:
-                        metadata = bands_data.pop("_metadata")
-                        log_message(f"Loaded bands file metadata: {metadata.get('description', 'No description')}")
-                    
-                    self.allowed_bands = bands_data
-                    log_message(f"Loaded {len(self.allowed_bands)} allowed bands from {bands_file}")
-                    
-                except json.JSONDecodeError:
-                    log_message(f"Error: Invalid JSON format in bands file '{bands_file}'.", "ERROR")
-                except Exception as e:
-                    log_message(f"Error loading bands file: {str(e)}", "ERROR")
-            else:
-                raise ValueError(f"Allowed bands was passed manually as bands_dict, cannot override.")
-
-    def _load_allowed_bands_old(self):
         """
-        Load allowed bands from the JSON configuration file.
+        Load the allowed photometric bands from 'allowed_bands.json' if a band_dict was not passed 
+        to the Catalog upon creation.
+
+        Returns:
+            None
         """
 
-        print(f"Current working directory: {os.getcwd()}")
-        print(f"Looking for bands file at: {os.path.join(os.getcwd(), 'allowed_bands.json')}")
+        # If a custom band dictionary was not passed, we load from the default JSON configuration file.
+        if self.allowed_bands is None:
+            bands_file = 'agnboost/allowed_bands.json'
+            print(f"Current working directory: {os.getcwd()}")
+            print(f"Looking for bands file at: {os.path.join(os.getcwd(), bands_file)}")
 
-        try:
-            if not os.path.exists(self.bands_file):
-                log_message(f"Error: Bands file '{self.bands_file}' does not exist.", "ERROR")
-                return
-            
-            with open(self.bands_file, 'r') as f:
-                bands_data = json.load(f)
-            
-            # Remove metadata entry if present
-            if "_metadata" in bands_data:
-                metadata = bands_data.pop("_metadata")
-                log_message(f"Loaded bands file metadata: {metadata.get('description', 'No description')}")
-            
-            self.allowed_bands = bands_data
-            log_message(f"Loaded {len(self.allowed_bands)} allowed bands from {self.bands_file}")
-            
-        except json.JSONDecodeError:
-            log_message(f"Error: Invalid JSON format in bands file '{self.bands_file}'.", "ERROR")
-        except Exception as e:
-            log_message(f"Error loading bands file: {str(e)}", "ERROR")
+            try:
+                if not os.path.exists(bands_file):
+                    log_message(f"Error: Bands file '{bands_file}' does not exist.", "ERROR")
+                    return
+                
+                with open(bands_file, 'r') as f:
+                    bands_data = json.load(f)
+                
+                # Remove metadata entry if present
+                if "_metadata" in bands_data:
+                    metadata = bands_data.pop("_metadata")
+                    log_message(f"Loaded bands file metadata: {metadata.get('description', 'No description')}")
+                
+                self.allowed_bands = bands_data
+                log_message(f"Loaded {len(self.allowed_bands)} allowed bands from {bands_file}")
+                
+            except json.JSONDecodeError:
+                log_message(f"Error: Invalid JSON format in bands file '{bands_file}'.", "ERROR")
+            except Exception as e:
+                log_message(f"Error loading bands file: {str(e)}", "ERROR")
+        else:
+            raise ValueError(f"Allowed bands was passed manually as bands_dict, cannot override.")
+
+        return None
     
     def _process_input_data(self, data):
         """
-        Process input data that was passed directly.
+        Process input data that was passed directly. If a pd.DataFrame is passed, directly save it. 
+        If a astropy.table was passed, convert it to a pd.DataFrame and save it. 
         
-        Parameters:
-        -----------
-        data : pandas.DataFrame or astropy.table.Table
-            The data to process.
+        Args:
+            data (pd.DataFrame or astropy.table): data to process
+
+        Returns:
+            None
         """
         if isinstance(data, pd.DataFrame):
             self.data = data
@@ -609,6 +907,7 @@ class Catalog:
                 log_message("Astropy not available. Cannot convert Table to DataFrame.", "ERROR")
             except Exception as e:
                 log_message(f"Error processing input data: {str(e)}", "ERROR")
+        return None
     
     def _load_data_from_path(self):
         """
@@ -641,9 +940,7 @@ class Catalog:
         Store metadata for valid columns.
         
         Returns:
-        --------
-        bool
-            True if validation passes, False otherwise.
+            bool: True if validation passes, False otherwise.
         """
         if self.data is None or self.allowed_bands is None:
             return False
@@ -668,6 +965,7 @@ class Catalog:
                            f"{self.valid_columns[col]['wavelength']} μm")
         else:
             log_message("No valid band columns found in the dataset.", "WARNING")
+            return False
         
         # Also check for common columns that might be needed
         common_cols = ['id', 'ra', 'dec', 'redshift', 'z', 'class', 'fagn']
@@ -823,9 +1121,7 @@ class Catalog:
         Get information about valid band columns in the data.
         
         Returns:
-        --------
-        dict
-            Dictionary of valid band columns with their metadata.
+            dict: Dictionary of valid band columns with their metadata.
         """
         return self.valid_columns
 
@@ -834,9 +1130,7 @@ class Catalog:
         Get information about valid band columns in the data.
         
         Returns:
-        --------
-        dict
-            Dictionary of valid band columns with their metadata.
+            dict: Dictionary of valid band columns with their metadata.
         """
         return list(self.valid_columns.keys())
     
@@ -845,9 +1139,7 @@ class Catalog:
         Get a dictionary mapping band columns to their wavelengths.
         
         Returns:
-        --------
-        dict
-            Dictionary mapping column names to wavelengths in microns.
+            dict: Dictionary mapping column names to wavelengths in microns.
         """
         return {col: info['wavelength'] for col, info in self.valid_columns.items()}
     
@@ -856,9 +1148,7 @@ class Catalog:
         Get a dictionary mapping band columns to their shorthand names.
         
         Returns:
-        --------
-        dict
-            Dictionary mapping column names to shorthand identifiers.
+            dict: Dictionary mapping column names to shorthand identifiers.
         """
         return {col: info['shorthand'] for col, info in self.valid_columns.items()}
     
@@ -866,24 +1156,24 @@ class Catalog:
         """
         Perform a signal-to-noise ratio cut on the specified columns.
         
-        Parameters:
-        -----------
-        columns : dict or None
-            Dictionary mapping value columns to their error columns.
-            Example: {'flux': 'flux_err', 'redshift': 'redshift_err'}
-            If None, automatically detect band columns and use {band: band+suffix} pairs.
-        threshold : float, default=3.0
-            Minimum S/N ratio to keep a row.
-        inplace : bool, default=False
-            If True, modifies the data in place; otherwise, returns a copy.
-        suffix : str, default='_err'
-            Suffix to append to band names to find error columns, if columns=None.
+        Args:
+            columns (dict or None): Dictionary mapping value columns to their error columns.
+                Example: 
+                    ```
+                    {
+                    'jwst.miri.F770W': 'jwst.miri.F770W_err',
+                    'jwst.miri.F1500W': 'jwst.miri.F1500W_err'
+                    }
+                    ```
+                If None, automatically detect band columns and use {band: band+suffix} pairs.
+            threshold (float, default=3.0): Minimum S/N ratio to keep a row.
+            inplace (bool, default=False): If True, modifies the data in place; otherwise, returns a copy.
+            suffix (str, default='_err'): Suffix to append to band names to find error columns, if columns=None.
             
         Returns:
-        --------
-        pandas.DataFrame or None
-            Filtered dataframe if inplace=False, otherwise None.
+            pandas.DataFrame or None: Filtered dataframe if inplace=False, otherwise None.
         """
+
         if self.data is None:
             log_message("No data loaded to filter.", "WARNING")
             return None
@@ -954,9 +1244,7 @@ class Catalog:
         Return the loaded dataframe.
         
         Returns:
-        --------
-        pandas.DataFrame
-            The loaded data.
+            pandas.DataFrame: The loaded data.
         """
         return self.data
     
@@ -965,62 +1253,23 @@ class Catalog:
         Return the column names of the loaded dataframe.
         
         Returns:
-        --------
-        list
-            List of column names.
+            list: List of column names.
         """
         if self.data is not None:
             return list(self.data.columns)
         return []
     
-    def filter_data(self, filter_conditions):
-        """
-        Filter the data based on provided conditions.
-        
-        Parameters:
-        -----------
-        filter_conditions : dict
-            Dictionary of column:value pairs to filter on.
-            
-        Returns:
-        --------
-        pandas.DataFrame
-            Filtered dataframe.
-        """
-        if self.data is None:
-            log_message("No data loaded to filter.", "WARNING")
-            return None
-        
-        filtered_data = self.data.copy()
-        
-        for column, value in filter_conditions.items():
-            if column in filtered_data.columns:
-                if isinstance(value, (list, tuple)):
-                    filtered_data = filtered_data[filtered_data[column].isin(value)]
-                else:
-                    filtered_data = filtered_data[filtered_data[column] == value]
-            else:
-                log_message(f"Column '{column}' not found in data.", "WARNING")
-        
-        log_message(f"Filtered data from {len(self.data)} to {len(filtered_data)} rows.")
-        return filtered_data
-    
     def get_subset(self, columns=None, rows=None):
         """
         Get a subset of the data by columns and/or rows.
         
-        Parameters:
-        -----------
-        columns : list or None
-            List of column names to include. If None, includes all columns.
-        rows : slice, list, or None
-            Rows to include. Can be a slice (e.g., slice(0, 100)), a list of indices,
-            or None to include all rows.
+        Args:
+            columns (list, default=None): List of column names to include. If None, includes all columns.
+            rows (slice, list, default=None): Rows to include. 
+                Can be a slice (e.g., slice(0, 100)), a list of indices,or None to include all rows.
             
         Returns:
-        --------
-        pandas.DataFrame
-            Subset of the data.
+            pandas.DataFrame or None: Subset of the data, or None if no data to load.
         """
         if self.data is None:
             log_message("No data loaded to subset.", "WARNING")
@@ -1051,17 +1300,12 @@ class Catalog:
         """
         Save the current data to a CSV file.
         
-        Parameters:
-        -----------
-        output_path : str
-            Path to save the CSV file.
-        index : bool, default=False
-            Whether to include the index in the saved file.
-            
+        Args:
+            output_path (str): Path to save the CSV file.
+            index (bool, default=False): Whether to include the index in the saved file.
+                
         Returns:
-        --------
-        bool
-            True if successful, False otherwise.
+            bool: True if successful, False otherwise.
         """
         if self.data is None:
             log_message("No data loaded to save.", "WARNING")
@@ -1079,22 +1323,20 @@ class Catalog:
         """
         Drop rows with NaN values in specified columns or validated columns.
         
-        Parameters:
-        -----------
-        columns : list or None, default=None
-            List of column names to check for NaN. If None, uses all validated columns.
-        inplace : bool, default=False
-            If True, performs operation in-place and returns None.
-            If False, returns a copy of the data with rows dropped.
-        how : {'any', 'all'}, default='any'
-            'any' : Drop if any of the specified columns has NaN
-            'all' : Drop only if all of the specified columns have NaN
-        
+        Args:
+            columns (list or None, default=None): List of column names to check for NaN. 
+                If None, uses all validated columns.
+            inplace (bool, default=False): 
+                If True, performs operation in-place and returns None.
+                If False, returns a copy of the data with rows dropped.
+            how (str, default='any'): How to drop nan values. Options are:
+                'any' : Drop if any of the specified columns has NaN
+                'all' : Drop only if all of the specified columns have NaN
+            
         Returns:
-        --------
-        pandas.DataFrame or None
-            The DataFrame with NaN rows dropped, or None if inplace=True.
+            pandas.DataFrame or None: The DataFrame with NaN rows dropped, or None if inplace=True.
         """
+
         if self.data is None:
             self.logger.error("No data loaded to perform drop_nan operation.")
             return None
@@ -1107,6 +1349,7 @@ class Catalog:
             if not columns:
                 self.logger.warning("No validated columns found. Using all columns for NaN check.")
                 columns = list(self.data.columns)
+
         
         # Check that specified columns exist
         missing_cols = [col for col in columns if col not in self.data.columns]
@@ -1165,27 +1408,20 @@ class Catalog:
         """
         Split the data into train, validation, and test sets.
         
-        Parameters:
-        -----------
-        test_size : float, default=0.2
-            Proportion of the data to use for testing (0.0 to 1.0).
-        val_size : float, default=0.2
-            Proportion of the data to use for validation (0.0 to 1.0).
-        random_state : int or None, default=None
-            Random seed for reproducibility.
-        stratify_col : str or None, default=None
-            Column name to use for stratified splitting. If provided, 
-            ensures proportional representation of this column's values
-            in all splits. For continuous columns, binning will be applied.
-        n_bins : int, default=10
-            Number of bins to use when stratifying on a continuous column.
-            Only used when stratify_col is a continuous variable.
-            
+        Args:
+            test_size (float, default=0.2): Proportion of the data to use for testing (0.0 to 1.0).
+            val_size (float, default=0.2): Proportion of the data to use for validation (0.0 to 1.0).
+            random_state (int or None, default=None): Random seed for reproducibility.
+            stratify_col (str or None, default=None): Column name to use for stratified splitting. 
+                If provided, ensures proportional representation of this column's values
+                in all splits. For continuous columns, binning will be applied.
+            n_bins (int, default=10): Number of bins to use when stratifying on a continuous column.
+                Only used when stratify_col is a continuous variable.
+                
         Returns:
-        --------
-        tuple
-            (train_indices, val_indices, test_indices) - Indices for each split
+            tuple: (train_indices, val_indices, test_indices) - Indices for each split
         """
+
         if self.data is None:
             self.logger.error("No data loaded to split.")
             return None, None, None
@@ -1296,24 +1532,18 @@ class Catalog:
         """
         Get a dataframe for the specified data split.
         
-        Parameters:
-        -----------
-        split_type : str, default='train'
-            Which data split to use. Options: 'train', 'val'/'validation', or 'test'.
-        include_features : bool, default=True
-            If True, include the feature columns in the result.
-        include_target : str, list, or None, default=None
-            Target column(s) to include. If None, no target columns are included.
-        return_DMatrix: bool, default = False
-            Whether to return a XGBoost DMatrix instead of a pandas Dataframe.
-        missing : int, float, or None, default=np.nan
-            Value to represent missing values in XGBoost.
-            
+        Args:
+            split_type (str, default='train'): Which data split to use. Options: 'train', 'val'/'validation', or 'test'.
+            include_features (bool, default=True): If True, include the feature columns in the result.
+            include_target (str, list, or None, default=None): Target column(s) to include. 
+                If None, no target columns are included.
+            return_DMatrix (bool, default = False): Whether to return a XGBoost DMatrix instead of a pandas Dataframe.
+            missing (int, float, or None, default=np.nan): Value to represent missing values in XGBoost.
+                
         Returns:
-        --------
-        pandas.DataFrame
-            DataFrame for the specified split with requested columns.
+            pandas.DataFrame: DataFrame for the specified split with requested columns.
         """
+
         # Validate split_type
         valid_split_types = {'train', 'val', 'validation', 'test', 'trainval'}
         if split_type not in valid_split_types:
@@ -1345,7 +1575,6 @@ class Catalog:
             # Get features for the specified split
             try:
                 # Call the appropriate feature getter method
-                #features_method = getattr(self, f'get_{split_type}_features')
                 features = self.get_features().iloc[indices]
                 
                 if features is not None and not features.empty:
@@ -1453,15 +1682,14 @@ class Catalog:
         Get the sizes and percentages of the train, validation, and test sets.
         
         Returns:
-        --------
-        dict
-            Dictionary with set sizes and percentages.
-            Format: {
-                'total': int,
-                'train': {'size': int, 'percentage': float},
-                'validation': {'size': int, 'percentage': float}, 
-                'test': {'size': int, 'percentage': float}
-            }
+            dict
+                Dictionary with set sizes and percentages.
+                Format: {
+                    'total': int,
+                    'train': {'size': int, 'percentage': float},
+                    'validation': {'size': int, 'percentage': float}, 
+                    'test': {'size': int, 'percentage': float}
+                }
         """
         if self.data is None:
             self.logger.error("No data loaded.")
