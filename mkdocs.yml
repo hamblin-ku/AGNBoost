@@ -76,15 +76,12 @@ markdown_extensions:
 # Updated navigation - single API page
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
   - Tutorials:
     - Basic Usage: tutorials/basic-usage.ipynb
     - Custom Features and Transformed Targets: tutorials/CustomFeatures+Targets.ipynb
     - Band Configuration: tutorials/custom_bands.ipynb
     - Training from Scratch: tutorials/tuning+training.ipynb
   - API Reference: api.md
-  - About:
-    - License: license.md
 
 # Watch
 watch:

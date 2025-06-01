@@ -44,32 +44,22 @@ AGNBoost is a specialized Python framework designed for astronomers working with
 
 We recommend using a virtual environment to manage dependencies. AGNBoost works best with Python 3.10/3.11 or later.
 
-### Using Conda (Recommended)
+### Using Virtual Conda Environment (Recommended)
 
 ```bash
-# Create a new conda environment
+# Create and activate a conda environment
 conda create -n agnboost python=3.11
 conda activate agnboost
 
-# Clone the repository
-git clone https://github.com/yourusername/agnboost.git
-cd agnboost
-
-# Install in development mode
-pip install -e .
+pip install git+https://github.com/hamblin-ku/AGNBoost.git
 ```
 
-### Using pip and venv
+Otherwise, you can jsut install with pip (python 3.10 or later):
 
+### Quick Install
+To directly install the latest development version with pip, please use:
 ```bash
-# Create a virtual environment
-python -m venv agnboost-env
-source agnboost-env/bin/activate  # On Windows: agnboost-env\Scripts\activate
-
-# Clone and install
-git clone https://github.com/yourusername/agnboost.git
-cd agnboost
-pip install -e .
+pip install git+https://github.com/hamblin-ku/AGNBoost.git
 ```
 
 ### Verify Installation
@@ -80,9 +70,6 @@ from agnboost import Catalog, AGNBoost
 
 print(f"AGNBoost version: {agnboost.__version__}")
 ```
-
-!!! note "Development Installation"
-    The `-e` flag installs AGNBoost in "editable" mode, which means changes to the source code will be immediately available without reinstalling. This is particularly useful if you plan to contribute to the project or customize it for your research.
 
 ---
 
@@ -108,14 +95,6 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
 <div class="grid cards" markdown>
 
--   **Getting Started**
-
-    ---
-
-    New to AGNBoost? Start with our comprehensive tutorial covering installation, basic usage, and your first analysis.
-
-    [Quick Start →](getting-started.md)
-
 -   **Tutorials**
 
     ---
@@ -138,7 +117,7 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 
 ## Community and Support
 
-AGNBoost is developed by astronomers, for astronomers. We welcome contributions, feedback, and collaboration from the community.
+We welcome contributions, feedback, and collaboration from the community!
 
 - **GitHub Repository**: [https://github.com/hamblin-ku/AGNBoost](https://github.com/hamblin-ku/AGNBoost)
 - **Issues and Discussions**: Use GitHub Issues for bug reports and feature requests
