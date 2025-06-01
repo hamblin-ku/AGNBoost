@@ -12,13 +12,13 @@
         <meta name="author" content="Kurt Hamblin">
       
       
-        <link rel="canonical" href="https://hamblin-ku.github.io/AGNBoost/tutorials/basic-usage/">
+        <link rel="canonical" href="https://hamblin-ku.github.io/AGNBoost/tutorials/CustomFeatures%2BTargets/">
       
       
-        <link rel="prev" href="../../getting-started/">
+        <link rel="prev" href="../basic-usage/">
       
       
-        <link rel="next" href="../CustomFeatures%2BTargets/">
+        <link rel="next" href="../custom_bands/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>AGNBoost Basic Usage Tutorial - AGNBoost</title>
+        <title>Custom Features and Transformed Target Variables - AGNBoost</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#agnboost-basic-usage-tutorial" class="md-skip">
+        <a href="#custom-features-and-transformed-target-variables" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AGNBoost Basic Usage Tutorial
+              Custom Features and Transformed Target Variables
             
           </span>
         </div>
@@ -272,7 +272,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../basic-usage/" class="md-tabs__link">
           
   
   
@@ -464,6 +464,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AGNBoost Basic Usage Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -481,7 +504,7 @@
   
   
   <span class="md-ellipsis">
-    AGNBoost Basic Usage Tutorial
+    Custom Features and Transformed Target Variables
     
   </span>
   
@@ -494,7 +517,7 @@
   
   
   <span class="md-ellipsis">
-    AGNBoost Basic Usage Tutorial
+    Custom Features and Transformed Target Variables
     
   </span>
   
@@ -525,96 +548,10 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#exploring-the-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exploring the Dataset
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-traintestvalidation-splits" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating Train/Test/Validation Splits
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cleaning-the-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cleaning the Data
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating Features
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loading-the-pre-trained-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Loading the Pre-trained Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#making-predictions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Making Predictions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quantifying-prediction-uncertainty" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quantifying Prediction Uncertainty
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../CustomFeatures%2BTargets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Custom Features and Transformed Target Variables
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -803,69 +740,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#exploring-the-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exploring the Dataset
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-traintestvalidation-splits" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating Train/Test/Validation Splits
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cleaning-the-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cleaning the Data
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating Features
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loading-the-pre-trained-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Loading the Pre-trained Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#making-predictions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Making Predictions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quantifying-prediction-uncertainty" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quantifying Prediction Uncertainty
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -882,7 +756,7 @@
 
 
   
-    <a href="https://github.com/hamblin-ku/AGNBoost/edit/main/docs/tutorials/basic-usage.ipynb" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/hamblin-ku/AGNBoost/edit/main/docs/tutorials/CustomFeatures+Targets.ipynb" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -891,7 +765,7 @@
     
       
     
-    <a href="https://github.com/hamblin-ku/AGNBoost/raw/main/docs/tutorials/basic-usage.ipynb" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/hamblin-ku/AGNBoost/raw/main/docs/tutorials/CustomFeatures+Targets.ipynb" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -1340,22 +1214,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="agnboost-basic-usage-tutorial">AGNBoost Basic Usage Tutorial<a class="anchor-link" href="#agnboost-basic-usage-tutorial">¶</a></h1><p>This notebook demonstrates the basic workflow for using AGNBoost to predict AGN fractions from photometric data. We'll walk through:</p>
+<h1 id="custom-features-and-transformed-target-variables">Custom Features and Transformed Target Variables<a class="anchor-link" href="#custom-features-and-transformed-target-variables">¶</a></h1><p>This notebook demonstrates how to customize AGNBoost to your data needs through:</p>
 <ol>
-<li>Loading astronomical data with the Catalog class</li>
-<li>Exploring the dataset structure and properties</li>
-<li>Splitting data into training, validation, and test sets</li>
-<li>Cleaning the data by removing rows with missing values</li>
-<li>Loading a pre-trained AGN fraction model</li>
-<li>Making predictions with uncertainty quantification</li>
-<li>Evaluating model performance</li>
+<li>Custom feature creation.</li>
+<li>Applying transformations to your target variables.</li>
 </ol>
 <p>Let's start by importing the necessary libraries and loading our data.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a5fe803d-ab16-4129-8063-1c82e7269e05">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2ff45de0-2622-4dd6-81e9-005d87435ee8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1408,10 +1277,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="c1"># Navigate to the repository root (parent directory of notebooks/)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">'..'</span><span class="p">)</span>
 
+<span class="c1"># Verify we're in the right place</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Current directory: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Contents: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
 <span class="c1"># Import necessary libraries</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">agnboost</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">model</span>
+<span class="c1">#from sklearn.metrics import mean_squared_error</span>
 
 <span class="c1"># Set random seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
@@ -1425,10 +1299,15 @@ import os
 # Navigate to the repository root (parent directory of notebooks/)
 os.chdir('..')
 
+# Verify we're in the right place
+print(f"Current directory: {os.getcwd()}")
+print(f"Contents: {os.listdir('.')}")
+
 # Import necessary libraries
 import numpy as np
 import pandas as pd
 from agnboost import dataset, model
+#from sklearn.metrics import mean_squared_error
 
 # Set random seed for reproducibility
 np.random.seed(123)
@@ -1445,8 +1324,16 @@ print("=" * 40)</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Current directory: /home/kurt/Documents/agnboost
+Contents: ['pyproject.toml', 'README.md', 'models', 'notebooks', 'figures', '.gitignore', '.env', 'mkdocs.yml', '.github', 'data', 'models_all', 'docs', 'LICENSE', 'tests', '.git', 'agnboost']
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre><span class="ansi-green-fg">2025-05-31 20:10:51.393</span> | <span class="ansi-bold">INFO    </span> | <span class="ansi-cyan-fg">agnboost.config</span>:<span class="ansi-cyan-fg">&lt;module&gt;</span>:<span class="ansi-cyan-fg">11</span> - <span class="ansi-bold">PROJ_ROOT path is: /home/kurt/Documents/agnboost</span>
+<pre><span class="ansi-green-fg">2025-05-31 20:31:50.184</span> | <span class="ansi-bold">INFO    </span> | <span class="ansi-cyan-fg">agnboost.config</span>:<span class="ansi-cyan-fg">&lt;module&gt;</span>:<span class="ansi-cyan-fg">11</span> - <span class="ansi-bold">PROJ_ROOT path is: /home/kurt/Documents/agnboost</span>
 </pre>
 </div>
 </div>
@@ -1468,7 +1355,7 @@ print("=" * 40)</div>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="loading-the-data">Loading the Data<a class="anchor-link" href="#loading-the-data">¶</a></h2><p>We'll use the Catalog class to load our astronomical dataset. The <code>cigale_mock_small.csv</code> file contains is a small set of mock NIRCam+MIRI CIGALE galaxies for demonstration purposes.</p>
+<h2 id="loading-the-data">Loading the Data<a class="anchor-link" href="#loading-the-data">¶</a></h2><p>We'll use the Catalog class to load our astronomical dataset. The <code>models-block-0.fits</code> file contains photometric measurements and AGN fraction labels for our analysis. We will load it and print out the data summary so we can easily see all the columns in the data.</p>
 </div>
 </div>
 </div>
@@ -1492,10 +1379,10 @@ print("=" * 40)</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load the astronomical data using the Catalog class</span>
-<span class="n">catalog</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Catalog</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">"data/cigale_mock_small.csv"</span><span class="p">,</span><span class="n">summarize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Catalog</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">"data/cigale_mock_small.csv"</span><span class="p">,</span><span class="n">summarize</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-3"># Load the astronomical data using the Catalog class
-catalog = dataset.Catalog(path="data/cigale_mock_small.csv",summarize = False)
+catalog = dataset.Catalog(path="data/cigale_mock_small.csv",summarize = True)
 </div>
 </div>
 </div>
@@ -1509,7 +1396,7 @@ catalog = dataset.Catalog(path="data/cigale_mock_small.csv",summarize = False)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Current working directory: /home/kurt/Documents/agnboost
-Looking for bands file at: /home/kurt/Documents/agnboost/allowed_bands.json
+Looking for bands file at: /home/kurt/Documents/agnboost/agnboost/allowed_bands.json
 [INFO] Loaded bands file metadata: This file contains the allowed photometric bands for JWST
 [INFO] Loaded 11 allowed bands from agnboost/allowed_bands.json
 [INFO] Attempting to load file with delimiter: ','
@@ -1526,149 +1413,7 @@ Looking for bands file at: /home/kurt/Documents/agnboost/allowed_bands.json
 [INFO]   - jwst.miri.F1000W (F1000W): 10.0 μm
 [INFO]   - jwst.miri.F1500W (F1500W): 15.0 μm
 [INFO]   - jwst.miri.F2100W (F2100W): 21.0 μm
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b162dbb4-b48f-4d82-bd50-51c276a0605e">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">catalog</span><span class="o">.</span><span class="n">allowed_bands</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-4">catalog.allowed_bands</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>{'jwst.nircam.F115W': {'shorthand': 'F115W', 'wavelength': 1.154},
- 'jwst.nircam.F150W': {'shorthand': 'F150W', 'wavelength': 1.501},
- 'jwst.nircam.F200W': {'shorthand': 'F200W', 'wavelength': 1.988},
- 'jwst.nircam.F277W': {'shorthand': 'F277W', 'wavelength': 2.776},
- 'jwst.nircam.F356W': {'shorthand': 'F356W', 'wavelength': 3.565},
- 'jwst.nircam.F410M': {'shorthand': 'F410M', 'wavelength': 4.083},
- 'jwst.nircam.F444W': {'shorthand': 'F444W', 'wavelength': 4.402},
- 'jwst.miri.F770W': {'shorthand': 'F770W', 'wavelength': 7.7},
- 'jwst.miri.F1000W': {'shorthand': 'F1000W', 'wavelength': 10.0},
- 'jwst.miri.F1500W': {'shorthand': 'F1500W', 'wavelength': 15.0},
- 'jwst.miri.F2100W': {'shorthand': 'F2100W', 'wavelength': 21.0}}</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6931b09f-2b49-446f-82ae-b9010f5f1e54">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="exploring-the-dataset">Exploring the Dataset<a class="anchor-link" href="#exploring-the-dataset">¶</a></h2><p>Let's examine the structure of our data to understand what photometric bands are available and get basic statistics about our dataset. The <code>print_data_summary()</code> method provides comprehensive information about:</p>
-<ul>
-<li>Dataset dimensions and memory usage</li>
-<li>Photometric band validation and metadata</li>
-<li>Column-by-column statistics including missing values</li>
-<li>Summary statistics for numerical columns</li>
-</ul>
-<p>This information helps us understand data quality and identify any potential issues before modeling.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=535046dd-473b-49ff-9de3-856f0159858a">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Display comprehensive data summary</span>
-<span class="n">catalog</span><span class="o">.</span><span class="n">print_data_summary</span><span class="p">()</span>
 
-<span class="c1"># Check which photometric bands were validated</span>
-<span class="n">valid_bands</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_valid_bands</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Valid photometric bands found: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_bands</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">band_name</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">valid_bands</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">band_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'shorthand'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">'wavelength'</span><span class="p">]</span><span class="si">}</span><span class="s2"> μm)"</span><span class="p">)</span>
-
-<span class="c1"># Check if our target variable exists</span>
-<span class="n">target_column</span> <span class="o">=</span> <span class="s1">'agn.fracAGN'</span>
-<span class="k">if</span> <span class="n">target_column</span> <span class="ow">in</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Target variable '</span><span class="si">{</span><span class="n">target_column</span><span class="si">}</span><span class="s2">' found in dataset"</span><span class="p">)</span>
-    <span class="n">target_stats</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">target_column</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Target variable statistics:"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">target_stats</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Warning: Target variable '</span><span class="si">{</span><span class="n">target_column</span><span class="si">}</span><span class="s2">' not found in dataset"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Available columns:"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-5"># Display comprehensive data summary
-catalog.print_data_summary()
-
-# Check which photometric bands were validated
-valid_bands = catalog.get_valid_bands()
-print(f"\nValid photometric bands found: {len(valid_bands)}")
-for band_name, info in valid_bands.items():
-    print(f"  {band_name}: {info['shorthand']} ({info['wavelength']} μm)")
-
-# Check if our target variable exists
-target_column = 'agn.fracAGN'
-if target_column in catalog.get_data().columns:
-    print(f"\nTarget variable '{target_column}' found in dataset")
-    target_stats = catalog.get_data()[target_column].describe()
-    print("Target variable statistics:")
-    print(target_stats)
-else:
-    print(f"Warning: Target variable '{target_column}' not found in dataset")
-    print("Available columns:", list(catalog.get_data().columns))</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
 ================================================================================
 DATA SUMMARY: cigale_mock_small.csv
 ================================================================================
@@ -1755,31 +1500,6 @@ agn.fracAGN          0.4993       0.3164       0            0.99
 universe.redshift    1.765        1.811        0.01         7.999       
 ================================================================================
 
-
-Valid photometric bands found: 11
-  jwst.nircam.F115W: F115W (1.154 μm)
-  jwst.nircam.F150W: F150W (1.501 μm)
-  jwst.nircam.F200W: F200W (1.988 μm)
-  jwst.nircam.F277W: F277W (2.776 μm)
-  jwst.nircam.F356W: F356W (3.565 μm)
-  jwst.nircam.F410M: F410M (4.083 μm)
-  jwst.nircam.F444W: F444W (4.402 μm)
-  jwst.miri.F770W: F770W (7.7 μm)
-  jwst.miri.F1000W: F1000W (10.0 μm)
-  jwst.miri.F1500W: F1500W (15.0 μm)
-  jwst.miri.F2100W: F2100W (21.0 μm)
-
-Target variable 'agn.fracAGN' found in dataset
-Target variable statistics:
-count    1000.000000
-mean        0.499330
-std         0.316352
-min         0.000000
-25%         0.200000
-50%         0.500000
-75%         0.800000
-max         0.990000
-Name: agn.fracAGN, dtype: float64
 </pre>
 </div>
 </div>
@@ -1787,30 +1507,203 @@ Name: agn.fracAGN, dtype: float64
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3bc1b14a-67d6-4616-94d6-00ca86911c69">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff7a9c97-2b1c-484d-a820-40292f3f0701">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="creating-traintestvalidation-splits">Creating Train/Test/Validation Splits<a class="anchor-link" href="#creating-traintestvalidation-splits">¶</a></h2><p>Before any modeling, we need to split our data into separate sets for training, validation, and testing. AGNBoost provides intelligent data splitting with optional stratification to ensure representative samples across all splits.</p>
-<p>We'll use the default split ratios:</p>
-<ul>
-<li>60% for training</li>
-<li>20% for validation</li>
-<li>20% for testing</li>
-</ul>
-<p>The random state ensures reproducible results. This step is not strictly necessary, as AGNBoost will internally perform the split if it has not explicitly been done.</p>
+<h1 id="creating-custom-features">Creating Custom Features<a class="anchor-link" href="#creating-custom-features">¶</a></h1><p>By default, AGNBoost will create a feature dataframe that includes all of the photometric bands matching valid bands (in the bands.json), all non-reciprocal colors derived from those, and the squares of those colors. However, it is also simple to create a feature dataframe to only include features you want, including features not included by default.</p>
+<p>Let's say we want to create a feature dataframe that consists of:</p>
+<ol>
+<li>All the valid photometric bands. We will take the log10 of the fluxes.</li>
+<li>ONLY the F770W/F444W and F21000/F770W colors</li>
+<li>the redshift</li>
+</ol>
+<p>To do this, we must first create our custom function to create this dataframe from the data stored in our <code>catalog</code> object. Note that this function is expected to have only one input (the data), and needs to return a pandas Dataframe. We will create this function and then test it to ensure that it is working.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74948d0c-4867-4f45-b4a9-63f618259095">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e09110bc-48e5-4c6e-b893-d133a1108f3f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Get the list of the valid photometric bands</span>
+<span class="n">VALID_BANDS</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_valid_bands_list</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Valid bands: </span><span class="si">{</span><span class="n">VALID_BANDS</span><span class="err">#</span><span class="w"> </span><span class="n">Navigate</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">repository</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="p">(</span><span class="n">parent</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">notebooks</span><span class="o">/</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">'..'</span><span class="p">)</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Verify</span><span class="w"> </span><span class="n">we</span><span class="s1">'re in the right place</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Current directory: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Contents: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)}</span><span class="s2">")</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">custom_feature_func</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="c1"># Create all the features we want</span>
+    <span class="n">log_phot_df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">VALID_BANDS</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span> <span class="p">)</span>
+
+    <span class="n">f770w_f444w_color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span> <span class="n">data</span><span class="p">[</span><span class="s1">'jwst.miri.F770W'</span><span class="p">]</span><span class="o">/</span><span class="n">data</span><span class="p">[</span><span class="s1">'jwst.nircam.F444W'</span><span class="p">]</span> <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"F770W/F444W"</span><span class="p">)</span>
+    <span class="n">f2100W_f770W_color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span> <span class="n">data</span><span class="p">[</span><span class="s1">'jwst.miri.F2100W'</span><span class="p">]</span><span class="o">/</span><span class="n">data</span><span class="p">[</span><span class="s1">'jwst.miri.F770W'</span><span class="p">]</span> <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"F2100W/F770W"</span><span class="p">)</span>
+
+    <span class="n">z_df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'universe.redshift'</span><span class="p">]</span>
+
+    <span class="c1"># Combine them together so that they have shape (N_data, N_features)    </span>
+    <span class="n">feature_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span> <span class="p">[</span><span class="n">log_phot_df</span><span class="p">,</span> <span class="n">f770w_f444w_color</span><span class="p">,</span> <span class="n">f2100W_f770W_color</span><span class="p">,</span> <span class="n">z_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join</span> <span class="o">=</span> <span class="s1">'outer'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">feature_df</span>
+
+<span class="c1"># Now, let's test this.</span>
+<span class="n">test_feature_df</span> <span class="o">=</span> <span class="n">custom_feature_func</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">test_feature_df has shape </span><span class="si">{</span><span class="n">test_feature_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and original data has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="w"> </span><span class="n">catalog</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="si">}</span><span class="s2"> rows."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test_feature_df consists of </span><span class="si">{</span><span class="n">test_feature_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">test_feature_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-4"># Get the list of the valid photometric bands
+VALID_BANDS = catalog.get_valid_bands_list()
+print(f"Valid bands: {VALID_BANDS# Navigate to the repository root (parent directory of notebooks/)
+os.chdir('..')
+
+# Verify we're in the right place
+print(f"Current directory: {os.getcwd()}")
+print(f"Contents: {os.listdir('.')}")}")
+
+def custom_feature_func(data: pd.DataFrame) -&gt; pd.DataFrame:
+    # Create all the features we want
+    log_phot_df = data[VALID_BANDS].apply( np.log10 )
+
+    f770w_f444w_color = np.log10( data['jwst.miri.F770W']/data['jwst.nircam.F444W'] ).rename("F770W/F444W")
+    f2100W_f770W_color = np.log10( data['jwst.miri.F2100W']/data['jwst.miri.F770W'] ).rename("F2100W/F770W")
+
+    z_df = data['universe.redshift']
+
+    # Combine them together so that they have shape (N_data, N_features)    
+    feature_df = pd.concat( [log_phot_df, f770w_f444w_color, f2100W_f770W_color, z_df], axis=1, join = 'outer')
+    return feature_df
+
+# Now, let's test this.
+test_feature_df = custom_feature_func(data = catalog.get_data() )
+print(f"\ntest_feature_df has shape {test_feature_df.shape} and original data has {len( catalog.get_data() )} rows.")
+print(f"test_feature_df consists of {test_feature_df.shape[1]} features: {list(test_feature_df.columns)}\n")
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[4], line 3</span>
+<span class="ansi-red-fg">    print(f"Valid bands: {VALID_BANDS# Navigate to the repository root (parent directory of notebooks/)</span>
+          ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unterminated string literal (detected at line 3)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6296afba-ec11-44a3-9d7f-30de9d892e73">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This custom feature dataframe is saved into our <code>catalog</code> instance, so we are good to continue from here as usual (i.e., following the same method in the <code>basic-usage.ipynb</code> example).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4dd3f8dc-acf5-4d4d-8d6f-4fe84f621bc6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="applying-transformations-to-the-target-variable-eg-redshift">Applying transformations to the target variable (e.g. redshift)<a class="anchor-link" href="#applying-transformations-to-the-target-variable-eg-redshift">¶</a></h1><p>You may wish to apply some form of transformation to your target variable (i.e., that which you are performing regression to predict). For example, in the AGNBoost paper (Hamblin+2025), we applied a modified sigmoid transformation to redshift, in order to transform redshift from the (theoretical) [0,inf) range to (0,1). This allowed us to predict a beta distribution with AGNBoost.</p>
+<p>This transformation functionality is built-in to AGNBoost. All we need to do is define the function for the transformation. Let's create the python function for the modified sigmoid transformation above. Note that this modified sigmoid transforamtion has an optional parameter a which is used to tune the effects of the transformation.</p>
+<p>We also need to define the inverse of the transformation, in order to transform the predictions from AGNBoost back to the untransformed space of interest (i.e., transformed-redshift space -&gt; redhisft space)</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c2c508b3-c035-4b72-a47e-d59f8c21816d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mod_sigmoid_trans</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">):</span>
+    <span class="n">trans_z</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">z</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">trans_z</span>
+    
+<span class="c1"># The 1e-8 is included in the log to avoid issues of log(0)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inverse_mod_sigmoid_trans</span><span class="p">(</span><span class="n">trans_z</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">):</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">trans_z</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-5">def mod_sigmoid_trans(z, a = 0.4):
+    trans_z =  2/ (1 + np.exp(-a*z)) - 1
+    return trans_z
+    
+# The 1e-8 is included in the log to avoid issues of log(0)
+def inverse_mod_sigmoid_trans(trans_z, a = 0.4):
+    z = -(1/a)*np.log( 2/(1+trans_z) -1 + 1e-8)
+    return z
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2ef6e987-963a-4c0b-b5df-383edb7d17c9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We can now use this transformation to add a transformed redshift column to the saved data in our <code>catalog</code> instance. We will perform a sanity check to ensure that applying the inverse of our transformation to the transformed data matches the original data.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6eee3403-2253-4c11-8a39-de4ed051f3c9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
@@ -1823,68 +1716,93 @@ Name: agn.fracAGN, dtype: float64
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Create train/validation/test splitsget_train_val_test_sizes</span>
-<span class="n">catalog</span><span class="o">.</span><span class="n">split_data</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">val_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Let's create a name for the new column. </span>
+<span class="c1"># Note that this will also become the name of the model used to predict this transformed variable </span>
+<span class="c1">#     (and consequently the name of the directory the models will be saved in)</span>
+<span class="n">transformed_col_name</span> <span class="o">=</span> <span class="s2">"mod_sigmoid_redshift"</span>
 
-<span class="c1"># Get split information</span>
-<span class="n">split_info</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_train_val_test_sizes</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Data split summary:"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Total samples: </span><span class="si">{</span><span class="n">split_info</span><span class="p">[</span><span class="s1">'total'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Training: </span><span class="si">{</span><span class="n">split_info</span><span class="p">[</span><span class="s1">'train'</span><span class="p">][</span><span class="s1">'size'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">split_info</span><span class="p">[</span><span class="s1">'train'</span><span class="p">][</span><span class="s1">'percentage'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Validation: </span><span class="si">{</span><span class="n">split_info</span><span class="p">[</span><span class="s1">'validation'</span><span class="p">][</span><span class="s1">'size'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">split_info</span><span class="p">[</span><span class="s1">'validation'</span><span class="p">][</span><span class="s1">'percentage'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Test: </span><span class="si">{</span><span class="n">split_info</span><span class="p">[</span><span class="s1">'test'</span><span class="p">][</span><span class="s1">'size'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">split_info</span><span class="p">[</span><span class="s1">'test'</span><span class="p">][</span><span class="s1">'percentage'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+<span class="n">transformed_redshift</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span> <span class="n">column_name</span> <span class="o">=</span> <span class="s1">'universe.redshift'</span><span class="p">,</span> 
+                                         <span class="n">transform_func</span> <span class="o">=</span> <span class="n">mod_sigmoid_trans</span><span class="p">,</span> 
+                                         <span class="n">new_column_name</span> <span class="o">=</span> <span class="n">transformed_col_name</span>
+                                        <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Created transformed redshift column </span><span class="si">{</span><span class="n">transformed_redshift</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Stored data now has columns: </span><span class="si">{</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="c1">#--------------------</span>
+
+<span class="c1"># Let's ensure that taking the inverse transformation of this returns the redshifts to their original state</span>
+<span class="n">original_z</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="s1">'universe.redshift'</span><span class="p">]</span>
+
+<span class="c1"># Apply the inverse transformation to our transformed redshift</span>
+<span class="n">inverse_trans_z</span> <span class="o">=</span> <span class="n">inverse_mod_sigmoid_trans</span><span class="p">(</span> <span class="n">transformed_redshift</span> <span class="p">)</span>
+<span class="n">mismatch_z</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Iterate through the arrays</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">original_z</span><span class="p">)):</span>  
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">original_z</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">inverse_trans_z</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">mismatch_z</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"redshift mismatch. orig z: </span><span class="si">{</span><span class="n">original_z</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, recovered transformed z: </span><span class="si">{</span><span class="n">inverse_trans_z</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">mismatch_z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">No redshift mismatches after transorming and transforming back!</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-6"># Create train/validation/test splitsget_train_val_test_sizes
-catalog.split_data(test_size=0.2, val_size=0.2, random_state=42)
+<div class="clipboard-copy-txt" id="cell-6"># Let's create a name for the new column. 
+# Note that this will also become the name of the model used to predict this transformed variable 
+#     (and consequently the name of the directory the models will be saved in)
+transformed_col_name = "mod_sigmoid_redshift"
 
-# Get split information
-split_info = catalog.get_train_val_test_sizes()
-print("Data split summary:")
-print(f"  Total samples: {split_info['total']}")
-print(f"  Training: {split_info['train']['size']} ({split_info['train']['percentage']:.1f}%)")
-print(f"  Validation: {split_info['validation']['size']} ({split_info['validation']['percentage']:.1f}%)")
-print(f"  Test: {split_info['test']['size']} ({split_info['test']['percentage']:.1f}%)")</div>
+transformed_redshift = catalog.transform( column_name = 'universe.redshift', 
+                                         transform_func = mod_sigmoid_trans, 
+                                         new_column_name = transformed_col_name
+                                        )
+
+print(f"Created transformed redshift column {transformed_redshift.name}")
+print(f"Stored data now has columns: {catalog.get_data().columns}")
+
+
+#--------------------
+
+# Let's ensure that taking the inverse transformation of this returns the redshifts to their original state
+original_z = catalog.get_data()['universe.redshift']
+
+# Apply the inverse transformation to our transformed redshift
+inverse_trans_z = inverse_mod_sigmoid_trans( transformed_redshift )
+mismatch_z = 0
+
+# Iterate through the arrays
+for i in range(len(original_z)):  
+    if np.around(original_z.iloc[i], decimals = 3) != np.around(inverse_trans_z.iloc[i], decimals = 3):
+        mismatch_z += 1
+        print(f"redshift mismatch. orig z: {original_z.iloc[i]:.3f}, recovered transformed z: {inverse_trans_z.iloc[i]:.3f}")
+
+if mismatch_z == 0:
+    print(f"\nNo redshift mismatches after transorming and transforming back!\n")
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Data split summary:
-  Total samples: 1000
-  Training: 600 (60.0%)
-  Validation: 200 (20.0%)
-  Test: 200 (20.0%)
-</pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e55f30a3-4ea2-4a15-a44c-f08fb6650f86">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ed0bc553-1fb5-4c11-8e23-97478aeab7d6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="cleaning-the-data">Cleaning the Data<a class="anchor-link" href="#cleaning-the-data">¶</a></h2><p>Real astronomical datasets often contain missing values due to various observational limitations. Before training or making predictions, we will remove rows that have NaN values in critical columns.</p>
-<p>The <code>drop_nan()</code> method removes rows with missing values in the validated photometric band columns, ensuring our model receives complete data for all features.</p>
+<p>We could then create an AGNBoost model to perform regression on the transformed redshift:</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ce8d27e7-95f4-4a43-9d61-ad826e8b9c28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=99890865-9809-4d9c-a53d-b9ad5f29d5f0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
@@ -1897,511 +1815,25 @@ print(f"  Test: {split_info['test']['size']} ({split_info['test']['percentage']:
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Drop rows with NaN values in the validated columns</span>
-<span class="n">catalog</span><span class="o">.</span><span class="n">drop_nan</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-7"># Drop rows with NaN values in the validated columns
-catalog.drop_nan(inplace=True)
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[INFO] No rows with NaN values found in the specified columns.
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3144d913-ebd2-4987-be00-b319aecef60b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>There are no-nan rows to remove since the CIGALE mock data we loaded has none, but your real data might.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff7a9c97-2b1c-484d-a820-40292f3f0701">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="creating-features">Creating Features<a class="anchor-link" href="#creating-features">¶</a></h2><p>AGNBoost automatically engineers features from photometric data, including colors and transformations. Let's create the feature dataframe that will be used for modeling.</p>
-<p>By default, AGNBoost will create a features consisting of the photometric bands + derived colors + the squares of those derived colors</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cb3f2a12-66b1-4772-8dad-feedce0369f3">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Create features for modeling</span>
-<span class="n">catalog</span><span class="o">.</span><span class="n">create_feature_dataframe</span><span class="p">()</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># First, we will create the feature dataframe</span>
+<span class="n">catalog</span><span class="o">.</span><span class="n">create_feature_dataframe</span><span class="p">(</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Get information about created features</span>
-<span class="n">features</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_features</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Feature engineering complete:"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Feature dataframe shape: </span><span class="si">{</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-8"># Create features for modeling
-catalog.create_feature_dataframe()
-
-# Get information about created features
-features = catalog.get_features()
-print(f"Feature engineering complete:")
-print(f"  Feature dataframe shape: {features.shape}")
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[INFO] Created feature dataframe with 121 columns and 1000 rows.
-[INFO] Created features are: ['jwst.nircam.F115W', 'jwst.nircam.F150W', 'jwst.nircam.F200W', 'jwst.nircam.F277W', 'jwst.nircam.F356W', 'jwst.nircam.F410M', 'jwst.nircam.F444W', 'jwst.miri.F770W', 'jwst.miri.F1000W', 'jwst.miri.F1500W', 'jwst.miri.F2100W', 'F2100W/F1500W', 'F2100W/F1000W', 'F2100W/F770W', 'F2100W/F444W', 'F2100W/F410M', 'F2100W/F356W', 'F2100W/F277W', 'F2100W/F200W', 'F2100W/F150W', 'F2100W/F115W', 'F1500W/F1000W', 'F1500W/F770W', 'F1500W/F444W', 'F1500W/F410M', 'F1500W/F356W', 'F1500W/F277W', 'F1500W/F200W', 'F1500W/F150W', 'F1500W/F115W', 'F1000W/F770W', 'F1000W/F444W', 'F1000W/F410M', 'F1000W/F356W', 'F1000W/F277W', 'F1000W/F200W', 'F1000W/F150W', 'F1000W/F115W', 'F770W/F444W', 'F770W/F410M', 'F770W/F356W', 'F770W/F277W', 'F770W/F200W', 'F770W/F150W', 'F770W/F115W', 'F444W/F410M', 'F444W/F356W', 'F444W/F277W', 'F444W/F200W', 'F444W/F150W', 'F444W/F115W', 'F410M/F356W', 'F410M/F277W', 'F410M/F200W', 'F410M/F150W', 'F410M/F115W', 'F356W/F277W', 'F356W/F200W', 'F356W/F150W', 'F356W/F115W', 'F277W/F200W', 'F277W/F150W', 'F277W/F115W', 'F200W/F150W', 'F200W/F115W', 'F150W/F115W', 'F2100W/F1500W^2', 'F2100W/F1000W^2', 'F2100W/F770W^2', 'F2100W/F444W^2', 'F2100W/F410M^2', 'F2100W/F356W^2', 'F2100W/F277W^2', 'F2100W/F200W^2', 'F2100W/F150W^2', 'F2100W/F115W^2', 'F1500W/F1000W^2', 'F1500W/F770W^2', 'F1500W/F444W^2', 'F1500W/F410M^2', 'F1500W/F356W^2', 'F1500W/F277W^2', 'F1500W/F200W^2', 'F1500W/F150W^2', 'F1500W/F115W^2', 'F1000W/F770W^2', 'F1000W/F444W^2', 'F1000W/F410M^2', 'F1000W/F356W^2', 'F1000W/F277W^2', 'F1000W/F200W^2', 'F1000W/F150W^2', 'F1000W/F115W^2', 'F770W/F444W^2', 'F770W/F410M^2', 'F770W/F356W^2', 'F770W/F277W^2', 'F770W/F200W^2', 'F770W/F150W^2', 'F770W/F115W^2', 'F444W/F410M^2', 'F444W/F356W^2', 'F444W/F277W^2', 'F444W/F200W^2', 'F444W/F150W^2', 'F444W/F115W^2', 'F410M/F356W^2', 'F410M/F277W^2', 'F410M/F200W^2', 'F410M/F150W^2', 'F410M/F115W^2', 'F356W/F277W^2', 'F356W/F200W^2', 'F356W/F150W^2', 'F356W/F115W^2', 'F277W/F200W^2', 'F277W/F150W^2', 'F277W/F115W^2', 'F200W/F150W^2', 'F200W/F115W^2', 'F150W/F115W^2']
-Feature engineering complete:
-  Feature dataframe shape: (1000, 121)
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f11e154d-69d0-49b1-b74c-aa61c0d8483e">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="loading-the-pre-trained-model">Loading the Pre-trained Model<a class="anchor-link" href="#loading-the-pre-trained-model">¶</a></h2><p>AGNBoost comes with pre-trained models for common astronomical tasks. We'll load the model specifically trained for AGN fraction estimation (<code>agn.fracAGN</code>).</p>
-<p>The <code>load_models()</code> method automatically:</p>
-<ul>
-<li>Checks for compatible pre-trained models</li>
-<li>Validates feature compatibility between the model and our data</li>
-<li>Loads model metadata including training parameters and performance metrics</li>
-</ul>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=590e76a3-04d6-4c4f-81ec-6ef6d0058bfa">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Initialize an AGNBoost model. The target variable is the name of the target variable column, and its value in the passed dictionary is the distribution used to model it.</span>
 <span class="n">agnboost_m</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">AGNBoost</span><span class="p">(</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span>
-                          <span class="n">target_variables</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'agn.fracAGN'</span> <span class="p">:</span> <span class="s1">'ZABeta'</span><span class="p">},</span>
-                         <span class="p">)</span>
+                              <span class="n">target_variables</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'mod_sigmoid_redshift'</span> <span class="p">:</span> <span class="s1">'Beta'</span><span class="p">}</span>
+                           <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AGNBoost object made with target varible name </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">agnboost_m</span><span class="o">.</span><span class="n">get_models</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">. A </span><span class="si">{</span><span class="n">agnboost_m</span><span class="o">.</span><span class="n">get_models</span><span class="p">()[</span><span class="s1">'mod_sigmoid_redshift'</span><span class="p">]</span><span class="si">}</span><span class="s2"> distribution is predicted for this target variable.</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="c1"># Load pre-trained models. We will not pass a filename to load, and will simply the the most recent fracAGN model.</span>
-<span class="n">agnboost_m</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_name</span> <span class="o">=</span> <span class="s1">'fracAGN'</span><span class="p">,</span> <span class="n">overwrite</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">agnboost_m</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="s1">'agn.fracAGN'</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Pre-trained model loaded successfully!"</span><span class="p">)</span>
-    
-    <span class="c1"># Display model information</span>
-    <span class="n">model_info</span> <span class="o">=</span> <span class="n">agnboost_m</span><span class="o">.</span><span class="n">model_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'agn.fracAGN'</span><span class="p">,</span> <span class="p">{})</span>
-    <span class="k">if</span> <span class="n">model_info</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Model information:"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s1">'training_timestamp'</span> <span class="ow">in</span> <span class="n">model_info</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Trained: </span><span class="si">{</span><span class="n">model_info</span><span class="p">[</span><span class="s1">'training_timestamp'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s1">'best_score'</span> <span class="ow">in</span> <span class="n">model_info</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Best validation score: </span><span class="si">{</span><span class="n">model_info</span><span class="p">[</span><span class="s1">'best_score'</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s1">'features'</span> <span class="ow">in</span> <span class="n">model_info</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Number of features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">model_info</span><span class="p">[</span><span class="s1">'features'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"❌ No pre-trained models found!"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"You may need to train a new model or check the models directory."</span><span class="p">)</span>
+        
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-9"># Initialize an AGNBoost model. The target variable is the name of the target variable column, and its value in the passed dictionary is the distribution used to model it.
+<div class="clipboard-copy-txt" id="cell-7"># First, we will create the feature dataframe
+catalog.create_feature_dataframe(silent = True)
+
 agnboost_m = model.AGNBoost( feature_names = catalog.get_feature_names(),
-                          target_variables = {'agn.fracAGN' : 'ZABeta'},
-                         )
+                              target_variables = {'mod_sigmoid_redshift' : 'Beta'}
+                           )
+print(f"AGNBoost object made with target varible name {list(agnboost_m.get_models().keys())[0]}. A {agnboost_m.get_models()['mod_sigmoid_redshift']} distribution is predicted for this target variable.\n")
 
-# Load pre-trained models. We will not pass a filename to load, and will simply the the most recent fracAGN model.
-agnboost_m.load_model(model_name = 'fracAGN', overwrite = True)
-
-if agnboost_m.models['agn.fracAGN'] is not None:
-    print("✅ Pre-trained model loaded successfully!")
-    
-    # Display model information
-    model_info = agnboost_m.model_info.get('agn.fracAGN', {})
-    if model_info:
-        print("\nModel information:")
-        if 'training_timestamp' in model_info:
-            print(f"  Trained: {model_info['training_timestamp']}")
-        if 'best_score' in model_info:
-            print(f"  Best validation score: {model_info['best_score']:.6f}")
-        if 'features' in model_info:
-            print(f"  Number of features: {len(model_info['features'])}")
-else:
-    print("❌ No pre-trained models found!")
-    print("You may need to train a new model or check the models directory.")</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2025-05-31 20:10:53,543 - AGNBoost.AGNBoost - WARNING - No file_name passed. Using the most recently modified one instead: 2025_05_22-PM06_59_58_agn.fracAGN_model.pkl.gz.
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>✅ Pre-trained model loaded successfully!
-
-Model information:
-  Best validation score: -649218.125000
-  Number of features: 121
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1a7c0da7-4e33-48a5-9a61-0d2272bf0649">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="making-predictions">Making Predictions<a class="anchor-link" href="#making-predictions">¶</a></h2><p>Now we'll use our loaded model to predict AGN fractions for the test set. AGNBoost seamlessly handles the conversion of our catalog data into the format required by the underlying XGBoost model.</p>
-<p>The prediction process uses the engineered features (colors, log magnitudes, etc.) that were automatically created from our photometric band data.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ce129cb0-80a7-4a26-b45c-357feb219538">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Make predictions on the test set</span>
-<span class="c1">#agnboost_m.models['agn.fracAGN'].booster.set_param( {'device': 'cpu'})</span>
-<span class="n">preds</span> <span class="o">=</span> <span class="n">agnboost_m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span> <span class="n">data</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">,</span> <span class="n">split_use</span> <span class="o">=</span> <span class="s1">'test'</span><span class="p">,</span> <span class="n">model_name</span> <span class="o">=</span> <span class="s1">'agn.fracAGN'</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Mean: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Min: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Max: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-10"># Make predictions on the test set
-#agnboost_m.models['agn.fracAGN'].booster.set_param( {'device': 'cpu'})
-preds = agnboost_m.predict( data = catalog, split_use = 'test', model_name = 'agn.fracAGN')
-
-print(f"  Mean: {np.mean(preds):.6f}")
-print(f"  Std: {np.std(preds):.6f}")
-print(f"  Min: {np.min(preds):.6f}")
-print(f"  Max: {np.max(preds):.6f}")
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2025-05-31 20:10:55,651 - AGNBoost.AGNBoost - WARNING - Catalog object passsed. Taking the features and labels of the test set stored in the passed Catalog.
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>  Mean: 0.504962
-  Std: 0.325251
-  Min: 0.000308
-  Max: 0.989859
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2a532c6a-744f-490a-9989-3379efcebd96">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="quantifying-prediction-uncertainty">Quantifying Prediction Uncertainty<a class="anchor-link" href="#quantifying-prediction-uncertainty">¶</a></h2><p>One of AGNBoost's key advantages is its ability to provide robust uncertainty estimates through XGBoostLSS distributional modeling. Rather than just point estimates, we get full uncertainty quantification for each prediction.</p>
-<p>The <code>prediction_uncertainty()</code> method returns uncertainty estimates that account for both model uncertainty and the inherent variability in the data. This is crucial for astronomical applications where understanding prediction confidence is essential for scientific interpretation.</p>
-<p>Since the loaded data is a CIGALE mock catalog with no photometric uncertainty, we will only estimate the model (aleatoric + epistemic) uncertainty for each source.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6e06ebd1-294a-4f96-854f-c37c98649a25">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model_uncertainty</span> <span class="o">=</span> <span class="n">agnboost_m</span><span class="o">.</span><span class="n">prediction_uncertainty</span><span class="p">(</span> <span class="n">uncertainty_type</span> <span class="o">=</span> <span class="s1">'model'</span><span class="p">,</span> <span class="n">model_name</span> <span class="o">=</span> <span class="s1">'agn.fracAGN'</span><span class="p">,</span> <span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ Uncertainty estimates generated"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Uncertainty statistics:"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Mean uncertainty: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">model_uncertainty</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std uncertainty: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">model_uncertainty</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Min uncertainty: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">model_uncertainty</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Max uncertainty: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">model_uncertainty</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-11">model_uncertainty = agnboost_m.prediction_uncertainty( uncertainty_type = 'model', model_name = 'agn.fracAGN', catalog = catalog)
-
-print(f"✅ Uncertainty estimates generated")
-print(f"Uncertainty statistics:")
-print(f"  Mean uncertainty: {np.mean(model_uncertainty):.6f}")
-print(f"  Std uncertainty: {np.std(model_uncertainty):.6f}")
-print(f"  Min uncertainty: {np.min(model_uncertainty):.6f}")
-print(f"  Max uncertainty: {np.max(model_uncertainty):.6f}")</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2025-05-31 20:10:55,838 - AGNBoost.AGNBoost - WARNING - Catalog object passsed. Taking the features and labels of the None set stored in the passed Catalog.
-Processing truncated model uncertainty:  38%|▍| 376/1000 [03:06&lt;05:09,  2.02it/s
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[10], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> model_uncertainty <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">agnboost_m</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">prediction_uncertainty</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">uncertainty_type</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">'</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">model</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">'</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">model_name</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">'</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">agn.fracAGN</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">'</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">catalog</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">catalog</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">✅ Uncertainty estimates generated</span><span style="color: rgb(175,0,0)">"</span>)
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">Uncertainty statistics:</span><span style="color: rgb(175,0,0)">"</span>)
-
-File <span class="ansi-green-fg">~/Documents/agnboost/agnboost/model.py:975</span>, in <span class="ansi-cyan-fg">AGNBoost.prediction_uncertainty</span><span class="ansi-blue-fg">(self, uncertainty_type, catalog, model_name, split_use, seed, M, num_permutation)</span>
-<span class="ansi-green-intense-fg ansi-bold">    970</span> <span style="color: rgb(95,135,135)"># Load the saved model + validate the features</span>
-<span class="ansi-green-intense-fg ansi-bold">    971</span> xgblss_m <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>get_model(model_name)
-<span class="ansi-green-intense-fg ansi-bold">    973</span> <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> uncertainty_type:
-<span class="ansi-green-intense-fg ansi-bold">    974</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">model</span><span style="color: rgb(175,0,0)">'</span>:
-<span class="ansi-green-fg">--&gt; 975</span>         model_uncertainty <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">model_uncertainty</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">xgblss_m</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    976</span> <span class="ansi-yellow-bg">                                                     </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dmatrix</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span>
-<span class="ansi-green-intense-fg ansi-bold">    977</span> <span class="ansi-yellow-bg">                                                     </span><span class="ansi-yellow-bg">dist_name</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">target_variables</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">model_name</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    978</span> <span class="ansi-yellow-bg">                                                     </span><span class="ansi-yellow-bg">best_iter</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">xgblss_m</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">booster</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">best_iteration</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span>
-<span class="ansi-green-intense-fg ansi-bold">    979</span> <span class="ansi-yellow-bg">                                                     </span><span class="ansi-yellow-bg">M</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">M</span>
-<span class="ansi-green-intense-fg ansi-bold">    980</span> <span class="ansi-yellow-bg">                                                     </span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    981</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> model_uncertainty
-<span class="ansi-green-intense-fg ansi-bold">    982</span> 
-<span class="ansi-green-intense-fg ansi-bold">    983</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">photometric</span><span style="color: rgb(175,0,0)">'</span>:
-<span class="ansi-green-intense-fg ansi-bold">    984</span>         uncertainty_from_phot_err <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>uncertainty_phot( model <span style="color: rgb(98,98,98)">=</span>xgblss_m,
-<span class="ansi-green-intense-fg ansi-bold">    985</span>                                                             catalog <span style="color: rgb(98,98,98)">=</span> catalog,
-<span class="ansi-green-intense-fg ansi-bold">    986</span>                                                             dist_name <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>target_variables[model_name],
-<span class="ansi-green-intense-fg ansi-bold">    987</span>                                                             num_permutation <span style="color: rgb(98,98,98)">=</span> num_permutation,
-<span class="ansi-green-intense-fg ansi-bold">    988</span>                                                             seed <span style="color: rgb(98,98,98)">=</span> seed
-<span class="ansi-green-intense-fg ansi-bold">    989</span>                                                             )
-<span class="ansi-green-intense-fg ansi-bold">    990</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> uncertainty_from_phot_err
-<span class="ansi-green-intense-fg ansi-bold">    991</span> 
-<span class="ansi-green-intense-fg ansi-bold">    992</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">all</span><span style="color: rgb(175,0,0)">'</span>:
-<span class="ansi-green-intense-fg ansi-bold">    993</span>         model_uncertainty <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>model_uncertainty( model <span style="color: rgb(98,98,98)">=</span> xgblss_m,
-<span class="ansi-green-intense-fg ansi-bold">    994</span>                                                      data <span style="color: rgb(98,98,98)">=</span> dmatrix, 
-<span class="ansi-green-intense-fg ansi-bold">    995</span>                                                      dist_name <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>target_variables[model_name],
-<span class="ansi-green-intense-fg ansi-bold">    996</span>                                                      best_iter <span style="color: rgb(98,98,98)">=</span> xgblss_m<span style="color: rgb(98,98,98)">.</span>booster<span style="color: rgb(98,98,98)">.</span>best_iteration, 
-<span class="ansi-green-intense-fg ansi-bold">    997</span>                                                      M <span style="color: rgb(98,98,98)">=</span> M
-<span class="ansi-green-intense-fg ansi-bold">    998</span>                                                      )
-<span class="ansi-green-intense-fg ansi-bold">    999</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1000</span>         uncertainty_from_phot_err <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>uncertainty_phot( model <span style="color: rgb(98,98,98)">=</span>xgblss_m,
-<span class="ansi-green-intense-fg ansi-bold">   1001</span>                                                             catalog <span style="color: rgb(98,98,98)">=</span> catalog,
-<span class="ansi-green-intense-fg ansi-bold">   1002</span>                                                             dist_name <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>target_variables[model_name],
-<span class="ansi-green-intense-fg ansi-bold">   1003</span>                                                             num_permutation <span style="color: rgb(98,98,98)">=</span> num_permutation,
-<span class="ansi-green-intense-fg ansi-bold">   1004</span>                                                             seed <span style="color: rgb(98,98,98)">=</span> seed
-<span class="ansi-green-intense-fg ansi-bold">   1005</span>                                                             )
-<span class="ansi-green-intense-fg ansi-bold">   1006</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1007</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> np<span style="color: rgb(98,98,98)">.</span>array( [np<span style="color: rgb(98,98,98)">.</span>sqrt(model_uncertainty[i]<span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">2</span> <span style="color: rgb(98,98,98)">+</span> uncertainty_from_phot_err[i]<span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">2</span>) <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>( catalog<span style="color: rgb(98,98,98)">.</span>get_length() )] )
-<span class="ansi-green-intense-fg ansi-bold">   1009</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
-
-File <span class="ansi-green-fg">~/Documents/agnboost/agnboost/model.py:1100</span>, in <span class="ansi-cyan-fg">AGNBoost.model_uncertainty</span><span class="ansi-blue-fg">(model, data, dist_name, best_iter, M, seed)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1095</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> j <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(<span style="color: rgb(0,135,0)">len</span>(iteration_grid)):
-<span class="ansi-green-intense-fg ansi-bold">   1096</span>         <span style="color: rgb(95,135,135)"># Need to add 1 to iteration grid value because booster.preeict evaluates on [a, b)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1097</span>         pred_params <span style="color: rgb(98,98,98)">=</span> predict_dist_trunc(dist <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>dist, booster <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>booster, start_values <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>start_values, data <span style="color: rgb(98,98,98)">=</span> data<span style="color: rgb(98,98,98)">.</span>slice([i]), iteration_range <span style="color: rgb(98,98,98)">=</span> (<span style="color: rgb(98,98,98)">0</span>, <span style="color: rgb(0,135,0)">int</span>(iteration_grid[j]) <span style="color: rgb(98,98,98)">+</span> <span style="color: rgb(98,98,98)">1</span>) )
-<span class="ansi-green-fg">-&gt; 1100</span>         pred_mus[i, j] <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">predict_mean</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">trained_model</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span>
-<span class="ansi-green-intense-fg ansi-bold">   1101</span> <span class="ansi-yellow-bg">                                    </span><span class="ansi-yellow-bg">dist_name</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dist_name</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1102</span> <span class="ansi-yellow-bg">                                    </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">slice</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">i</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1103</span> <span class="ansi-yellow-bg">                                    </span><span class="ansi-yellow-bg">seed</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">seed</span>
-<span class="ansi-green-intense-fg ansi-bold">   1104</span> <span class="ansi-yellow-bg">                                     </span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1106</span>         pred_stds[i, j] <span style="color: rgb(98,98,98)">=</span> predict_std( trained_model <span style="color: rgb(98,98,98)">=</span> model, 
-<span class="ansi-green-intense-fg ansi-bold">   1107</span>                     dist_name <span style="color: rgb(98,98,98)">=</span> dist_name,
-<span class="ansi-green-intense-fg ansi-bold">   1108</span>                     data <span style="color: rgb(98,98,98)">=</span> data<span style="color: rgb(98,98,98)">.</span>slice([i]),
-<span class="ansi-green-intense-fg ansi-bold">   1109</span>                     seed <span style="color: rgb(98,98,98)">=</span> seed
-<span class="ansi-green-intense-fg ansi-bold">   1110</span>                      )
-<span class="ansi-green-intense-fg ansi-bold">   1112</span> epistemic_uncert <span style="color: rgb(98,98,98)">=</span> pred_mus<span style="color: rgb(98,98,98)">.</span>std(axis <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">1</span>)
-
-File <span class="ansi-green-fg">~/Documents/agnboost/agnboost/utils.py:219</span>, in <span class="ansi-cyan-fg">predict_mean</span><span class="ansi-blue-fg">(trained_model, dist_name, data, seed)</span>
-<span class="ansi-green-intense-fg ansi-bold">    213</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">predict_mean</span>( trained_model: xgboostlss_model,
-<span class="ansi-green-intense-fg ansi-bold">    214</span>                 dist_name : <span style="color: rgb(0,135,0)">str</span>,
-<span class="ansi-green-intense-fg ansi-bold">    215</span>                 data : DMatrix,
-<span class="ansi-green-intense-fg ansi-bold">    216</span>                 seed : <span style="color: rgb(0,135,0)">int</span> <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">123</span>
-<span class="ansi-green-intense-fg ansi-bold">    217</span>                     ):
-<span class="ansi-green-fg">--&gt; 219</span>     pred_params <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">trained_model</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">predict</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">pred_type</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">parameters</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">seed</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">seed</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    221</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> dist_name:
-<span class="ansi-green-intense-fg ansi-bold">    222</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">ZABeta</span><span style="color: rgb(175,0,0)">"</span>:
-<span class="ansi-green-intense-fg ansi-bold">    223</span>             mu_array <span style="color: rgb(98,98,98)">=</span> predict_mean_fromparams_ZABeta( params <span style="color: rgb(98,98,98)">=</span> pred_params,  seed <span style="color: rgb(98,98,98)">=</span> seed)
-<span class="ansi-green-intense-fg ansi-bold">    225</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> mu_array
-
-File <span class="ansi-green-fg">~/anaconda3/envs/python311_clone/lib/python3.11/site-packages/xgboostlss/model.py:499</span>, in <span class="ansi-cyan-fg">XGBoostLSS.predict</span><span class="ansi-blue-fg">(self, data, pred_type, n_samples, quantiles, seed)</span>
-<span class="ansi-green-intense-fg ansi-bold">    472</span> <span style="color: rgb(175,0,0)">"""</span>
-<span class="ansi-green-intense-fg ansi-bold">    473</span> <span style="color: rgb(175,0,0)">Function that predicts from the trained model.</span>
-<span class="ansi-green-intense-fg ansi-bold">    474</span> 
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">    495</span> <span style="color: rgb(175,0,0)">    Predictions.</span>
-<span class="ansi-green-intense-fg ansi-bold">    496</span> <span style="color: rgb(175,0,0)">"""</span>
-<span class="ansi-green-intense-fg ansi-bold">    498</span> <span style="color: rgb(95,135,135)"># Predict</span>
-<span class="ansi-green-fg">--&gt; 499</span> predt_df <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">dist</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">predict_dist</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">booster</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">booster</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    500</span> <span class="ansi-yellow-bg">                                  </span><span class="ansi-yellow-bg">start_values</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">start_values</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    501</span> <span class="ansi-yellow-bg">                                  </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    502</span> <span class="ansi-yellow-bg">                                  </span><span class="ansi-yellow-bg">pred_type</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">pred_type</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    503</span> <span class="ansi-yellow-bg">                                  </span><span class="ansi-yellow-bg">n_samples</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">n_samples</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    504</span> <span class="ansi-yellow-bg">                                  </span><span class="ansi-yellow-bg">quantiles</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">quantiles</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    505</span> <span class="ansi-yellow-bg">                                  </span><span class="ansi-yellow-bg">seed</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">seed</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    507</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> predt_df
-
-File <span class="ansi-green-fg">~/anaconda3/envs/python311_clone/lib/python3.11/site-packages/xgboostlss/distributions/distribution_utils.py:468</span>, in <span class="ansi-cyan-fg">DistributionClass.predict_dist</span><span class="ansi-blue-fg">(self, booster, start_values, data, pred_type, n_samples, quantiles, seed)</span>
-<span class="ansi-green-intense-fg ansi-bold">    465</span> base_margin_test <span style="color: rgb(98,98,98)">=</span> (np<span style="color: rgb(98,98,98)">.</span>ones(shape<span style="color: rgb(98,98,98)">=</span>(data<span style="color: rgb(98,98,98)">.</span>num_row(), <span style="color: rgb(98,98,98)">1</span>))) <span style="color: rgb(98,98,98)">*</span> start_values
-<span class="ansi-green-intense-fg ansi-bold">    466</span> data<span style="color: rgb(98,98,98)">.</span>set_base_margin(base_margin_test<span style="color: rgb(98,98,98)">.</span>flatten())
-<span class="ansi-green-fg">--&gt; 468</span> predt <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>array(<span class="ansi-yellow-bg">booster</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">predict</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">output_margin</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">True</span><span class="ansi-yellow-bg">)</span>)<span style="color: rgb(98,98,98)">.</span>reshape(<span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">1</span>, <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>n_dist_param)
-<span class="ansi-green-intense-fg ansi-bold">    469</span> predt <span style="color: rgb(98,98,98)">=</span> torch<span style="color: rgb(98,98,98)">.</span>tensor(predt, dtype<span style="color: rgb(98,98,98)">=</span>torch<span style="color: rgb(98,98,98)">.</span>float32)
-<span class="ansi-green-intense-fg ansi-bold">    471</span> <span style="color: rgb(95,135,135)"># Transform predicted parameters to response scale</span>
-
-File <span class="ansi-green-fg">~/anaconda3/envs/python311_clone/lib/python3.11/site-packages/xgboost/core.py:2298</span>, in <span class="ansi-cyan-fg">Booster.predict</span><span class="ansi-blue-fg">(self, data, output_margin, pred_leaf, pred_contribs, approx_contribs, pred_interactions, validate_features, training, iteration_range, strict_shape)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2295</span> shape <span style="color: rgb(98,98,98)">=</span> ctypes<span style="color: rgb(98,98,98)">.</span>POINTER(c_bst_ulong)()
-<span class="ansi-green-intense-fg ansi-bold">   2296</span> dims <span style="color: rgb(98,98,98)">=</span> c_bst_ulong()
-<span class="ansi-green-intense-fg ansi-bold">   2297</span> _check_call(
-<span class="ansi-green-fg">-&gt; 2298</span>     <span class="ansi-yellow-bg">_LIB</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">XGBoosterPredictFromDMatrix</span><span class="ansi-yellow-bg">(</span>
-<span class="ansi-green-intense-fg ansi-bold">   2299</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">handle</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2300</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">handle</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2301</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">from_pystr_to_cstr</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">json</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">dumps</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2302</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">ctypes</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">byref</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">shape</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2303</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">ctypes</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">byref</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">dims</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2304</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">ctypes</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">byref</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">preds</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2305</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2306</span> )
-<span class="ansi-green-intense-fg ansi-bold">   2307</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> _prediction_output(shape, dims, preds, <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>)
-
-<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4b52cc31-203d-44c1-9c40-825f62ccb80a">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-12">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-12"></div>
+        </div>
 </div>
 </div>
 </div>
