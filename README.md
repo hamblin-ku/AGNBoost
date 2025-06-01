@@ -57,7 +57,7 @@ pip install git+https://github.com/hamblin-ku/AGNBoost.git
 
 Complete documentation is available on GitHub Pages:
 
-**🌐 [https://kurthamblin.github.io/agnboost/](https://kurthamblin.github.io/agnboost/)**
+**🌐 [https://hamblin-ku.github.io/AGNBoost/](https://hamblin-ku.github.io/AGNBoost/)**
 
 The documentation includes:
 
