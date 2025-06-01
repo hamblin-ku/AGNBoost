@@ -2,8 +2,7 @@
   "_metadata": {
     "description": "This file contains the allowed photometric bands for JWST",
     "format": "Keys are full column names, values contain shorthand name and wavelength in microns",
-    "usage": "Use this file to validate column names in photometric analysis",
-    "last_updated": "2025-05-13"
+    "usage": "Use this file to validate column names in photometric analysis"
   },
   "jwst.nircam.F115W": {"shorthand": "F115W", "wavelength": 1.154},
   "jwst.nircam.F150W": {"shorthand": "F150W", "wavelength": 1.501},

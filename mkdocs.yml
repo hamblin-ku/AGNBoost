@@ -79,7 +79,8 @@ nav:
   - Getting Started: getting-started.md
   - Tutorials:
     - Basic Usage: tutorials/basic-usage.ipynb
-    - Band Configuration: tutorials/band-configuration.md
+    - Custom Features and Transformed Targets: tutorials/CustomFeatures+Targets.ipynb
+    - Band Configuration: tutorials/custom_bands.ipynb
     - Training from Scratch: tutorials/training-from-scratch.md
   - API Reference: api.md
   - About:

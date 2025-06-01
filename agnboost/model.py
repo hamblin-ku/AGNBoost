@@ -24,6 +24,7 @@ from xgboostlss import model as xgboostlss_model
 from xgboostlss.distributions.distribution_utils import DistributionClass
 from xgboostlss.distributions.ZABeta import *
 from xgboostlss.model import *
+import matplotlib.pyplot as plt
 #from xgboostlss.distributions import *
 #from xgboostlss.model import XGBoostLSS
 
@@ -88,6 +89,10 @@ class AGNBoost:
         self.models = {target_variables: None for target_variables in self.target_variables.keys()}
         #self.dists =  self.target_variables.values()
         self.model_info = {model_name: {} for model_name in self.models.keys()}
+
+    def get_models(self):
+        return self.target_variables
+        return self.models
 
     def tune_model(self, model_name, param_grid, dtune, split_type = 'train', max_minutes=10, nfold=2, early_stopping_rounds=100):
         """
@@ -366,6 +371,27 @@ class AGNBoost:
 
         return study
 
+    @staticmethod
+    def plot_eval(evals, catalog, best_iter = None):
+        train_len = len(catalog.train_indices)
+        val_len = len(catalog.val_indices)
+
+        train_nll = np.array(evals['train']['nll']) * (val_len/train_len)
+        val_nll = np.array(evals['validation']['nll'])
+
+        fig, ax = plt.subplots()
+        ax.plot(train_nll, label = 'train-nll')
+        ax.plot(val_nll, label = 'validation-nll')
+
+        if best_iter is not None:
+            ax.axvline( x= best_iter, ymin = 0, ymax = 1, c = 'k', ls = '--', lw =1, label = 'best iteation')
+
+        ax.set_xlabel('Iteration')
+        ax.set_ylabel('NLL')
+        ax.legend(loc='upper left')
+
+
+        return ax
 
     def train_model(self, model_name, dtrain, dval=None, params=None, split_type='train', 
                     num_boost_round=1000, early_stopping_rounds=None, 
@@ -542,8 +568,10 @@ class AGNBoost:
                 'features': train_dmatrix.feature_names
             })
             
+
+
             # Save best iteration if early stopping was used
-            if hasattr(xgblss_m, 'best_iteration'):
+            if early_stopping_rounds is not None:
                 self.model_info[model_name]['best_iteration'] = xgblss_m.booster.best_iteration
                 self.logger.info(f"Best iteration: {xgblss_m.booster.best_iteration}")
             
@@ -592,13 +620,13 @@ class AGNBoost:
         os.makedirs(model_sub_dir, exist_ok=True)
 
         # Create the model path using the current timestamp and model name.
-        if filename is None:
+        if file_name is None:
             model_path = os.path.join(self.models_dir, datetime.now().strftime("%Y_%m_%d-%p%I_%M_%S") + f"_{model_name}_model.pkl")
 
         # Use passed filename
         else:
             #If the passed string already has the pkl file extension
-            if filename.endswith(".pkl"):
+            if file_name.endswith(".pkl"):
                 model_path = os.path.join(self.models_dir, file_name)
             else:   
                 model_path = os.path.join(self.models_dir, f"{file_name}.pkl")
@@ -706,7 +734,7 @@ class AGNBoost:
         
         self.logger.info(f"Attempting to load model: {file_name}")
         
-        
+
         # Ensure that the sub directory for this model exists. If it does not, throw an error because the model cannot be loaded.
         model_sub_dir = os.environ.get('AGNBOOST_MODELS_DIR', f"models/{model_name}/")
         if os.path.exists( model_sub_dir ) is False:
@@ -1230,55 +1258,3 @@ class AGNBoost:
                 log_message( mess )
 
         return uncert_from_phot
-
-
-    @staticmethod
-    def list_available_models(models_dir=None):
-        """
-        List all available pre-trained models in the models directory.
-        
-        Parameters:
-        -----------
-        models_dir : str or None
-            Directory to look for models. If None, uses the default models directory.
-            
-        Returns:
-        --------
-        dict
-            Dictionary with model names as keys and metadata as values.
-        """
-        logger = logging.getLogger('AGNBoost.AGNBoost.list_available_models')
-        
-        # Get models directory
-        if models_dir is None:
-            models_dir = os.environ.get('AGNBOOST_MODELS_DIR', 'models/')
-        
-        if not os.path.exists(models_dir):
-            logger.warning(f"Models directory '{models_dir}' does not exist.")
-            return {}
-        
-        available_models = {}
-        
-        # Look for model files
-        for filename in os.listdir(models_dir):
-            if filename.endswith('_model.pkl'):
-                model_name = filename.replace('_model.pkl', '')
-                model_path = os.path.join(models_dir, filename)
-                
-                try:
-                    with open(model_path, 'rb') as f:
-                        model_data = pickle.load(f)
-                    
-                    # Extract metadata
-                    if isinstance(model_data, dict) and 'model' in model_data:
-                        metadata = {k: v for k, v in model_data.items() if k != 'model'}
-                        available_models[model_name] = metadata
-                    else:
-                        available_models[model_name] = {'format': 'legacy'}
-                        
-                    logger.info(f"Found model: {model_name}")
-                except Exception as e:
-                    logger.warning(f"Error reading model {model_name}: {str(e)}")
-        
-        logger.info(f"Found {len(available_models)} available models in {models_dir}")
-        return available_models

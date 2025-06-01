@@ -81,7 +81,8 @@ class Catalog:
     # Class-level logger
     logger = logging.getLogger('AGNBoost.Catalog')
 
-    def __init__(self, path=None, data=None, delimiter=',', bands_file="allowed_bands.json", summarize = True, logger=None):
+    def __init__(self, path=None, data=None, delimiter=',', band_dict = None, summarize = True, logger=None):
+        #def __init__(self, path=None, data=None, delimiter=',', bands_file="allowed_bands.json", summarize = True, logger=None):
         """
         Initialize a Catalog object to load and manipulate data.
         
@@ -116,12 +117,21 @@ class Catalog:
         self.path = path
         self.delimiter = delimiter
         self.data = None
-        self.bands_file = 'agnboost/' + bands_file
-        self.allowed_bands = {}
+        self.band_dict = None
+
+        # Use the passed band dict. Need to add code to validate formate of the passed dict
+        if band_dict is not None:
+            self.allowed_bands = band_dict 
+
+        # Load the allowed bands from JSON
+        else:
+            self.allowed_bands = None #{}
+            self._load_allowed_bands()
+
         self.valid_columns = {}  # Will store metadata for columns that pass validation
         
         # Load the allowed bands from JSON
-        self._load_allowed_bands()
+        #self._load_allowed_bands()
         
         # Load the data
         if data is not None:
@@ -152,7 +162,7 @@ class Catalog:
         self.trainval_indices = None
         self.test_indices = None
 
-        self.feature_functions = None
+        self.custom_feature_func = None
 
     @staticmethod         
     def create_color_dataframe(data, bands):
@@ -227,10 +237,9 @@ class Catalog:
 
     def get_features_from_phots(self, phot_df):
         # Use default feature configuration
-        if self.feature_functions is None:
+        if self.custom_feature_func is None:
 
             phot_i_df = phot_df.apply(lambda x: np.log10(x) )#.reset_index(drop = True)
-            #phot_i_df = np.log10( pd.DataFrame(phot_i_arr).T ).reset_index(drop = True)
 
             color_i_df = self.create_color_dataframe(data = phot_df, bands = self.valid_columns)#.reset_index(drop = True)
 
@@ -238,9 +247,14 @@ class Catalog:
 
             feature_i_df = pd.concat([phot_i_df, color_i_df, color_i_df_2], axis=1, join='outer')
 
+        # If a custom function was used to create the features, we use that.
+        else:
+            feature_i_df = custom_func(self.data)
+
         return feature_i_df
 
-    def create_feature_dataframe(self, feature_funcs=None):
+
+    def create_feature_dataframe(self, custom_func=None, silent = False):
         """
         Create a dataframe of features for eventual use with AGNBoost class.
         
@@ -260,75 +274,68 @@ class Catalog:
             self.logger.error("Cannot create features: No data or valid columns available.")
             return None
         
-        feature_dfs = []
+        features_list = []
         
         validated_bands_dict = self.get_valid_bands()
         validated_bands_list = list(validated_bands_dict.keys()) 
         # If no custom feature functions are passed
-        if feature_funcs is None:
+        if custom_func is None:
             # 1. Create log10 of validated band columns
             log_bands_df = self.data[validated_bands_list].apply( np.log10 )
-            feature_dfs.append(log_bands_df)
+            features_list.append(log_bands_df)
             
             # 2. Create colors from validated bands
             colors_df = self.create_color_dataframe(data = self.data[validated_bands_list], bands = self.valid_columns)
-            feature_dfs.append(colors_df)
+            features_list.append(colors_df)
 
             # 3. Create squares of colors
             colors_squared_df = colors_df.apply( lambda x : x**2 )
             colors_squared_df.rename( columns = {color: color +'^2' for color in colors_df.columns}, inplace = True)
-            feature_dfs.append(colors_squared_df)
+            features_list.append(colors_squared_df)
+
+            feature_df = pd.concat(features_list, axis=1, join = 'outer')
+
 
         # Need to change feature funcs to a dict, where the entries are the suffixes for the feature names
         # Need to save the functions used for features for photometric error calculations
         else:
-            # Custom functions
-            if not isinstance(feature_funcs, list):
-                self.logger.error("feature_funcs must be a list of functions. Skipping")
-                raise TypeError(f"Feature_funcs must be a list of functions, got {type(feature_funcs).__name__}. Skipping")
-                return None
-            
-            callable_count = 0
-            # Validate and apply each function
-            for i, func in enumerate(feature_funcs):
-                if not callable(func):
-                    self.logger.warning(f"Item {i} in feature_funcs is not callable. Skipping.")
-                else: 
-                    callable_count += 1
+            if not callable(custom_func):
+                raise TypeError(f"Passed custom_func must be a callable function. Got {type(custom_func).__name__}")
+            try:
+                feature_df = custom_func(self.data)
 
-                try:
-                    # Apply function to the relevant data subset
-                    result = self.data[validated_bands_list].apply( func )
-                    #result = func(self.data, self.valid_columns)
-                    
-                    # Check if result is a DataFrame
-                    if isinstance(result, pd.DataFrame):
-                        if result.index.equals(self.data.index):
-                            feature_dfs.append(result)
-                            log_message(f"Applied custom feature function {func.__name__}: added {result.shape[1]} features.")
-                        else:
-                            self.logger.error(f"Function {func.__name__} returned DataFrame with mismatched index. Check the function and try again.")
-                            raise Exception(f"Function {func.__name__} returned DataFrame with mismatched index. Check the function and try again.")
+                # Ensure the returned object is a pandas df
+                if not isinstance(feature_df, pd.DataFrame):
+                    raise TypeError(f"Custom feature function must return a pd.DataFrame. Got  {type(feature_df)} instead")
 
-                    else:
-                        self.logger.error(f"Function {func.__name__} id not return a DataFrame. Got {type(feature_funcs).__name__} instead")
-                        raise TypeError(f"Function {func.__name__} id not return a DataFrame. Got {type(feature_funcs).__name__} instead")
+                # Validate that the returned length is the same
+                if len(feature_df) != len(self.data):
+                    raise ValueError(f"Length of feature dataframe ({len(feature_df)} does not match saved data ({len(self.data)}).")
 
-                except Exception as e:
-                   self.logger.error(f"Error applying function {func.__name__}: {str(e)}")
+                # Make sure that the indices match.
+                if not feature_df.index.equals(self.data.index):
+                    raise Exception(f"Function {custom_func.__name__} returned DataFrame with mismatched index. Check the function and try again.")
 
-                if callable_count == 0:
-                    raise TypeError("No callable feature functions passed.")
+                self.custom_feature_func = custom_func
+            # Handle other exceptions
+            except Exception as e:
+                   self.logger.error(f"Error applying custom function {custom_func.__name__}: {str(e)}")
+
         
         try:
-            self.features_df = pd.concat(feature_dfs, axis=1, join = 'outer')
-            log_message(f"Created feature dataframe with {self.features_df.shape[1]} columns "
-                       f"and {self.features_df.shape[0]} rows.")
-            
+            self.features_df = feature_df
+
+            if not silent:
+                log_message(f"Created feature dataframe with {self.features_df.shape[1]} columns "
+                           f"and {self.features_df.shape[0]} rows.")
+
+                log_message(f"Created features are: {list(self.features_df.columns)}")
             # Handle NaN values
             nan_count = self.features_df.isna().sum().sum()
+
             if nan_count > 0:
                 log_message(f"Warning: Feature dataframe contains {nan_count} NaN values.", "WARNING")
+                self.logger.warning(f"Warning: Feature dataframe contains {nan_count} NaN values.", "WARNING")
             
             return self.features_df
             
@@ -396,7 +403,7 @@ class Catalog:
             
             # Apply the transformation
             self.logger.info(f"Applying transformation to column '{column_name}'")
-            transformed_data = transform_func(column_data)
+            transformed_data = transform_func(column_data).rename(new_column_name)
             
             # Validate transformed data
             if transformed_data is None:
@@ -518,8 +525,37 @@ class Catalog:
     def get_length(self):
         return len(self.data)
 
-
     def _load_allowed_bands(self):
+            # If a custom band dictionary was not passed, we load from the default JSON configuration file.
+            if self.allowed_bands is None:
+                bands_file = 'agnboost/allowed_bands.json'
+                print(f"Current working directory: {os.getcwd()}")
+                print(f"Looking for bands file at: {os.path.join(os.getcwd(), bands_file)}")
+
+                try:
+                    if not os.path.exists(bands_file):
+                        log_message(f"Error: Bands file '{bands_file}' does not exist.", "ERROR")
+                        return
+                    
+                    with open(bands_file, 'r') as f:
+                        bands_data = json.load(f)
+                    
+                    # Remove metadata entry if present
+                    if "_metadata" in bands_data:
+                        metadata = bands_data.pop("_metadata")
+                        log_message(f"Loaded bands file metadata: {metadata.get('description', 'No description')}")
+                    
+                    self.allowed_bands = bands_data
+                    log_message(f"Loaded {len(self.allowed_bands)} allowed bands from {bands_file}")
+                    
+                except json.JSONDecodeError:
+                    log_message(f"Error: Invalid JSON format in bands file '{bands_file}'.", "ERROR")
+                except Exception as e:
+                    log_message(f"Error loading bands file: {str(e)}", "ERROR")
+            else:
+                raise ValueError(f"Allowed bands was passed manually as bands_dict, cannot override.")
+
+    def _load_allowed_bands_old(self):
         """
         Load allowed bands from the JSON configuration file.
         """
@@ -609,7 +645,7 @@ class Catalog:
         bool
             True if validation passes, False otherwise.
         """
-        if self.data is None or not self.allowed_bands:
+        if self.data is None or self.allowed_bands is None:
             return False
         
         # Find matching columns between data and allowed bands
@@ -623,14 +659,6 @@ class Catalog:
                     'wavelength': self.allowed_bands[column]['wavelength']
                 }
 
-        '''for column in self.data.columns:
-            if column in self.allowed_bands:
-                matching_columns.append(column)
-                # Store metadata for this valid column
-                self.valid_columns[column] = {
-                    'shorthand': self.allowed_bands[column]['shorthand'],
-                    'wavelength': self.allowed_bands[column]['wavelength']
-                }'''
         
         # Log the matching columns
         if matching_columns:
@@ -779,7 +807,7 @@ class Catalog:
             stats = self.data[numeric_cols].describe().T
             
             # Print statistics
-            print(f"{'Column':<30} {'Mean':<12} {'Std':<12} {'Min':<12} {'Max':<12}")
+            print(f"{'Column':<20} {'Mean':<12} {'Std':<12} {'Min':<12} {'Max':<12}")
             print("-"*80)
             
             for col in numeric_cols:
