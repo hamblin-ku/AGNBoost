@@ -20,7 +20,7 @@
 AGNBoost is a machine learning framework focused on efficiently identfying populations of candidates Active Galactic Nuclei (AGN) from photometric data. AGNBoost is built on [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), an extension of the well known XGBoost algorithm to distributional modeling. The framework comes with pre-trained models for AGN identification and photometric redshift estimation from JWST NIRCam+MIRI photometric data, trained on catalogs of mock galaxies from [CIGALE](https://cigale.lam.fr/).
 
 
-## ✨ Features
+## `Features`
 <ul>
   <li> Complete distirbutional modeling with XGBoostlss </li> 
   <li> Robust estimates of both model uncertainty and uncertainty and uncertainty due to photometric error</li> 
@@ -32,7 +32,7 @@ AGNBoost is a machine learning framework focused on efficiently identfying popul
   <li> Missing photometric data imputation with SGAIN </li> 
 </ul>
 
-## 🚀 Installation
+## `Installation`
 
 ### Prerequisites
 - Python 3.10 or later
@@ -53,7 +53,7 @@ conda activate agnboost
 pip install git+https://github.com/hamblin-ku/AGNBoost.git
 ```
 
-## 📖 Documentation
+## `Documentation`
 
 Complete documentation is available on GitHub Pages:
 
@@ -68,17 +68,43 @@ The documentation includes:
 <li>Training and Tuning AGNBoost models from scratch</li>
 </ul>
 
+
+## What's Next?
+
+<div class="grid cards" markdown>
+
+-   **Tutorials**
+
+    ---
+
+    Step-by-step guides covering everything from basic usage to advanced training pipelines.
+
+    [View Tutorials →](https://hamblin-ku.github.io/AGNBoost/tutorials/basic-usage/)
+
+-   **API Reference**
+
+    ---
+
+    Complete documentation of all classes, methods, and functions in AGNBoost.
+
+    [API Docs →](https://hamblin-ku.github.io/AGNBoost/api/)
+
+</div>
+
+---
+
+
 - **API Reference**: Complete documentation of all classes and methods
 
-## 🤝 Contributing
+## `Contributing`
 
 We welcome contributions! Please see our [Contributing Guide](https://kurthamblin.github.io/agnboost/contributing/) for details on how to get involved.
 
-## 📄 License
+## `License`
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## `Acknowledgments`
 
 - Built on [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/) for distributional modeling
 - Uses [SGAIN](https://github.com/dtneves/ICCS_2021) for photometric imputation
