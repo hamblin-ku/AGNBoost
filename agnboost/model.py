@@ -29,10 +29,6 @@ import matplotlib.pyplot as plt
 #from xgboostlss.model import XGBoostLSS
 
 
-
-# chagne this to take a list of feature names
-# take these from the created Catalog object
-# agnboost.py
 class AGNBoost:
     """
     A machine learning framework for simultaneous AGN identification and photometric redshift estimation.
