@@ -15,24 +15,24 @@ AGNBoost is a specialized Python framework designed for astronomers working with
 
 ## Core Features
 
-### 🔭 **Astronomy-Focused Data Management**
+### **Astronomy-Focused Data Management**
 - **Smart Catalog System**: Load and manage astronomical data from FITS files, CSV, or pandas DataFrames
 - **Band Configuration**: Flexible JSON-based configuration for photometric bands with metadata (wavelengths, shorthand names)
 - **Automatic Feature Engineering**: Built-in color calculations, magnitude transformations, and signal-to-noise filtering
 - **Data Validation**: Ensures data quality and compatibility across different datasets
 
-### 🚀 **Convenient Pipeline**
+### **Convenient Pipeline**
 - **Hyperparameter Optimization**: Intelligent tuning with custom parameter grids and early stopping
 - **Cross-Validation**: Robust model validation with stratified splitting for both classification and regression
 - **Model Persistence**: Comprehensive saving and loading with full metadata tracking
 
-### ⚡ **XGBoostLSS Integration**
+### **XGBoostLSS Integration**
 - **Distributional Modeling**: Go beyond point estimates with full probability distributions
 - **Custom Objectives**: Specialized loss functions for astronomical applications
 - **Efficient Training**: Optimized for large astronomical datasets with GPU acceleration support
 - **Uncertainty Quantification**: Robust uncertainty estimates for Astronomical analysis
 
-### 🛠 **Research-Ready Tools**
+### **Research-Ready Tools**
 - **Flexible Data Splitting**:  Train/validation/test splits with optional stratification
 - **Signal-to-Noise Filtering**: Built-in S/N cuts for photometric data quality control
 - **Transform Pipeline**: Easy-to-use data transformation and augmentation tools
