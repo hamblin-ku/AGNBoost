@@ -34,6 +34,56 @@ import matplotlib.pyplot as plt
 # take these from the created Catalog object
 # agnboost.py
 class AGNBoost:
+    """
+    A machine learning framework for simultaneous AGN identification and photometric redshift estimation.
+    
+    AGNBoost utilizes the XGBoostLSS algorithm to predict both the fraction of mid-IR 
+    3-30 μm emission attributable to an AGN power law (fracAGN) and photometric redshift 
+    from JWST NIRCam and MIRI photometry. The framework analyzes 121 input features 
+    derived from multi-band infrared observations, including original magnitudes, color 
+    indices, and their squared values to enhance AGN discrimination. The computational 
+    efficiency and scalability make AGNBoost well-suited for large-scale JWST surveys 
+    requiring rapid AGN identification and redshift estimation.
+    
+    Attributes:
+        models_dir (str): Directory path for storing/loading trained models.
+        models (dict): Dictionary containing trained XGBoostLSS models for each target variable.
+        model_info (dict): Dictionary storing metadata and performance information for each model.
+        feature_names (list): Feature (column) names used for model input.
+        target_variables (dict): Dictionary mapping target variable names to their probability distributions.
+        logger (logging.Logger): Logger instance for this AGNBoost object.
+        ALLOWED_DISTS (list): Class-level list of allowed probability distributions ['ZABeta', 'Beta'].
+    
+    Examples:
+        Basic usage with default settings:
+        
+        ```python
+        from agnboost import AGNBoost
+        
+        # Initialize with defaults
+        agnboost = AGNBoost()
+        
+        # Train models (assuming you have training data)
+        agnboost.train(training_data)
+        
+        # Make predictions
+        predictions = agnboost.predict(test_data)
+        ```
+        
+        Initialize with custom target variables:
+        
+        ```python
+        targets = {'fagn': 'ZABeta', 'redshift': 'Beta'}
+        agnboost = AGNBoost(target_variables=targets)
+        ```
+        
+        Initialize with custom features:
+        
+        ```python
+        features = ['F115W', 'F150W', 'F200W', 'F277W', 'F770W', 'F1000W', 'F1130W']
+        agnboost = AGNBoost(feature_names=features)
+        ```
+    """
     # Class-level logger
     logger = logging.getLogger('AGNBoost.AGNBoost')
 
@@ -42,16 +92,34 @@ class AGNBoost:
     
     def __init__(self, feature_names=None, target_variables=None, logger=None):
         """
-        Initialize the AGNBoost object.
+        Initialize the AGNBoost object for AGN identification and redshift estimation.
         
-        Parameters:
-        -----------
-        feature_names : list or None
-            Feature (column) names to use for model input.
-        model_names : list or None
-            Names of models to load/train. If None, uses default models.
-        logger : logging.Logger, default=None
-            Custom logger to use. If None, uses the class logger.
+        Args:
+            feature_names (list, optional): Feature (column) names to use for model input.
+                If None, default features will be used based on JWST NIRCam and MIRI bands.
+                Defaults to None.
+            target_variables (dict, optional): Dictionary mapping target variable names to 
+                their probability distributions. Keys should be target names (e.g., 'fagn', 
+                'z_transformed') and values should be distribution types from ALLOWED_DISTS.
+                If None, defaults to {'fagn': 'ZABeta', 'z_transformed': 'Beta'}.
+            logger (logging.Logger, optional): Custom logger instance to use for logging.
+                If None, uses the class-level logger. Defaults to None.
+                
+        Raises:
+            TypeError: If target_variables is not a dictionary.
+            ValueError: If target_variables contains invalid distribution values.
+            
+        Examples:
+            Initialize with default settings:
+            ```python
+            agnboost = AGNBoost()
+            ```
+            
+            Initialize with custom target variables:
+            ```python
+            targets = {'fagn': 'ZABeta', 'redshift': 'Beta'}
+            agnboost = AGNBoost(target_variables=targets)
+            ```
         """
         # Set up instance logger (use provided logger or class logger)
         self.logger = logger or self.__class__.logger
@@ -62,7 +130,6 @@ class AGNBoost:
         
         # Set attributes with provided or default values
         self.feature_names = feature_names
-
 
         # Validate target_variables if provided
         if target_variables is not None:
@@ -91,37 +158,41 @@ class AGNBoost:
         self.model_info = {model_name: {} for model_name in self.models.keys()}
 
     def get_models(self):
-        return self.target_variables
+                """
+        Get the feature dataframe, creating it if it doesn't exist.
+        
+        Returns:
+            dict: Dictionary containing all models.
+                Model values will be None if a model has not been loaded or trained.
+        """
         return self.models
 
     def tune_model(self, model_name, param_grid, dtune, split_type = 'train', max_minutes=10, nfold=2, early_stopping_rounds=100):
         """
-        Tune hyperparameters for the specified model.
+        Tune hyperparameters for the specified model with Optuna.
         
-        Parameters:
-        -----------
-        model_name : str
-            Name of the model to tune. Must be in self.model_names.
-        param_grid : dict
-            Dictionary of hyperparameter ranges to search.
-            Example: {'max_depth': [3, 5, 7], 'learning_rate': [0.01, 0.1, 0.3]}
-        dtune : xgboost.DMatrix or pandas.DataFrame or Catalog
-            Data to use for tuning. If DataFrame or Catalog, will be converted to DMatrix.
-        max_minutes : int, default=10
-            Maximum duration for tuning in minutes.
-        nfold : int, default=2
-            Number of cross-validation folds.
-        early_stopping_rounds : int, default=100
-            Number of rounds without improvement before early stopping.
+        Args:
+            model_name (str): Name of the model to tune. 
+                Must be in self.model_names.
+            param_grid (dict): Dictionary of hyperparameter ranges to search.
+                Example: 
+                ```
+                param_grid = {
+                    'max_depth': ["int", {"low": 1,      "high": 10,    "log": False}], 
+                    'eta': ["float", {"low": 1e-5,   "high": 1,     "log": True}]
+                }
+                ```
+            dtune (xgboost.DMatrix or pd.DataFrame or Catalog): Data to use for tuning. 
+                If DataFrame or Catalog, will be converted to DMatrix.
+            max_minutes (int, default=10): Maximum duration for tuning in minutes.
+            nfold (int, default=2): Number of cross-validation folds.
+            early_stopping_rounds (int, default=100): Number of rounds without improvement before early stopping.
             
         Returns:
-        --------
-        dict
-            Dictionary containing best parameters and tuning metrics.
+            dict or None: Dictionary containing best parameters and tuning metrics. 
+                Returns None if error is encountered.
         """
-        #import xgboost as xgb
-        #from time import time
-        
+
         # Verify model name is valid
         if model_name not in self.models.keys():
             self.logger.error(f"Invalid model name: {model_name}. Must be one of {self.models.keys()}")
@@ -201,6 +272,53 @@ class AGNBoost:
     # Retrive XGBoostLSS dist object
     @staticmethod
     def retrieve_dist(dist_name, response_fn = None, stab = None, loss_fn = None, params = None):
+        """
+        Retrieve a configured XGBoostLSS model.
+        
+        Creates and returns an XGBoostLSS object with the specified probability distribution
+        and configuration parameters. 
+        
+        Args:
+            dist_name (str): Name of the probability distribution to use. Must be one of
+                the values in ALLOWED_DISTS ['ZABeta', 'Beta'].
+            response_fn (str, optional): Response function for the distribution parameters.
+                Common options include 'exp', 'softplus'. If None and params is provided,
+                uses value from params. Defaults to None.
+            stab (str, optional): Stabilization method for gradients and Hessians to improve
+                model convergence. Options include 'None', 'L2', 'MAD'. If None and params
+                is provided, uses value from params. Defaults to None.
+            loss_fn (str, optional): Loss function to use for training. Typically 'nll' 
+                (negative log-likelihood). If None and params is provided, uses value from
+                params. Defaults to None.
+            params (dict, optional): Dictionary containing distribution parameters. If provided,
+                overrides individual parameter arguments. Expected keys: 'stabilization',
+                'response_fn', 'loss_fn'. Defaults to None.
+                
+        Returns:
+            XGBoostLSS: Configured XGBoostLSS model with the specified distribution, or None
+                if an error occurs during object creation.
+                
+        Raises:
+            Exception: If there's an error creating the XGBoostLSS object, logs the error
+                and returns None.
+                
+        Examples:
+            Create a ZABeta distribution with default parameters:
+            ```python
+            dist_obj = AGNBoost.retrieve_dist("ZABeta")
+            ```
+            
+            Create a Beta distribution with custom parameters:
+            ```python
+            dist_obj = AGNBoost.retrieve_dist("Beta", response_fn="softplus", stab="L2")
+            ```
+            
+            Create using a parameters dictionary:
+            ```python
+            params = {'response_fn': 'softplus', 'stabilization': 'None', 'loss_fn': 'nll'}
+            dist_obj = AGNBoost.retrieve_dist("ZABeta", params=params)
+            ```
+        """
         if params is not None:
             stab = params.get('stabilization', "None")
             response_fn = params.get('response_fn', "exp")
@@ -228,6 +346,41 @@ class AGNBoost:
                           num_boost_round, 
                           early_stopping_rounds, 
                           seed):
+        """
+        Custom objective function for Optuna hyperparameter optimization.
+        
+        Defines the optimization objective for tuning hyperparameters using Optuna.
+        The function constructs hyperparameter combinations based on the provided search space,
+        trains models using cross-validation, and returns the validation loss for optimization.
+        Supports automatic pruning of unpromising trials and handles various parameter types
+        including categorical, float, and integer parameters.
+        
+        Args:
+            trial (optuna.Trial): Optuna trial object used for suggesting hyperparameter values
+                and managing the optimization process.
+            hp_dict (dict): Dictionary defining the hyperparameter search space. Each key is a
+                parameter name, and values are tuples of (param_type, param_constraints) where
+                param_type is one of ['categorical', 'float', 'int', 'none'] and param_constraints
+                define the search range or options.
+            dist (str): Name of the probability distribution to use. Must be one of the values
+                in ALLOWED_DISTS ['ZABeta', 'Beta'].
+            d_train (xgboost.DMatrix): Training data in XGBoost DMatrix format for cross-validation.
+            nfold (int): Number of folds for cross-validation during hyperparameter optimization.
+            num_boost_round (int): Maximum number of boosting rounds to train.
+            early_stopping_rounds (int): Number of rounds with no improvement after which training
+                will be stopped early.
+            seed (int): Random seed for reproducible results across trials.
+                
+        Returns:
+            float: The minimum cross-validation test score (loss) achieved by the model with
+                the suggested hyperparameters. Lower values indicate better performance.
+            
+        Notes:
+            The function automatically handles special XGBoostLSS parameters ('stabilization',
+            'response_fn', 'loss_fn') separately from standard XGBoost parameters to avoid
+            warnings during model training. It also implements Optuna's XGBoost pruning callback
+            to terminate unpromising trials early, improving optimization efficiency.
+        """
 
         hyper_params = {}
         for param_name, param_value in hp_dict.items():
@@ -313,6 +466,52 @@ class AGNBoost:
                             seed = 123,
                             metrics = None
                           ):
+        """
+        Perform hyperparameter optimization for AGNBoost models using Optuna. This offers the same 
+        functionality of XGBoostLSS's built-in hyperparameter tuning, but also allows the tuning of 
+        distributional parameters.
+        
+        Automatically selects the optimal hyperparameter tuning strategy based on the search
+        space characteristics. Uses grid search for purely categorical parameters and Bayesian
+        optimization (TPE) for mixed or continuous parameter spaces. Implements pruning to
+        terminate unpromising trials early and provides comprehensive optimization results.
+        
+        Args:
+            hp_dict (dict): Dictionary defining the hyperparameter search space. Each key is a
+                parameter name, and values are tuples of (param_type, param_constraints) where
+                param_type is one of ['categorical', 'float', 'int', 'none'].
+            dist (str): Name of the probability distribution to use. Must be one of the values
+                in ALLOWED_DISTS ['ZABeta', 'Beta'].
+            dtrain (xgboost.DMatrix): Training data in XGBoost DMatrix format for cross-validation.
+            n_trials (int, optional): Maximum number of optimization trials to run. If None and
+                all parameters are categorical, uses grid search to try all combinations.
+                Defaults to None.
+            max_minutes (int, optional): Maximum time limit for optimization in minutes. 
+                Optimization will stop after this duration regardless of n_trials.
+                Defaults to 10.
+            num_boost_round (int, optional): Maximum number of boosting rounds for each trial.
+                Defaults to 500.
+            nfold (int, optional): Number of folds for cross-validation during optimization.
+                Defaults to 10.
+            early_stopping_rounds (int, optional): Number of rounds with no improvement after
+                which training will be stopped early. Defaults to 20.
+            seed (int, optional): Random seed for reproducible optimization results.
+                Defaults to 123.
+            metrics (optional): Additional metrics to track during optimization. Currently unused.
+                Defaults to None.
+                
+        Returns:
+            optuna.Study: Completed Optuna study object containing optimization results,
+                including best parameters, trial history, and performance metrics.
+            
+        Notes:
+            The function automatically determines the optimization strategy: if all parameters
+            are categorical, it uses grid search to exhaustively try all combinations. Otherwise,
+            it uses Tree-structured Parzen Estimator (TPE) for Bayesian optimization. Median
+            pruning is applied to terminate unpromising trials early, improving efficiency.
+            The optimal number of boosting rounds is automatically determined and included
+            in the returned results.
+        """
 
         all_cat = True
         for entry in hp_dict.values():
@@ -373,6 +572,17 @@ class AGNBoost:
 
     @staticmethod
     def plot_eval(evals, catalog, best_iter = None):
+        """
+        Plot the training and validation loss curves.
+        
+        Args:
+            evals (dict): Dict of model evaluations.
+            catalog (Catalog instance): Catalog object used for training.
+                Used to scale the training/validation curves according to the training/validation sizes.
+
+        Returns:
+            matplotlib.pyplot.axis: The figure axis. 
+        """
         train_len = len(catalog.train_indices)
         val_len = len(catalog.val_indices)
 
@@ -397,40 +607,35 @@ class AGNBoost:
                     num_boost_round=1000, early_stopping_rounds=None, 
                     verbose_eval=False, custom_objective=None, custom_metric=None):
         """
-        Train an XGBoost model with the given parameters.
+        Train an AGNBoost model with the given parameters.
         
-        Parameters:
-        -----------
-        model_name : str
-            Name of the model to train. Must be in self.model_names.
-        dtrain : xgboost.DMatrix or Catalog
-            Training data. If a Catalog, will create a DMatrix using the specified split.
-        dval : xgboost.DMatrix, bool, or None, default=None
-            Validation data. If a DMatrix, use directly.
-            If True and dtrain is a Catalog, create a validation DMatrix from the Catalog.
-            If False or None, no validation data is used.
-        params : dict or None, default=None
-            Parameters for XGBoost. If None, uses tuned_params from model_info if available,
-            otherwise uses default parameters.
-        split_type : str, default='train'
-            Which data split to use if dtrain is a Catalog. Options: 'train', 'val', 'test'.
-        num_boost_round : int, default=1000
-            Number of boosting rounds.
-        early_stopping_rounds : int or None, default=50
-            Number of rounds without improvement before early stopping.
-            If None, no early stopping is used.
-        verbose_eval : int or bool, default=100
-            Controls XGBoost's logging frequency. If True, prints every round.
-            If int, prints every verbose_eval rounds. If False, no logging.
-        custom_objective : callable or None, default=None
-            Custom objective function for XGBoost.
-        custom_metric : callable or None, default=None
-            Custom evaluation metric for XGBoost.
+        Args:
+            model_name (str): Name of the model to train. 
+                Must be in self.model_names.
+            dtrain (xgboost.DMatrix or Catalog): Training data. 
+                If a Catalog, will create a DMatrix using the specified split.
+            dval (xgboost.DMatrix, bool, default=None): Validation data. 
+                If a DMatrix, use directly.
+                If True and dtrain is a Catalog, create a validation DMatrix from the Catalog.
+                If False or None, no validation data is used.
+            params (dict, default=None): Dict of model hyperparameters to use
+                If None, uses saved tuned_params from model_info if available,
+                otherwise uses default parameters.
+            split_type (str, default='train'): Which data split to use if dtrain is a Catalog. 
+                Options: 'train', 'val', 'test'.
+            num_boost_round (int, default=1000): Number of boosting rounds.
+            early_stopping_rounds (int or None, default=50): Number of rounds without improvement before early stopping.
+                If None, no early stopping is used.
+            verbose_eval (int or bool, default=100): Controls XGBoost's logging frequency. 
+                If True, prints every round.
+                If int, prints every verbose_eval rounds. 
+                If False, no logging.
+            custom_objective (callable, default=None):  Custom objective function for XGBoost.
+            custom_metric (callable, default=None): Custom evaluation metric for XGBoost.
             
         Returns:
-        --------
-        tuple
-            (trained_model, training_results)
+            tuple: (trained_model, training_results)
+
         """
         
         # Verify model name is valid
@@ -589,17 +794,40 @@ class AGNBoost:
     
     def _save_model(self, model_name, file_name = None):
         """
-        Save a trained model and its metadata to disk.
+        Save a trained model and its metadata to disk using pickle serialization.
         
-        Parameters:
-        -----------
-        model_name : str
-            Name of the model to save.
-            
+        Serializes the trained XGBoostLSS model along with comprehensive metadata including
+        training parameters, tuning results, feature information, and timestamps. The model
+        is saved as a pickle file with automatic timestamp-based naming or a custom filename.
+        Creates the necessary directory structure if it doesn't exist.
+        
+        Args:
+            model_name (str): Name of the model to save. Must be a key in the models dictionary
+                and correspond to a trained model (not None).
+            file_name (str, optional): Custom filename for the saved model. If None, generates
+                an automatic filename using current timestamp and model name. The '.pkl' 
+                extension is automatically added if not present. Defaults to None.
+                
         Returns:
-        --------
-        bool
-            True if the model was saved successfully, False otherwise.
+            bool: True if the model was saved successfully, False if an error occurred during
+                the save process or if the model is invalid.
+                
+        Raises:
+            Exception: Logs any exceptions that occur during the pickle serialization or
+                file writing process and returns False.
+                    
+        Notes:
+            The saved metadata includes:
+            - Core model object and configuration
+            - Feature names used for training
+            - Training parameters and performance metrics
+            - Hyperparameter tuning results (if available)
+            - Target variable distribution information
+            - Version and timestamp information
+            
+            The method creates a subdirectory structure based on the AGNBOOST_MODELS_DIR
+            environment variable or defaults to 'models/' directory. All necessary parent
+            directories are created automatically if they don't exist.
         """
         # Verify model name is valid
         if model_name not in self.models.keys():
@@ -681,6 +909,15 @@ class AGNBoost:
 
     @staticmethod
     def get_available_files(path):
+        """
+        Get all available files in the provided path.
+        
+        Args:
+            path (str): Path to the directory to check.
+
+        Returns:
+            list or None: list of file paths, or None if the path does not exist.
+        """
         # Ensure that the sub directory for this model exists. If it does not, return None
         if os.path.exists( path ) is False:
             return None
@@ -691,9 +928,21 @@ class AGNBoost:
 
 
     def get_available_models(self, target_name = None):
+        """
+        Get all available models. Will either get all available models for the provided target,
+        or will return a list of the avilable model types (e.g., fracAGN, redshift, etc.).
+        
+        Args:
+            target_name (str, default=None): name of model type to check.
+        
+        Raises:
+            FileNotFoundError: If the directory for the passed target does not yet exist. 
+
+        Returns:
+            list: list of available models or model types.
+        """
         if target_name is not None:
             model_sub_dir = os.environ.get('AGNBOOST_MODELS_DIR', f"models/{target_name}")
-            print(model_sub_dir)
             if not os.path.exists(model_sub_dir):
                 raise FileNotFoundError(f'model sub directory for model {target_name} does not exist. Available options are {self.get_available_models()}')
 
@@ -705,20 +954,86 @@ class AGNBoost:
 
     def load_model(self, model_name, file_name = None, overwrite = False):
         """
-        Load pre-trained models from disk.
+        Load a pre-trained model and its metadata from into the AGNBoost instance.
+        
+        Deserializes a previously saved XGBoostLSS model from pickle or gzip format and
+        restores it to the AGNBoost instance. Performs comprehensive validation including
+        feature compatibility checks, model data structure verification, and metadata
+        restoration. Supports automatic selection of the most recent model file if no
+        specific filename is provided.
         
         Args:
-
-            file_name (str, optional): 
-                Name(s) of models to load. If None, loads all models in self.model_names.
-            overwrite (boo, optional): Whether to overwite already laoded model in AGNBoost instance.
-                Defaults to False.
-
-        Raises:    
-           FileNotFoundError: If the sub-directory for this model type does not exist.
-
+            model_name (str): Name of the target variable model to load. Must correspond
+                to a valid model type (e.g., 'fagn', 'z_transformed').
+            file_name (str, optional): Specific filename of the model to load. If None,
+                automatically selects the most recently modified file in the model
+                subdirectory. Can include or omit the '.pkl' extension. Supports both
+                '.pkl' and '.gz' formats. Defaults to None.
+            overwrite (bool, optional): Whether to overwrite an already loaded model
+                in the AGNBoost instance. If False and a model is already loaded,
+                the operation will fail. Defaults to False.
+                
         Returns:
-            bool: True if requested model was loaded successfully, False otherwise.
+            bool: True if the model was loaded successfully, False if an error occurred
+                during loading, validation, or if overwrite constraints were violated.
+                
+        Raises:
+            FileNotFoundError: If the model subdirectory doesn't exist or no model files
+                are found in the expected directory.
+            pickle.UnpicklingError: If the file is corrupted or not a valid pickle file.
+            Exception: For other unexpected errors during the loading process.
+                
+        Examples:
+            Load the most recent model file automatically:
+            ```python
+            # Loads the most recently modified model file for 'fagn'
+            success = agnboost.load_model('fagn')
+            ```
+            
+            Load a specific model file:
+            ```python
+            # Load a specific model file
+            success = agnboost.load_model('z_transformed', 'my_redshift_model.pkl')
+            ```
+            
+            Load with filename without extension:
+            ```python
+            # The .pkl extension is automatically added
+            success = agnboost.load_model('fagn', 'final_agn_model')
+            ```
+            
+            Overwrite an existing loaded model:
+            ```python
+            # Replace currently loaded model with a different one
+            success = agnboost.load_model('fagn', 'newer_model.pkl', overwrite=True)
+            ```
+            
+            Load a compressed model:
+            ```python
+            # Automatically handles gzip compressed files
+            success = agnboost.load_model('z_transformed', 'compressed_model.pkl.gz')
+            ```
+            
+        Notes:
+            The method performs several validation steps:
+            - Verifies input parameter types and values
+            - Checks model subdirectory existence  
+            - Validates loaded model data structure
+            - Compares feature compatibility between saved and current models
+            - Ensures model names match expected targets
+            
+            Feature compatibility is strictly enforced - the loaded model must have been
+            trained with identical features to the current AGNBoost instance. Any mismatch
+            will result in loading failure with detailed logging of differences.
+            
+            The method supports both pickle (.pkl) and gzip-compressed (.pkl.gz) formats
+            automatically based on file extension. Model metadata including training
+            parameters, performance metrics, and timestamps are restored along with the
+            model object.
+            
+            If no specific filename is provided, the method automatically selects the
+            most recently modified file in the model subdirectory, making it easy to
+            load the latest trained model.
         """
 
         # Verify model name is valid
@@ -850,7 +1165,27 @@ class AGNBoost:
         return True
 
     def dmatrix_validate(self, data, split_use = None):
-
+        """
+        Validate and convert input data to XGBoost DMatrix format.
+        
+        Handles multiple input data formats and converts them to the standardized DMatrix
+        format required by XGBoost models. Supports Catalog objects with optional
+        data split selection, and validates existing DMatrix objects. Performs feature
+        extraction and handles missing value encoding for optimal XGBoost compatibility.
+        
+        Args:
+            data (Catalog or xgboost.DMatrix): Input data to validate and convert.
+                If Catalog, extracts features and optionally applies data splitting.
+                If DMatrix, validates and passes through unchanged.
+            split_use (str, optional): Specific data split to use when data is a Catalog.
+                Common values include 'train', 'val', 'test', 'trainval'. If None and
+                data is a Catalog, uses the entire feature dataset. Ignored if data
+                is already a DMatrix. Defaults to None.
+                
+        Returns:
+            xgboost.DMatrix or None: Validated DMatrix object ready for XGBoost operations,
+                or None if validation fails or an error occurs during conversion.
+        """
         # If it is a catalog and a split is specified, just use that split
         if isinstance(data, Catalog):  # It's a Catalog
             self.logger.warning(f"Catalog object passsed. Taking the features and labels of the {split_use} set stored in the passed Catalog.")
@@ -888,30 +1223,73 @@ class AGNBoost:
 
     def predict(self, data, model_name, split_use = None, seed = 123):
         """
-        Make predictions using trained models.
+        Generate predictions using an internal trained XGBoostLSS model for the specified target variable.
         
-        Parameters:
-        -----------
-        data : DataFrame, Catalog, or dict
-            Data to make predictions on. Can be a pandas DataFrame, a Catalog object,
-            or a dict mapping model names to their specific data.
-        model_name : str or None
-            If provided, use only this model. Otherwise, use all available models.
-            
+        
+        Args:
+            data (pandas.DataFrame, Catalog, or xgboost.DMatrix): Input data for prediction.
+                If Catalog, can optionally specify which data split to use. If DataFrame,
+                must contain all required features. If DMatrix, used directly for prediction.
+            model_name (str): Name of the specific model to use for predictions. Must
+                correspond to a trained model in the AGNBoost instance (e.g., 'fagn', 
+                'z_transformed').
+            split_use (str, optional): Specific data split to use when data is a Catalog
+                object. Common values include 'train', 'val', 'test', 'trainval'. Ignored
+                if data is not a Catalog. Defaults to None.
+            seed (int, optional): Random seed for reproducible prediction results. Ensures
+                consistent outputs across multiple prediction runs with identical inputs.
+                Defaults to 123.
+                
         Returns:
-        --------
-        dict
-            Dictionary of predictions for each model.
+            numpy.ndarray or None: Array of prediction expectation values for the target
+                variable, or None if prediction fails due to data validation errors,
+                model unavailability, or feature compatibility issues.
+                
+        Examples:
+            Predict AGN fractions on test data:
+            ```python
+            # Using a Catalog with test split
+            fagn_predictions = agnboost.predict(catalog, 'fagn', split_use='test')
+            ```
+            
+            Predict redshifts on new data:
+            ```python
+            # Using a pandas DataFrame
+            z_predictions = agnboost.predict(new_data_df, 'z_transformed')
+            ```
+            
+            Predict on validation set with custom seed:
+            ```python
+            # Reproducible predictions on validation data
+            predictions = agnboost.predict(catalog, 'fagn', split_use='val', seed=42)
+            ```
+            
+            Handle prediction errors gracefully:
+            ```python
+            predictions = agnboost.predict(data, 'fagn')
+            if predictions is not None:
+                print(f"Generated {len(predictions)} predictions")
+            else:
+                print("Prediction failed - check data and model status")
+            ```
+            
+        Notes:
+            **Prediction Type**: Returns expectation values (means) of the predicted
+            probability distributions rather than raw distribution parameters.
+            
+            When using the pre-trained models:
+                For AGN models, predictions typically represent fracAGN values (0-1 range).
+                For redshift models, predictions represent transformed redshift values that
+                may require inverse transformation to obtain physical redshift units.
         """
 
         # Process the passed data data
-
         dmatrix = self.dmatrix_validate(data = data, split_use = split_use)
         if dmatrix is None:
             return None
 
         # Load the model + validate the features
-        xgblss_m = self.get_model(model_name)
+        xgblss_m = self._get_model(model_name)
 
         pred_mu = None
         if xgblss_m is not None:
@@ -926,7 +1304,43 @@ class AGNBoost:
         return pred_mu
 
 
-    def get_model( self, model_name ):
+    def _get_model( self, model_name ):
+        """
+        Retrieve a trained model in the AGNBoost instance.
+        
+        Safely retrieves a trained XGBoostLSS model from the AGNBoost instance while performing
+        thorough validation checks. Ensures the requested model exists, has been properly trained
+        or loaded, and maintains feature compatibility with the current AGNBoost configuration.
+        Provides detailed logging of any compatibility issues or access problems.
+        
+        Args:
+            model_name (str): Name of the model to retrieve. Must be a key in the models
+                dictionary and correspond to a valid target variable (e.g., 'fagn', 
+                'z_transformed').
+                
+        Returns:
+            XGBoostLSS or None: The requested trained model object ready for prediction
+                or evaluation operations, or None if the model is unavailable, untrained,
+                or has feature compatibility issues.
+                
+        Examples:
+            Retrieve a trained fracAGN model:
+            ```python
+            fagn_model = agnboost._get_model('fagn')
+            if fagn_model is not None:
+                # Model is ready for predictions
+                predictions = fagn_model.predict(test_data)
+            ```
+            
+        Notes:
+            The method performs several critical validation steps:
+            
+            **Model Existence**: Verifies the model_name exists in the AGNBoost instance's
+            model registry. Invalid model names result in detailed error logging.
+            
+            **Training Status**: Confirms the model has been trained or loaded (not None).
+            Untrained models cannot be retrieved for use.      
+        """
         if model_name in self.models.keys():
             if self.models[model_name] is not None:
                     try:
@@ -968,7 +1382,37 @@ class AGNBoost:
         return None
 
     def prediction_uncertainty( self, uncertainty_type, catalog, model_name, split_use = None, seed = 123, M = 10, num_permutation = 100):
-
+        """
+        Estimate total predictive uncertainty  for a trained model. Will return the model uncertainty, 
+        uncertainty due to photometric error, or the combination of the two depending on the value of 
+        'uncertainty_type.' This allows for robust uncertainty quantification for AGNBoost estimates,
+        accounting for all types of uncertainty.
+        
+        Args:
+            uncertainty_type (str): The type of uncertainty to estimate.
+                Allowed values are: 'all', 'photometric', 'model'
+            catalog (Catalog instance): the Catalog object to take data from.
+            model_name (str): Name of the model to retrieve. Must be a key in the models
+                dictionary and correspond to a valid target variable (e.g., 'fagn', 
+                'z_transformed').
+            split_use (str, default=None): Specific data split to use when data is a Catalog
+                object. Common values include 'train', 'val', 'test', 'trainval'. Ignored
+                if data is not a Catalog. Defaults to None.
+            M (int, default=10): Number of models in the virtual ensemble. Controls the
+                granularity of epistemic uncertainty estimation. Higher values provide
+                more detailed uncertainty estimates but increase computation time.
+                Defaults to 1.
+            seed (int, default = 123): Random seed for reproducible uncertainty estimates.
+                Ensures consistent results across multiple runs with identical inputs.
+                Defaults to 123.
+            num_permutation (int, default=100): Number of Monte Carlo iterations to run 
+                if calculating the uncertainty due to photometric uncertainty.
+                
+        Returns:
+            np.ndarray or None: Array of total uncertainty estimates for each input sample.
+                For single samples, returns a scalar value. For multiple samples,
+                returns an array with one uncertainty value per input.
+        """
         # Valdiate passed uncertainty type
         uncertainty_types_list = ['all', 'photometric', 'model']
         if isinstance(uncertainty_type, str):
@@ -978,8 +1422,6 @@ class AGNBoost:
         else:
             #self.logger.error(f"uncertainty_type must be a str, got {type(target_variables).__name__}")
             raise TypeError(f"target_variables must be a dictionary, got {type(target_variables).__name__}")
-
-
 
 
         # Check that passed catalog is a Catalog object
@@ -992,7 +1434,7 @@ class AGNBoost:
             return None
 
         # Load the saved model + validate the features
-        xgblss_m = self.get_model(model_name)
+        xgblss_m = self._get_model(model_name)
 
         match uncertainty_type:
             case 'model':
@@ -1042,21 +1484,36 @@ class AGNBoost:
                      seed = 123
                      ) -> np.array:
         """
-        Function that predicts from the trained model.
-
-        Arguments
-        ---------
-        model : xgblsslib.model
-            Trained model.
-        data : xgb.DMatrix
-            Data to predict frmodel: xgblsslib.modelom.
-        M   : int
-            Number of desired models in virtual ensemble.
-
-        Returns
-        -------
-        pred : pd.DataFrame
-            Predictions.
+        Estimate total predictive uncertainty by decomposing epistemic and aleatoric components.
+        
+        Implements uncertainty quantification for XGBoostLSS models using a virtual ensemble
+        approach based on boosting iteration truncation. Creates multiple model snapshots
+        at different training stages to approximate epistemic (model) uncertainty, while
+        extracting aleatoric (data) uncertainty from the predicted distributions. Returns
+        the total uncertainty as the combination of both components.
+        
+        Args:
+            model (xgboostlss_model): Trained XGBoostLSS model object containing the
+                booster, distribution, and starting values needed for prediction.
+            data (xgb.DMatrix): Input data in XGBoost DMatrix format for which uncertainty
+                estimates will be computed. Can contain single or multiple samples.
+            dist_name (str): Name of the probability distribution used by the model.
+                Must match one of the supported distribution types (e.g., 'ZABeta', 'Beta').
+            best_iter (int): Best iteration number from model training, typically obtained
+                from early stopping or validation-based selection. Used as the reference
+                point for creating the virtual ensemble.
+            M (int, optional): Number of models in the virtual ensemble. Controls the
+                granularity of epistemic uncertainty estimation. Higher values provide
+                more detailed uncertainty estimates but increase computation time.
+                Defaults to 1.
+            seed (int, optional): Random seed for reproducible uncertainty estimates.
+                Ensures consistent results across multiple runs with identical inputs.
+                Defaults to 123.
+                
+        Returns:
+            np.ndarray: Array of total uncertainty estimates for each input sample.
+                For single samples, returns a scalar value. For multiple samples,
+                returns an array with one uncertainty value per input.
         """
         def predict_dist_trunc(dist: DistributionClass,
                      booster: xgb.Booster,
@@ -1064,24 +1521,32 @@ class AGNBoost:
                      data: DMatrix,
                      iteration_range: Tuple[int, int] = (0,0),
                      ) -> pd.DataFrame:
-            """
-            Function that predicts from therag trained model.
-
-            Arguments
-            ---------
-            booster : xgb.Boosterdist
-                Trained model.
-            start_values : np.ndarray
-                Starting values for each distributional parameter.
-            data : xgb.DMatrix
-                Data to predict from.
-            iteration_range: Tuple[int,int]
-                Which layer of trees to use for prediction in xgb.booster.predict
-
-            Returns
-            -------
-            pred : pd.DataFrame
-                Predictions.xgboost model get numeber of boostin rounds
+           """
+            Generate predictions from a truncated XGBoostLSS model. This serves as a way to 
+            approximate the epistemci model uncertainty (i.e., uncertainty due to a lack of model
+            knowledge.)
+            
+            Args:
+                dist (DistributionClass): Distribution object defining the probability
+                    distribution type and parameter structure. Contains parameter
+                    definitions and response functions for transformation.
+                booster (xgb.Booster): Trained XGBoost booster object containing the
+                    learned model parameters and tree structure for prediction.
+                start_values (np.ndarray): Starting values for each distributional
+                    parameter. Used as base margins to initialize the prediction
+                    process. Shape should match the number of distribution parameters.
+                data (xgb.DMatrix): Input data in XGBoost DMatrix format for which
+                    predictions will be generated. Must contain all required features.
+                iteration_range (Tuple[int, int], optional): Range of boosting iterations
+                    to use for prediction. Allows using specific tree layers or early
+                    stopping points. Format is (start, end) where (0,0) uses all iterations.
+                    Defaults to (0,0).
+                    
+            Returns:
+                pd.DataFrame: DataFrame containing transformed distribution parameters
+                    with columns corresponding to parameter names from the distribution's
+                    parameter dictionary. Each row represents predicted parameters for
+                    one input sample.
             """
             # Set base_margin as starting point for each distributional parameter. Requires base_score=0 in parameters.
             base_margin_test = (np.ones(shape=(data.num_row(), 1))) * start_values
@@ -1142,58 +1607,32 @@ class AGNBoost:
         return np.sqrt(epistemic_uncert**2 + aleatoric_uncert**2)
 
     @staticmethod
-    def predict_dist_trunc(dist: DistributionClass,
-                     booster: xgb.Booster,
-                     start_values: np.ndarray,
-                     data: DMatrix,
-                     iteration_range: Tuple[int, int] = (0,0),
-                     ) -> pd.DataFrame:
-        """
-        Function that predicts from therag trained model.
-
-        Arguments
-        ---------
-        booster : xgb.Boosterdist
-            Trained model.
-        start_values : np.ndarray
-            Starting values for each distributional parameter.
-        data : xgb.DMatrix
-            Data to predict from.
-        iteration_range: Tuple[int,int]
-            Which layer of trees to use for prediction in xgb.booster.predict
-
-        Returns
-        -------
-        pred : pd.DataFrame
-            Predictions.xgboost model get numeber of boostin rounds
-        """
-        # Set base_margin as starting point for each distributional parameter. Requires base_score=0 in parameters.
-        base_margin_test = (np.ones(shape=(data.num_row(), 1))) * start_values
-        data.set_base_margin(base_margin_test.flatten())
-        predt = np.array(booster.predict(data, output_margin=True, iteration_range = iteration_range)).reshape(-1, dist.n_dist_param)
-        predt = torch.tensor(predt, dtype=torch.float32)
-        
-        # Transform predicted parameters to response scale
-        dist_params_predt = np.concatenate(
-            [
-                response_fun(
-                    predt[:, i].reshape(-1, 1)).numpy() for i, (dist_param, response_fun) in
-                enumerate(dist.param_dict.items())
-            ],
-            axis=1,
-        )
-        dist_params_predt = pd.DataFrame(dist_params_predt)
-        dist_params_predt.columns = dist.param_dict.keys()
-
-        return dist_params_predt
-
-    @staticmethod
     def uncertainty_phot(model: xgboostlss_model,     
                         catalog: Catalog,
                         dist_name : str,             
                          num_permutation = 100,
                          seed = 123) -> np.ndarray:
+        """
+        Estimate the prediction uncertainty due to photometric uncertainty. 
+        Performs monte carlo, randomly sampling the photometric bands 
+        (assuming a normal flux distribution) accoridng to the photometric error bands 
+        stored in the catalog object's data. The standard deviation of the monte carlo preditions
+        is taken to be the prediction uncertainty due to photometric uncertainty.
         
+        Args:
+            model (xgboostlss.model): The trained model to use to make predictions.
+            catalog (Catalog instance): the Catalog object to take data from.
+            dist_name (str): The name of the probability distribution type to make predictions with
+                This should correspond to the distribution stored in self.target_variables[model_name]
+            seed (int, default = 123): Random seed for reproducible uncertainty estimates.
+                Ensures consistent results across multiple runs with identical inputs.
+                Defaults to 123.
+            num_permutation (int, default=100): Number of Monte Carlo iterations to run 
+                if calculating the uncertainty due to photometric uncertainty.
+                
+        Returns:
+            np.ndarray or None: Array of the uncertainty estimates.
+        """
         phot_names = catalog.get_valid_bands_list()
         err_cols = [phot + '_err' for phot in phot_names]
         data = catalog.get_data()
