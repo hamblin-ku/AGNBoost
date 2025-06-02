@@ -1643,8 +1643,6 @@ class AGNBoost:
 
         uncert_from_phot = np.full( num_sources, np.nan )
 
-
-
         desc = f"Processing uncertainty due to photometric uncertainty with {num_permutation} trials per source."
         log_message( desc )
         for i in tqdm(range(num_sources), desc = None):
