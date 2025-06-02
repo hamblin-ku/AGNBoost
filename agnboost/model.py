@@ -154,7 +154,7 @@ class AGNBoost:
         self.model_info = {model_name: {} for model_name in self.models.keys()}
 
     def get_models(self):
-                """
+        """
         Get the feature dataframe, creating it if it doesn't exist.
         
         Returns:
@@ -1517,7 +1517,7 @@ class AGNBoost:
                      data: DMatrix,
                      iteration_range: Tuple[int, int] = (0,0),
                      ) -> pd.DataFrame:
-           """
+            """
             Generate predictions from a truncated XGBoostLSS model. This serves as a way to 
             approximate the epistemci model uncertainty (i.e., uncertainty due to a lack of model
             knowledge.)
@@ -1544,6 +1544,7 @@ class AGNBoost:
                     parameter dictionary. Each row represents predicted parameters for
                     one input sample.
             """
+
             # Set base_margin as starting point for each distributional parameter. Requires base_score=0 in parameters.
             base_margin_test = (np.ones(shape=(data.num_row(), 1))) * start_values
             data.set_base_margin(base_margin_test.flatten())
