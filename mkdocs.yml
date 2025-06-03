@@ -5,7 +5,6 @@ site_url: https://hamblin-ku.github.io/AGNBoost/
 
 # Repository
 repo_url: https://github.com/hamblin-ku/AGNBoost
-edit_uri: edit/main/docs/
 
 # Configuration
 theme:
@@ -31,7 +30,6 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
-    - content.action.edit
     - content.action.view
 
 # Plugins
