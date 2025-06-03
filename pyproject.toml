@@ -15,11 +15,10 @@ requires-python = ">=3.10"
 keywords = ["astronomy", "machine-learning", "agn", "photometric-redshift", "redshift", "xgboost", "jwst"]
 
 dependencies = [
-    "xgboostlss>=0.4.0",
+    "xgboostlss @ git+https://github.com/StatMixedML/XGBoostLSS.git@relax-bounds-2",
     "seaborn>=0.13.0",
     "astropy>=5.0.0",
     "loguru>=0.7.0",
-    "optuna>=3.5.0"
 ]
 
 [project.optional-dependencies]
