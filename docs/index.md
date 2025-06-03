@@ -66,6 +66,9 @@ cd AGNBoost
 pip install -e
 ```
 
+!!! Installation Note
+    The "-e" flag installs AGNBoost in "editable" mode, which means that local changes to the source code will immediately be available without any further steps. This is particularly useful if you plan to contribute to the project or desire to customize AGNBoost for your research.
+
 ---
 
 ## Built on XGBoostLSS
