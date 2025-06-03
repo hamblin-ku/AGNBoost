@@ -42,7 +42,7 @@ To directly install the latest development version with pip, please use:
 ```bash
 git clone https://github.com/hamblin-ku/AGNBoost.git
 cd AGNBoost
-pip install -e \.
+pip install -e . 
 ```
 
 ### Using Virtual Conda Environment (Recommended)
