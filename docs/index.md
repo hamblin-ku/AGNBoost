@@ -51,24 +51,19 @@ We recommend using a virtual environment to manage dependencies. AGNBoost works 
 conda create -n agnboost python=3.11
 conda activate agnboost
 
-pip install git+https://github.com/hamblin-ku/AGNBoost.git
+git clone https://github.com/hamblin-ku/AGNBoost.git
+cd AGNBoost
+pip install -e
 ```
 
-Otherwise, you can jsut install with pip (python 3.10 or later):
+Otherwise, you can just clone the github repository and install the dependencies with pip:
 
 ### Quick Install
 To directly install the latest development version with pip, please use:
 ```bash
-pip install git+https://github.com/hamblin-ku/AGNBoost.git
-```
-
-### Verify Installation
-
-```python
-import agnboost
-from agnboost import Catalog, AGNBoost
-
-print(f"AGNBoost version: {agnboost.__version__}")
+git clone https://github.com/hamblin-ku/AGNBoost.git
+cd AGNBoost
+pip install -e
 ```
 
 ---

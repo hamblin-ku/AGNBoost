@@ -40,7 +40,9 @@ AGNBoost is a machine learning framework focused on efficiently identfying popul
 ### Quick Install
 To directly install the latest development version with pip, please use:
 ```bash
-pip install git+https://github.com/hamblin-ku/AGNBoost.git
+git clone https://github.com/hamblin-ku/AGNBoost.git
+cd AGNBoost
+pip install -e
 ```
 
 ### Using Virtual Conda Environment (Recommended)
@@ -50,7 +52,9 @@ pip install git+https://github.com/hamblin-ku/AGNBoost.git
 conda create -n agnboost python=3.11
 conda activate agnboost
 
-pip install git+https://github.com/hamblin-ku/AGNBoost.git
+git clone https://github.com/hamblin-ku/AGNBoost.git
+cd AGNBoost
+pip install -e
 ```
 
 ## `Documentation`
