@@ -403,18 +403,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#astronomy-focused-data-management" class="md-nav__link">
+  <a href="#focus-on-astronomical-datasets" class="md-nav__link">
     <span class="md-ellipsis">
-      Astronomy-Focused Data Management
+      Focus on Astronomical Datasets
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#convenient-pipeline" class="md-nav__link">
+  <a href="#convenient-and-simple-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
-      Convenient Pipeline
+      Convenient and Simple Pipeline
     </span>
   </a>
   
@@ -424,15 +424,6 @@
   <a href="#xgboostlss-integration" class="md-nav__link">
     <span class="md-ellipsis">
       XGBoostLSS Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#research-ready-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Research-Ready Tools
     </span>
   </a>
   
@@ -721,18 +712,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#astronomy-focused-data-management" class="md-nav__link">
+  <a href="#focus-on-astronomical-datasets" class="md-nav__link">
     <span class="md-ellipsis">
-      Astronomy-Focused Data Management
+      Focus on Astronomical Datasets
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#convenient-pipeline" class="md-nav__link">
+  <a href="#convenient-and-simple-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
-      Convenient Pipeline
+      Convenient and Simple Pipeline
     </span>
   </a>
   
@@ -742,15 +733,6 @@
   <a href="#xgboostlss-integration" class="md-nav__link">
     <span class="md-ellipsis">
       XGBoostLSS Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#research-ready-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Research-Ready Tools
     </span>
   </a>
   
@@ -852,39 +834,30 @@
 <p><strong>A powerful machine learning toolkit for astronomical data analysis using advanced XGBoost techniques.</strong></p>
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>AGNBoost is a specialized Python framework designed for astronomers working with photometric data. Built on the foundation of <a href="https://statmixedml.github.io/XGBoostLSS/">XGBoostLSS</a>, AGNBoost provides a streamlined workflow for disitrubtional regression with photometric data, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation.</p>
+<p>AGNBoost is a specialized Python framework designed for astronomers working with photometric data. Built with <a href="https://statmixedml.github.io/XGBoostLSS/">XGBoostLSS</a> as the foundation, AGNBoost provides a streamlined workflow for distributional regression with photometric data, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation. Ultimately, AGNBoost is well-suited to any Astronimical regression task due to its robust uncertainty estimation and ease-of-use. </p>
 <div class="admonition tip">
 <p class="admonition-title">Quick Start</p>
-<p>New to AGNBoost? Check out our <a href="tutorials/basic-usage/">Tuotroials</a> to get started!!</p>
+<p>New to AGNBoost? Check out our <a href="tutorials/basic-usage/">Tutorials</a> to get started!!</p>
 </div>
 <hr />
 <h2 id="core-features">Core Features<a class="headerlink" href="#core-features" title="Permanent link">&para;</a></h2>
-<h3 id="astronomy-focused-data-management"><strong>Astronomy-Focused Data Management</strong><a class="headerlink" href="#astronomy-focused-data-management" title="Permanent link">&para;</a></h3>
+<h3 id="focus-on-astronomical-datasets"><strong>Focus on Astronomical Datasets</strong><a class="headerlink" href="#focus-on-astronomical-datasets" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Smart Catalog System</strong>: Load and manage astronomical data from FITS files, CSV, or pandas DataFrames</li>
-<li><strong>Band Configuration</strong>: Flexible JSON-based configuration for photometric bands with metadata (wavelengths, shorthand names)</li>
-<li><strong>Automatic Feature Engineering</strong>: Built-in color calculations, magnitude transformations, and signal-to-noise filtering</li>
+<li><strong>Automatic Feature Engineering</strong>: Built-in color calculations, magnitude transformations, and signal-to-noise filtering. </li>
 <li><strong>Data Validation</strong>: Ensures data quality and compatibility across different datasets</li>
+<li><strong>Pre-trained Models</strong>: Comes packaged with two pre-trained models, for frac$_\text{AGN}$ estimation and photometric redshift estimation from NIRCam+MIRI photometry. </li>
 </ul>
-<h3 id="convenient-pipeline"><strong>Convenient Pipeline</strong><a class="headerlink" href="#convenient-pipeline" title="Permanent link">&para;</a></h3>
+<h3 id="convenient-and-simple-pipeline"><strong>Convenient and Simple Pipeline</strong><a class="headerlink" href="#convenient-and-simple-pipeline" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Hyperparameter Optimization</strong>: Intelligent tuning with custom parameter grids and early stopping</li>
-<li><strong>Cross-Validation</strong>: Robust model validation with stratified splitting for both classification and regression</li>
-<li><strong>Model Persistence</strong>: Comprehensive saving and loading with full metadata tracking</li>
+<li><strong>Model Creation and Tuning</strong>: Simple to create models for any target variable in data, and tune them with Optuna.</li>
+<li><strong>Model Persistence</strong>: Automatic model and hyperparameter saving </li>
 </ul>
-<h3 id="xgboostlss-integration"><strong>XGBoostLSS Integration</strong><a class="headerlink" href="#xgboostlss-integration" title="Permanent link">&para;</a></h3>
+<h3 id="xgboostlss-integration"><strong><a href="https://github.com/StatMixedML/XGBoostLSS/tree/master">XGBoostLSS Integration</a></strong><a class="headerlink" href="#xgboostlss-integration" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Distributional Modeling</strong>: Go beyond point estimates with full probability distributions</li>
-<li><strong>Custom Objectives</strong>: Specialized loss functions for astronomical applications</li>
 <li><strong>Efficient Training</strong>: Optimized for large astronomical datasets with GPU acceleration support</li>
-<li><strong>Uncertainty Quantification</strong>: Robust uncertainty estimates for Astronomical analysis</li>
-</ul>
-<h3 id="research-ready-tools"><strong>Research-Ready Tools</strong><a class="headerlink" href="#research-ready-tools" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Flexible Data Splitting</strong>:  Train/validation/test splits with optional stratification</li>
-<li><strong>Signal-to-Noise Filtering</strong>: Built-in S/N cuts for photometric data quality control</li>
-<li><strong>Transform Pipeline</strong>: Easy-to-use data transformation and augmentation tools</li>
-<li><strong>Extensible Architecture</strong>: Designed for customization and integration with existing workflows</li>
+<li><strong>Uncertainty Quantification</strong>: Provides robust uncertainty estimates, including both aleatoric uncertainty (i.e., that due to randomness in data) and epistemic uncertainty (i.e., that due to a lack of model knowledge).</li>
 </ul>
 <hr />
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
@@ -903,7 +876,7 @@
 <p>To directly install the latest development version with pip, please use:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/hamblin-ku/AGNBoost.git
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>AGNBoost
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="se">\.</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>
 </span></code></pre></div></p>
 <div class="admonition installation note">
 <p class="admonition-title">Installation</p>
@@ -948,7 +921,7 @@
 <ul>
 <li><strong>GitHub Repository</strong>: <a href="https://github.com/hamblin-ku/AGNBoost">https://github.com/hamblin-ku/AGNBoost</a></li>
 <li><strong>Issues and Discussions</strong>: Use GitHub Issues for bug reports and feature requests</li>
-<li><strong>Contributing</strong>: See our <a href="contributing.md">Contributing Guide</a> to get involved</li>
+<li><strong>Contributing</strong>: See our <a href="CONTRIBUTING.md">Contributing Guide</a> to get involved</li>
 </ul>
 <hr />
 <p><em>AGNBoost is open-source software released under the MIT License. If you use AGNBoost in your research, please see our <a href="citation.md">Citation Guide</a>.</em></p>
