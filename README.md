@@ -54,7 +54,7 @@ conda activate agnboost
 
 git clone https://github.com/hamblin-ku/AGNBoost.git
 cd AGNBoost
-pip install -e \.
+pip install -e . 
 ```
 
 ## `Documentation`
@@ -89,6 +89,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Uses [SGAIN](https://github.com/dtneves/ICCS_2021) for photometric imputation
 - [CIGALE](https://cigale.lam.fr/) used for mock galaxy catalog creation
 
+<!---
+## `Reference Paper`
+[![Arxiv link](https://img.shields.io/badge/arXiv-Multi%20Target%20XGBoostLSS%20Regression-color=brightgreen)](https://arxiv.org/abs/2210.06831) <br/>
+
+
+Hamblin, Kurt et al. (2025): [*AGNBoost: A Machine Learning Approach to AGN Identification with JWST/NIRCam+MIRI Colors and Photometry*](arxiv link). <br/>
+--->
 ---
 
 <div align="center">

@@ -6,38 +6,30 @@
 
 ## Overview
 
-AGNBoost is a specialized Python framework designed for astronomers working with photometric data. Built on the foundation of [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/), AGNBoost provides a streamlined workflow for disitrubtional regression with photometric data, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation.
+AGNBoost is a specialized Python framework designed for astronomers working with photometric data. Built with [XGBoostLSS](https://statmixedml.github.io/XGBoostLSS/) as the foundation, AGNBoost provides a streamlined workflow for distributional regression with photometric data, with particular focus on Active Galactic Nuclei (AGN) identification and galaxy property estimation. Ultimately, AGNBoost is well-suited to any Astronimical regression task due to its robust uncertainty estimation and ease-of-use. 
 
 !!! tip "Quick Start"
-    New to AGNBoost? Check out our [Tuotroials](tutorials/basic-usage/) to get started!!
+    New to AGNBoost? Check out our [Tutorials](tutorials/basic-usage/) to get started!!
 
 ---
 
 ## Core Features
 
-### **Astronomy-Focused Data Management**
+### **Focus on Astronomical Datasets**
 - **Smart Catalog System**: Load and manage astronomical data from FITS files, CSV, or pandas DataFrames
-- **Band Configuration**: Flexible JSON-based configuration for photometric bands with metadata (wavelengths, shorthand names)
-- **Automatic Feature Engineering**: Built-in color calculations, magnitude transformations, and signal-to-noise filtering
+- **Automatic Feature Engineering**: Built-in color calculations, magnitude transformations, and signal-to-noise filtering. 
 - **Data Validation**: Ensures data quality and compatibility across different datasets
+- **Pre-trained Models**: Comes packaged with two pre-trained models, for frac$_\text{AGN}$ estimation and photometric redshift estimation from NIRCam+MIRI photometry. 
 
-### **Convenient Pipeline**
-- **Hyperparameter Optimization**: Intelligent tuning with custom parameter grids and early stopping
-- **Cross-Validation**: Robust model validation with stratified splitting for both classification and regression
-- **Model Persistence**: Comprehensive saving and loading with full metadata tracking
+### **Convenient and Simple Pipeline**
+- **Model Creation and Tuning**: Simple to create models for any target variable in data, and tune them with Optuna.
+- **Model Persistence**: Automatic model and hyperparameter saving 
 
-### **XGBoostLSS Integration**
+
+### **[XGBoostLSS Integration](https://github.com/StatMixedML/XGBoostLSS/tree/master)**
 - **Distributional Modeling**: Go beyond point estimates with full probability distributions
-- **Custom Objectives**: Specialized loss functions for astronomical applications
 - **Efficient Training**: Optimized for large astronomical datasets with GPU acceleration support
-- **Uncertainty Quantification**: Robust uncertainty estimates for Astronomical analysis
-
-### **Research-Ready Tools**
-- **Flexible Data Splitting**:  Train/validation/test splits with optional stratification
-- **Signal-to-Noise Filtering**: Built-in S/N cuts for photometric data quality control
-- **Transform Pipeline**: Easy-to-use data transformation and augmentation tools
-- **Extensible Architecture**: Designed for customization and integration with existing workflows
-
+- **Uncertainty Quantification**: Provides robust uncertainty estimates, including both aleatoric uncertainty (i.e., that due to randomness in data) and epistemic uncertainty (i.e., that due to a lack of model knowledge).
 ---
 
 ## Installation
@@ -63,7 +55,7 @@ To directly install the latest development version with pip, please use:
 ```bash
 git clone https://github.com/hamblin-ku/AGNBoost.git
 cd AGNBoost
-pip install -e \.
+pip install -e . 
 ```
 
 !!! Installation Note
@@ -114,16 +106,13 @@ This makes AGNBoost particularly powerful for astronomical applications where un
 ---
 
 
-
-
-
 ## Community and Support
 
 We welcome contributions, feedback, and collaboration from the community!
 
 - **GitHub Repository**: [https://github.com/hamblin-ku/AGNBoost](https://github.com/hamblin-ku/AGNBoost)
 - **Issues and Discussions**: Use GitHub Issues for bug reports and feature requests
-- **Contributing**: See our [Contributing Guide](contributing.md) to get involved
+- **Contributing**: See our [Contributing Guide](CONTRIBUTING.md) to get involved
 
 ---
 
