@@ -89,11 +89,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Uses [SGAIN](https://github.com/dtneves/ICCS_2021) for photometric imputation
 - [CIGALE](https://cigale.lam.fr/) used for mock galaxy catalog creation
 
-<!---
+
 ## `Reference Paper`
-[![Arxiv link](https://img.shields.io/badge/arXiv-Multi%20Target%20XGBoostLSS%20Regression-color=brightgreen)](https://arxiv.org/abs/2210.06831) <br/>
+[![Arxiv link](https://img.shields.io/badge/arXiv-AGNBoost:%20A%20Machine%20Learning%20Approach%20to%20AGN%20Identification%20with%20JWST/NIRCam+MIRI%20Colors%20and%20Photometry=brightgreen)](https://arxiv.org/abs/2506.03130) <br/>
 
-
+<!---
 Hamblin, Kurt et al. (2025): [*AGNBoost: A Machine Learning Approach to AGN Identification with JWST/NIRCam+MIRI Colors and Photometry*](arxiv link). <br/>
 --->
 ---
