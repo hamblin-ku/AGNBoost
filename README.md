@@ -91,7 +91,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 
 ## `Reference Paper`
-[![Arxiv link](https://img.shields.io/badge/arXiv-AGNBoost:%20A%20Machine%20Learning%20Approach%20to%20AGN%20Identification%20with%20JWST/NIRCam+MIRI%20Colors%20and%20Photometry=brightgreen)](https://arxiv.org/abs/2506.03130) <br/>
+[![Arxiv link](https://img.shields.io/badge/arXiv-AGNBoost:%20A%20Machine%20Learning%20Approach%20to%20AGN%20Identification%20with%20JWST/NIRCam+MIRI%20Colors%20and%20Photometry-color==brightgreen)](https://arxiv.org/abs/2506.03130) <br/>
 
 <!---
 Hamblin, Kurt et al. (2025): [*AGNBoost: A Machine Learning Approach to AGN Identification with JWST/NIRCam+MIRI Colors and Photometry*](arxiv link). <br/>
