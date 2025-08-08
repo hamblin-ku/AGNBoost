@@ -2,7 +2,7 @@
   <table>
     <tr>
       <td align="left">
-        <h1>AGNBoost: A machine learning toolkit for astronomical data analysis using XGBoost</h1>
+        <h1>AGNBoost: A flexible machine learning framework for photometric-based regression</h1>
       </td>
       <td align="center" width="220">
         <img src="figures/agnboost_logo.png" alt="AGNBoost Logo" width="200" height="200"/>
@@ -22,8 +22,8 @@ AGNBoost is a machine learning framework focused on identfying candidate populat
 
 ## `Features`
 <ul>
-  <li> Complete distirbutional modeling with XGBoostlss </li> 
-  <li> Robust estimates of both model uncertainty and uncertainty and uncertainty due to photometric error</li> 
+  <li> Complete distirbutional modeling with XGBoostLSS </li> 
+  <li> Robust estimates of both model uncertainty and uncertainty due to photometric error</li> 
   <li> Flexible framework that allows: </li> 
   <ul>
     <li> Simple model creation and re-training </li> 
