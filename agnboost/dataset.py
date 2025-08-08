@@ -792,6 +792,44 @@ class Catalog:
             self.logger.error(f"Error extracting target(s): {str(e)}")
             return None
 
+    def get_train_len(self):
+        """
+        Get the length of the training split
+        
+        Returns:
+            int: The length of the training set, or None if it doesn't exist
+        """
+        if self.train_indices is None:
+            log_message("Data split not yet created.")
+            return
+        
+        return len(self.train_indices)
+
+    def get_val_len(self):
+        """
+        Get the length of the validation split
+        
+        Returns:
+            int: The length of the validation set, or None if it doesn't exist
+        """
+        if self.val_indices is None:
+            log_message("Data split  not yet created.")
+            return
+        
+        return len(self.val_indices)
+
+    def get_test_len(self):
+        """
+        Get the length of the test split
+        
+        Returns:
+            int: The length of the testing set, or None if it doesn't exist
+        """
+        if self.test_indices is None:
+            log_message("Data split  not yet created.")
+            return
+        
+        return len(self.test_indices)
 
     def get_features(self):
         """
@@ -1676,3 +1714,4 @@ class Catalog:
                 return None
 
         return result
+
